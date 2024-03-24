@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 body {
   font-family: 'Nunito Sans';
@@ -246,7 +246,6 @@ body {
 }
 
 .backend-output-box {
-  display: block;
   margin-left: 10vw;
   margin-right: 10vw;
   width: 300%; /* Match width to search bar */

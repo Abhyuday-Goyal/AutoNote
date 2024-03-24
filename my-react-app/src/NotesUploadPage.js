@@ -1,12 +1,16 @@
 // NotesUploadPage.js
 import React, { useState } from 'react';
+import { ArrowDownFromLine } from 'lucide-react';
 
 const NotesUploadPage = () => {
   const [pdfLink, setPdfLink] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
+  const [fileName, setFileName] = useState('');
 
   const handleUpload = async (event) => {
     const file = event.target.files[0];
+    setFileName(event.target.files[0].name);
+
     console.log('Uploading file for Handwritten Notes OCR', file);
 
     setIsProcessing(true);
@@ -51,13 +55,9 @@ const NotesUploadPage = () => {
   };
 
   return (
-    <div className="file-upload-container">
-<<<<<<< HEAD
-      <h2>Handwritten Notes Video Upload</h2>
-=======
-      <h1>Handwritten Notes Video Upload</h1>
->>>>>>> rag-with-latex
-      <label htmlFor="notes-upload" className="file-upload-button">
+    <div className="file-upload-container flex-col items-center">
+      <p className='px-10 text-center text-2xl mt-5 max-w-[100%]'>Handwritten Notes Video Upload</p>
+      <label htmlFor="notes-upload" className="mt-5 rounded-sm w-[80px] text-sm h-[50px] md:w-[50%] md:h-[60px] md:text-xl bg-headerColor text-textColor font-semibold hover:bg-sidebar flex items-center justify-center cursor-pointer shadow-md">
         Select Video
       </label>
       <input
@@ -68,13 +68,16 @@ const NotesUploadPage = () => {
         onChange={handleUpload}
       />
       {isProcessing && <div className="loader"></div>}
+      {fileName && <p>Chosen file: {fileName}</p>}
       {pdfLink && !isProcessing && (
-        <div className="pdf-download-link">
-          <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="generic-download-link">
-            Download Processed PDF
-          </a>
-        </div>
+        <div className="mt-[-20px] pdf-download-link bg-gray-300 border-dashed border-2 border-gray-300 rounded-lg p-1 w-[4vw] flex justify-center">
+        <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="generic-download-link">
+        <ArrowDownFromLine color='#c00f0f' size={'38px'} />
+        </a>
+      </div>
       )}
+      
+
     </div>
   );
 };

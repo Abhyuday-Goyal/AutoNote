@@ -3,9 +3,13 @@ import subprocess
 import tempfile
 import base64
 import requests
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 api_key_abhy = "insert key"
-api_key = "insert key"
+api_key = os.getenv('GEMINI_VISION_API_TOKEN')
 
 def gpt(api_key, image_path):
     client = OpenAI(api_key=api_key)

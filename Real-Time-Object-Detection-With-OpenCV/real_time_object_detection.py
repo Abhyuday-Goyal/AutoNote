@@ -9,8 +9,13 @@ import argparse
 import imutils
 import time
 import cv2
+import os
+from gemini import OCR
+from dotenv import load_dotenv
 
 from gpt_calls import gpt
+
+load_dotenv()
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -23,7 +28,20 @@ ap.add_argument("-c", "--confidence", type=float, default=0.5,
 args = vars(ap.parse_args())
 
 api_key_abhy = "insert key here"
-api_key = "insert key here"
+api_key = GEMINI_API_KEY
+
+video_path = "whiteboard_Test.mp4"
+
+final_latex = r'''\documentclass{article}
+
+% Packages
+\usepackage[utf8]{inputenc} % UTF-8 encoding
+\usepackage[T1]{fontenc} % Font encoding
+\usepackage{lipsum} % For generating dummy text, can be removed
+
+\begin{document}
+
+'''
 
 # Arguments used here:
 # prototxt = MobileNetSSD_deploy.prototxt.txt (required)
@@ -62,9 +80,8 @@ net = cv2.dnn.readNetFromCaffe(args["prototxt"], args["model"])
 # initialize the video stream,
 # and initialize the FPS counter
 print("[INFO] starting video stream...")
-vs = VideoStream(src=0).start()
+vs = VideoStream(src=video_path).start()
 # warm up the camera for a couple of seconds
-time.sleep(2.0)
 
 # FPS: used to compute the (approximate) frames per second
 # Start the FPS timer
@@ -73,6 +90,7 @@ fps = FPS().start()
 #Define a flag for person detection
 person_detected = False
 consecutive_frames_without_detection = 0
+consecutive_frames_with_detection = 0
 photo_taken = True
 
 # OpenCV provides two functions to facilitate image preprocessing for deep learning classification: cv2.dnn.blobFromImage and cv2.dnn.blobFromImages. Here we will use cv2.dnn.blobFromImage
@@ -104,6 +122,10 @@ while True:
 	# grab the frame from the threaded video stream and resize it to have a maximum width of 400 pixels
 	# vs is the VideoStream
 	frame = vs.read()
+
+	if frame is None:
+		break
+
 	frame = imutils.resize(frame, width=400)
 	#print(frame.shape) # (225, 400, 3)
 	# grab the frame dimensions and convert it to a blob
@@ -144,9 +166,11 @@ while True:
 
 			#Check if a person is detected
 			if CLASSES[idx] == "person":
-				person_detected = True
 				photo_taken = False
+				consecutive_frames_with_detection += 1
 				consecutive_frames_without_detection = 0
+				if consecutive_frames_with_detection > 30:
+					person_detected = True
 				#print("Person detected") 
 			else :
 				person_detected = False
@@ -169,15 +193,18 @@ while True:
 
 	# Update person_detected flag based on consecutive frames without detection
 	if not person_detected:
+		consecutive_frames_with_detection = 0
 		consecutive_frames_without_detection += 1
 		#print("Person not detected")
 
 	# Set a threshold for consecutive frames without detection to reset the flag
-	if consecutive_frames_without_detection > 200:
+	if consecutive_frames_without_detection > 15:
 		if not photo_taken:
 			# convert the current frame to a jpg and send to openai api
 			cv2.imwrite("frame.jpg", frame)
-			latex_content = gpt(api_key, "frame.jpg")
+			print("ocring")
+			latex_content = OCR(api_key, "frame.jpg")
+			final_latex += latex_content
 			print(latex_content)
 			photo_taken = True
 			consecutive_frames_without_detection = 0

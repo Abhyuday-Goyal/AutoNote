@@ -84,8 +84,10 @@ def HandDetection(video_path):
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
 
+    vs.stop()
+
     final_latex += r'''
 
     \end{document}'''
 
-    print ("\n\n\n" + final_latex)
+    return final_latex

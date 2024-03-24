@@ -51,8 +51,8 @@ const NotesUploadPage = () => {
   };
 
   return (
-    <div className="file-upload-container" style={{ paddingLeft: '20px' }}>
-      <h2 className="slide-in-left" style={{ marginTop: '30px' }}>Handwritten Notes Video Upload</h2>
+    <div className="file-upload-container">
+      <h2>Handwritten Notes Video Upload</h2>
       <label htmlFor="notes-upload" className="file-upload-button">
         Select Video
       </label>
@@ -63,19 +63,14 @@ const NotesUploadPage = () => {
         accept="video/*"
         onChange={handleUpload}
       />
-      {isProcessing && <div className="loader" style={{ margin: '20px auto' }}></div>}
-      {/* {pdfLink && (
-        <div className="backend-output-box fade-in">
-          <br></br>
-          <iframe
-            title="PDF Output"
-            src={pdfLink}
-            width="100%"
-            height="100%"
-          ></iframe>
+      {isProcessing && <div className="loader"></div>}
+      {pdfLink && !isProcessing && (
+        <div className="pdf-download-link">
+          <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="pdf-download-link">
+            Download Processed PDF
+          </a>
         </div>
-      )} */}
-      {pdfLink && !isProcessing && <button className='file-upload-button'> <a href={pdfLink} style={{ display: 'block', marginTop: '20px' }}>Download Processed PDF</a></button>}
+      )}
     </div>
   );
 };

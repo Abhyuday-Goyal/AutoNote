@@ -49,11 +49,12 @@ def add_embeds(sentence_chunks, embed_model, index):
         
         # Upsert the vector and text into the Pinecone index
         index.upsert(vectors=zip(ids, embeds, meta_data))
+        print('sleepin')
         time.sleep(4)
 
 def augment_prompt(query: str, vectorstore: Pinecone):
     # get top 3 results from knowledge base
-    results = vectorstore.similarity_search(query, k=3)
+    results = vectorstore.similarity_search(query, k=5)
     # get the text from the results
     source_knowledge = "\n".join([x.page_content for x in results])
     # feed into an augmented prompt
@@ -143,21 +144,18 @@ def main():
     text_field = "context"  # the metadata field that contains our text
 
     # initialize the vector store object
-    print("helooooo")
 
-
+   
+    # convert_pdf_to_text('Real-Time-Object-Detection-With-OpenCV/COMM107-1-90.pdf')
+    # data = read_pdf(path='Real-Time-Object-Detection-With-OpenCV/COMM107-1-90.txt')
+    # print('data', data[0:100])
+    # sentence_chunks = split_into_sentence_chunks(data, max_chunk_length)
+    # add_embeds(sentence_chunks, embed_model, index)
 
     vectorstore = Pine(
         index, embed_model.embed_query, text_field
     )
-
-    data = read_pdf(path='Real-Time-Object-Detection-With-OpenCV/cs103x-notes.txt')
-    # sentence_chunks = split_into_sentence_chunks(data, max_chunk_length)
-    # add_embeds(sentence_chunks, embed_model, index)
-
-    
-
-    query = "what is the induction principle?"
+    query = "what is the linear model in oral communication"
 
     output = execute_query(query, messages, chat, vectorstore)
     print(output)

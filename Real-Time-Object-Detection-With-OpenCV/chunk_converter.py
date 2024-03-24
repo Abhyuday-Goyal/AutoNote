@@ -18,7 +18,8 @@ def split_into_sentence_chunks(text, max_chunk_length):
     if current_chunk:
         chunks.append(current_chunk)
 
-    return chunks
+    sentence_chunks = [sentence for sentence in chunks if len(sentence) >= 10]
+    return sentence_chunks
 
 # file_contents = data
 # max_chunk_length = 200  # Choose the maximum length for each chunk

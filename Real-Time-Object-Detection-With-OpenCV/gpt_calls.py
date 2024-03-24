@@ -8,8 +8,8 @@ import os
 
 load_dotenv()
 
-api_key_abhy = "insert key"
-api_key = os.getenv('GEMINI_VISION_API_TOKEN')
+# api_key_abhy = "insert key"
+api_key = os.getenv('GEMINI_API')
 
 def gpt(api_key, image_path):
     client = OpenAI(api_key=api_key)

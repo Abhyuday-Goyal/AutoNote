@@ -9,7 +9,7 @@ from imutils.video import VideoStream
 video_path = "video_test_notepad.mp4"
 
 #cap = cv2.VideoCapture(video_path)
-vs = VideoStream(src=video_path).start()
+vs = VideoStream(src=1).start()
 
 mpHands = mp.solutions.hands
 hands = mpHands.Hands()
@@ -22,7 +22,7 @@ consecutive_frames_with_detection = 0
 photo_taken = True
 
 api_key_abhy = "insert key here"
-api_key = GEMINI_API_KEY
+api_key = os.getenv('GEMINI_API')
 
 final_latex = r'''\documentclass{article}
 

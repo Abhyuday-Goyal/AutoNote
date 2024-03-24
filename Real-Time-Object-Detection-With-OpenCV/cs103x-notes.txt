@@ -1,0 +1,2523 @@
+Discrete Structures
+Lecture Notes
+Vladlen Koltun1
+Winter 2008
+1Computer Science Department, 353 Serra Mall, Gates 374, Stanford University, Stanford, CA
+94305, USA; vladlen@stanford.edu .Contents
+1 Sets and Notation 1
+1.1 Deﬁning sets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+1.2 Set operations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 3
+1.3 More sets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2 Induction 5
+2.1 Introducing induction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.2 Strong induction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+2.3 Why is the induction principle true? . . . . . . . . . . . . . . . . . . . . . . 8
+3 More Proof Techniques 11
+3.1 Proofs by contradiction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+3.2 Direct proofs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+4 Divisibility 15
+4.1 The division algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+4.2 Remainders . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+4.3 Greatest common divisors . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+4.4 Greatest common divisors and linear combinations . . . . . . . . . . . . . . 18
+5 Prime Numbers 21
+5.1 The fundamental theorem of arithmetic . . . . . . . . . . . . . . . . . . . . 21
+5.2 The inﬁnity of primes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+6 Modular Arithmetic 25
+6.1 Congruences . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+6.2 Modular division . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+7 Relations and Functions 31
+7.1 Ordered pairs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+7.2 Relations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+7.3 Kinds of relations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+7.4 Creating relations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+7.5 Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+8 Mathematical Logic 37
+8.1 Propositions and predicates . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+8.2 Quantiﬁers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+i8.3 Negations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+8.4 Logical connectives . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+8.5 Tautologies and logical inference . . . . . . . . . . . . . . . . . . . . . . . . 41
+9 Counting 43
+9.1 Fundamental principles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+9.2 Basic counting problems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+10 Binomial Coeﬃcients 49
+10.1 Basic properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+10.2 Binomial theorem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+11 The Inclusion-Exclusion Principle 53
+11.1 Statement and proof of the principle . . . . . . . . . . . . . . . . . . . . . . 53
+11.2 Derangements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+12 The Pigeonhole Principle 57
+12.1 Statements of the principle . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+12.2 Simple applications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+12.3 Advanced applications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+13 Asymptotic Notation 61
+13.1 Deﬁnitions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 61
+13.2 Examples and properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+14 Graphs 65
+14.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 65
+14.2 Common graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 65
+14.3 Some important concepts . . . . . . . . . . . . . . . . . . . . . . . . . . . . 66
+14.4 Kinds of graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 67
+15 More Graphs—Eulerian, Bipartite, and Colored 69
+15.1 Eulerian graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 69
+15.2 Graph coloring . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 70
+15.3 Bipartite graphs and matchings . . . . . . . . . . . . . . . . . . . . . . . . . 71
+16 Trees 75
+16.1 Basic properties of trees . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 75
+16.2 Spanning trees . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 77
+17 Planar Graphs 79
+17.1 Drawing graphs in the plane . . . . . . . . . . . . . . . . . . . . . . . . . . . 79
+17.2 Euler’s formula . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+17.3 Coloring planar graphs . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 83
+17.4 Concluding remarks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 84
+iiChapter 1
+Sets and Notation
+1.1 Deﬁning sets
+Deﬁnition. Asetis an unordered collection of distinct objects. The objects in a
+set are called the elements, ormembers, of the set. A set is said to contain its elements.
+A set can be deﬁned by simply listing its members inside curly braces. For example,
+the set {2,4,17,23}is the same as the set {17,4,23,2}. To denote membership we
+use the ∈symbol, as in 4 ∈ {2,4,17,23}. On the other hand, non-membership is
+denoted as in 5 /negationslash∈ {2,4,17,23}.
+If we want to specify a long sequence that follows a pattern, we can use the ellipsis
+notation, meaning “ﬁll in, using the same pattern”. The ellipsis is often used after two
+or more members of the sequence, and before the last one, as follows: {1,2, . . . , n }.
+The pattern denoted by the ellipsis should be apparent at ﬁrst sight! For instance,
+{1, . . . , n }is generally regarded as underspeciﬁed (that is, too ambiguous). Of course,
+even{1,2, . . . , n }is still ambiguous—did we mean all integers between 1 and n, all
+powers of two up to n, or perhaps the set {1,2,25, n}?—but is generally suﬃcient,
+unless you really do mean all powers of two up to n, in which case {20,21,22, . . . , 2k}
+for an appropriate kis a better choice. The ellipsis can also be used to deﬁne an
+inﬁnite set, as in the following.
+Deﬁnition. The set of natural numbers ornonnegative integers , denoted by N, is
+deﬁned as {0,1,2, . . .}.
+To avoid ambiguities it is often useful to use the set builder notation, which lists
+on the right side of the colon the property that any set element, speciﬁed on the left
+side of the colon, has to satisfy. Let’s deﬁne the positive integers using the set builder
+notation:
+N+={x:x∈Nandx >0}.
+We can also write
+N+={x∈N:x >0}.
+1This is a matter of taste. In general, use the form that will be easiest for the reader
+of your work to understand. Often it is the least “cluttered” one.
+Ok, now onto the integers:
+Z={x:x∈Nor−x∈N}.
+Hmm, perhaps in this case it is actually better to write
+Z={. . . ,−2,−1,0,1,2, . . .}.
+Remember, when you write mathematics, you should keep your readers’ perspective
+in mind. For now, we—the staﬀ of this course—are your readers. In the future it
+might be your colleagues, supervisors, or the readers of your published work. In
+addition to being reasonably formal and unambiguous, your mathematical writing
+should be as clear and understandable to your intended readership as possible.
+Here are the rational numbers :
+Q=/braceleftBiga
+b:a∈Z, b∈Z, b/negationslash= 0/bracerightBig
+.
+Instead of a∈Z, b∈Z, you can write a, b∈Z, which is more concise and generally
+more readable. Don’t go overboard, though, with writing something like a, b/negationslash= 0∈Z,
+this is way too confusing and does not say what you want it to.
+Finally, the set of real numbers is denoted by R. All the reals that are not rational
+are called irrational . These include the familiar π= 3.1415926 ...,e= 2.7182818 ...,√
+2, and inﬁnitely many others. (How do we know that these numbers are irrational,
+do you ask? Actually, we will see a proof of this for√
+2 shortly. The proofs for πand
+erequire mathematical analysis and are outside our scope.)
+On being formal. Were the above deﬁnitions formal enough? The answer is: it
+depends. For example, deﬁning the natural numbers is an important and non-trivial
+accomplishment of mathematics. After all, what do these symbols “1”, “2”, “3”,
+actually mean ? These numbers can be formally deﬁned in terms of sets. Even more
+involved is the formal deﬁnition of the reals, usually covered in a ﬁrst mathematical
+analysis course.
+Here we cannot aﬀord to cover everything in complete detail, which would have to
+include, among other things, basic algebra and trigonometry. Furthermore, the vast
+majority of mathematical works, while considered to be “formal”, gloss over details
+all the time. For example, you’ll be hard-pressed to ﬁnd a mathematical paper that
+goes through the trouble of justifying the equation a2−b2= (a−b)(a+b). In eﬀect,
+every mathematical paper or lecture assumes a shared knowledge base with its readers
+or listeners. It is extremely important for an author of mathematics, such as yourself
+during this course, to estimate this shared knowledge base correctly!
+In CS103X we will assume most of high-school mathematics, including perhaps
+some AP math like single-variable calculus, as our shared knowledge base. Thus
+notions and techniques from this base will generally not be justiﬁed in lecture, and
+can be used freely in your homework and exams. Furthermore, once we develop certain
+2notation or prove some theorem in class, you can use these freely in your homework
+and exams, provided that you clearly cite the appropriate theorems. In writing and
+speaking mathematics, a delicate balance is maintained between being formal and
+not getting bogged down in minutia.1This balance usually becomes second-nature
+with experience. You should all get the hang of it by the end of the quarter.
+1.2 Set operations
+Ais said to be a subset of Bif and only if every element of Ais also an element of B,
+in which case we write A⊆B.Ais astrict subset ofBifAis a subset of BandAis
+not equal to B, which is denoted by A⊂B. For example, {4,23} ⊂ { 2,4,17,23} ⊆
+{2,4,17,23}.
+Two sets AandBare considered equal if and only if they have the same elements.
+This is denoted by A=B. More formally, A=Bif and only if A⊆BandB⊆A.
+For two sets AandB, the operations of union, intersection, and diﬀerence are
+deﬁned as follows:
+A∪B={x:x∈Aorx∈B}
+A∩B={x:x∈Aandx∈B}
+A\B={x:x∈Aandx/negationslash∈B}
+The∪and∩notation can be extended to the union and intersection of multiple sets.
+Given nsetsA1, A2, . . . , A n, we can write
+n/uniondisplay
+i=1Ai
+for their union, and
+n/intersectiondisplay
+i=1Ai
+for their intersection. In fact, this notation is pretty ﬂexible and the same union can
+be written asn/uniondisplay
+i=1Ai=/uniondisplay
+1≤i≤nAi=/uniondisplay
+i∈{x: 1≤x≤n}Ai.
+Here is another example:
+/intersectiondisplay
+i∈ {x: 1≤x≤10}
+iis primeAi=A2∩A3∩A5∩A7.
+Given a set A, the cardinality ofA, also known as the sizeofA, is simply the number
+of elements in A. The cardinality of Ais denoted by |A|. For example, if A=
+{2,4,17,23}, then |A|= 4.
+1Of course, what is considered minutia diﬀers from subﬁeld to subﬁeld, and from classroom to
+classroom.
+31.3 More sets
+The empty set is denoted by ∅. It is the unique set without elements. It holds that
+∅ ⊆Afor any set A. Why? By deﬁnition, this holds if every element of ∅is also an
+element of A. Since ∅has no elements, all possible statements about the elements of
+∅are true! In particular, all elements of ∅are also elements of A. If this is confusing
+don’t worry, we will go into such matters more rigorously when we get to logic. (For
+now, you can ponder the following: If we know for a fact that there are no unicorns
+<Gasp! >, then it is deﬁnitely true that all unicorns have soft light-blue fur.)
+A set can contain sets as its elements. For example, {{2,4},{17},23}is a per-
+fectly valid set with three elements, two of them sets. (The second element is
+asingleton , a set with one element.) Note that {2,4} ∈ {{ 2,4},{17},23}, but
+{2,4} ⊆ { 2,4,17,23}, and that 17 /negationslash∈ {{2,4},{17},23}, but{17} ∈ {{ 2,4},{17},23}.
+Also, {∅}isnotthe empty set. (Think about it.)
+The power set of a set Ais the set of all subsets of A, and is denoted by 2A. That
+is,
+2A={S:S⊆A}.
+For example, for A={2,4,17,23}, we have
+2A=/braceleftbigg
+∅,{2},{4},{17},{23},{2,4},{2,17},{2,23},{4,17},{4,23},{17,23},
+{2,4,17},{2,4,23},{2,17,23},{4,17,23},{2,4,17,23}/bracerightbigg
+.
+The cardinality of this set is 16, and 16 = 24. This is not a coincidence: As we shall
+see when we get to combinatorics and counting, for a set Awith nelements, the
+cardinality of 2Ais 2n. This is in fact the reason for the power set notation.
+4Chapter 2
+Induction
+2.1 Introducing induction
+Suppose there is an inﬁnite line of people, numbered 1 ,2,3, . . ., and every person
+has been instructed as follows: “If something is whispered in your ear, go ahead
+and whisper the same thing to the person in front of you (the one with the greater
+number)”. Now, what will happen if we whisper a secret to person 1? 1 will tell it to
+2, 2 will tell it to 3, 3 will tell it to 4, and ... everybody is going to learn the secret!
+Similarly, suppose we align an inﬁnite number of dominoes, such that if some domino
+falls, the next one in line falls as well. What happens when we knock down the ﬁrst
+domino? That’s right, they all fall. This intuition is formalized in the principle of
+mathematical induction:
+Induction Principle: Given a set Aof positive integers, suppose the following
+hold:
+•1∈A.
+•Ifk∈Athen k+ 1∈A.
+Then allpositive integers belong to A. (That is, A=N+.)
+Here are two simple proofs that use the induction principle:
+Theorem 2.1.1. Every positive integer is either even or odd.
+Proof. By deﬁnition, we are required to prove that for every n∈N+, there exists
+some l∈N, such that either n= 2lorn= 2l+ 1. The proof proceeds by induction.
+The claim holds for n= 1, since 1 = 2 ·0 + 1. Suppose the claim holds for n=k.
+That is, there exists l∈N, such that k= 2lork= 2l+ 1. We prove that the claim
+holds for n=k+ 1. Indeed, if k= 2lthen k+ 1 = 2 l+ 1, and if k= 2l+ 1 then
+k+ 1 = 2( l+ 1). Thus the claim holds for n=k+ 1 and the proof by induction is
+complete.
+Theorem 2.1.2. Every positive integer power of 3 is odd.
+5Proof. By deﬁnition, we are required to prove that for every n∈N+, it holds that
+3n= 2l+ 1, for some l∈N. The proof proceeds by induction. For n= 1, we have
+3 = 2 ·1 + 1, so the claim holds. Suppose the claim holds for k, so 3k= 2l+ 1, for
+some l∈N. Then
+3k+1= 3·3k= 3(2 l+ 1) = 2(3 l+ 1) + 1 ,
+and the claim also holds for k+ 1. The proof by induction is complete.
+Proof tip: If you don’t know how to get a proof started, look to the deﬁnitions,
+and state formally and precisely what it is that you need to prove. It might not be
+obvious how to prove that “Every positive integer power of 3 is odd”, but a bit easier
+to proceed with proving that “for every n∈N+, it holds that 3n= 2l+ 1, for some
+l∈N.” If you need to prove an implication (that is, a claim of the form “if . . .then
+. . .”), then formally state all the assumptions as well as what you need to prove that
+they imply. Comparing the two might lead to some insight.
+Proof technique: Induction. The induction principle is often used when we are
+trying to prove that some claim holds for all positive integers. As the above two proofs
+illustrate, when we use induction we do not need to explicitly refer to the set Afrom
+the statement of the induction principle. Generally, this set is the set of numbers for
+which the claim that we are trying to prove holds. In the ﬁrst proof, it was the set of
+numbers nthat are either even or odd. In the second proof, it was the set of numbers
+nfor which 3nis odd. Suppose we want to show that some claim holds for all positive
+integers. Here is a general template for proving this by induction:
+(a)State the method of proof. For example, “The proof proceeds by induction.”
+(b)Prove the “induction basis”. That is, prove that the number 1 satisﬁes the
+claim. (This step is often easy, but is crucially important, and should never be
+omitted!)
+(c)Assume the “induction hypothesis”. That is, state the assumption that the
+claim holds for some positive integer k.
+(d)Prove, using the induction hypothesis, that the claim holds for k+1. The proof
+should consist of a chain of clear statements, each logically following from the
+previous ones combined with our shared knowledge base. The ﬁnal statement
+in the chain should state that the claim holds for k+ 1.
+(e)Conclude the proof. For example, “This completes the proof by induction.”
+Theorem 2.1.3. For every positive integer n,
+1 + 2 + · · ·+n=n(n+ 1)
+2.
+6Proof. The proof proceeds by induction. For n= 1, we have 1 =1·2
+2and the claim
+holds. Assume 1 + 2 + · · ·+k=k(k+ 1)/2. Then
+1 + 2 + · · ·+k+ (k+ 1) =k(k+ 1)
+2+ (k+ 1) =k(k+ 1) + 2( k+ 1)
+2=(k+ 1)( k+ 2)
+2,
+which proves the claim for k+ 1 and completes the proof by induction.
+Sigma and Pi notations. Just as the/uniontextsymbol can be used to compactly express
+the union of many sets, the/summationtextsymbol can be used to express summations. For
+example,
+1 + 2 + · · ·+n=n/summationdisplay
+i=1i=/summationdisplay
+1≤i≤ni=/summationdisplay
+i∈{x: 1≤x≤n}i.
+You should not assume just because/summationtextappears that there is an actual summation,
+or that there are any summands at all. For example, when n= 1,/summationtextn
+i=1i= 1, and
+when n≤0,/summationtextn
+i=1i= 0 !
+Similarly, products can be expressed using the/producttextsymbol, as in
+20·21·22·...·2n=n/productdisplay
+i=02i.
+One thing to be aware of is that the empty product is deﬁned to equal 1, so
+1/productdisplay
+i=3i=/productdisplay
+i∈ {2,4,10,14}
+iis oddi= 1 .
+A single/summationtextor/producttextsymbol can also be used to describe the sum or product over
+more than one variable. For example,
+/summationdisplay
+1≤i,j≤n(i+j) =n/summationdisplay
+i=1n/summationdisplay
+j=1(i+j).
+2.2 Strong induction
+Suppose that a property Pholds for n= 1, and the following is true: If Pholds for
+all integers between 1 and k, then it also holds for k+ 1. Under these assumptions,
+Pholds for all positive integers. This is the principle of strong induction. It diﬀers
+from regular induction in that we can assume something stronger to derive the same
+conclusion. Namely, we can assume not only that Pholds for k, but that in fact P
+holds for all positive integers up to k. We state the strong induction principle more
+formally, and then demonstrate its usefulness.
+7Strong Induction Principle: Given a set Aof positive integers, suppose the fol-
+lowing hold:
+•1∈A.
+•If{1,2, . . . , k } ⊆Athen k+ 1∈A.
+Then all positive integers belong to A.
+Deﬁnition. An integer p >1 is said to be prime if the only positive divisors of p
+are 1 and pitself.
+Theorem 2.2.1. Every positive integer greater than 1can be expressed as a product
+of primes.
+Proof. The proof proceeds by strong induction. Since 2 is a prime, the claim holds for
+2. (Note how the induction basis in this case is 2, not 1, since we are proving a claim
+concerning all integers equal to or greater than 2.) Now assume the claim holds for all
+integers between 2 and k. Ifk+1 is a prime then the claim trivially holds. Otherwise
+it has a positive divisor aother than 1 and k+ 1 itself. Thus, k+ 1 = a·b, with
+2≤a, b≤k. Both aandbcan be expressed as products of primes by the induction
+hypothesis. Their product can therefore also be thus expressed. This completes the
+proof by strong induction.
+The versatility of induction. We have seen in the proof of Theorem 2.2.1 that
+if we want to prove a statement concerning all positive integers equal to or greater
+than 2, we can use induction (or strong induction) with 2 as the base case. This holds
+for any positive integer in the place of 2. In fact, induction is an extremely versatile
+technique. For example, if we want to prove a property of all even positive integers,
+we can use 2 as the base case, and then prove that if the property holds for k, it will
+also hold for k+ 2. Generally we will just assume that such variations are ok, there
+is no need to state a separate induction principle for each of these cases.
+Fairly subtle variations of induction are often used. For example, if we can prove
+that a statement holds for 1 and 2, and that if it holds for kit will also hold for
+k+ 2, we can safely conclude that the statement holds for all the positive integers.
+However, don’t get carried away with variations that are simply incorrect, like using
+1 as a base case, proving that if a statement holds for kthen it also holds for k+ 2,
+and then claiming its validity for all positive integers.
+2.3 Why is the induction principle true?
+Some of you might be surprised by the title question. Isn’t it obvious? I mean, you
+know, the dominoes are aligned, you knock one down, they all fall. End of story.
+Right? Not quite.
+“Common sense” often misleads us. You probably noticed this in daily life, and
+you’re going to notice it a whole lot if you get into mathematics. Think of optical
+8illusions: we see, very clearly, what isn’t really there. Our mind plays tricks on us too,
+just like our eyes sometimes do. So in mathematics, we are after proving everything.
+To be mathematically correct, every statement has to logically follow from previously
+known ones. So how do we prove the induction principle?
+The answer lies in the previous paragraph. We said that every statement has
+to logically follow from other statements that we have proven previously. But this
+cannot go on forever, do you see? We have to start from some statements that we
+assume to be true. Such statements are called axioms. For example, why is it true
+that for any two natural numbers a, b, c , it holds that a+(b+c) = (a+b)+c? Because
+we assume it to be so, in order to build up the rest of mathematics from this and a
+small number of other such axioms.
+This is also what we do with the induction principle: We accept it as an axiom.
+And if we accept the induction principle, strong induction can be proved from it, as
+you’ll discover in the homework.
+910Chapter 3
+More Proof Techniques
+3.1 Proofs by contradiction
+The following proof proceeds by contradiction. That is, we will assume that the claim
+we are trying to prove is wrong and reach a contradiction. If all the derivations along
+the way are correct, then the only thing that can be wrong is the assumption, which
+was that the claim we are trying to prove does not hold. This proves that the claim
+does hold.
+Theorem 3.1.1.√
+2is irrational.
+Proof. We have seen previously that every integer is either even or odd. That is, for
+every n∈Zthere exists k∈Z, such that either n= 2korn= 2k+1. Now, if n= 2k
+then n2= (2k)2= 4k2= 2·(2k2), which means that if nis even then n2is also even.
+On the other hand, if n= 2k+1 then n2= (2k+1)2= 4k2+4k+1 = 2 ·(2k2+2k)+1,
+so ifnis odd then n2is also odd.
+We now proceed with a proof by contradiction. Assume that√
+2 is rational,
+that is,√
+2∈Q. (This is the assumption that should lead to a contradiction.) By
+deﬁnition, this means that there exist two numbers p, q∈Z, with q/negationslash= 0, such that
+p
+q=√
+2,
+and thus/parenleftbiggp
+q/parenrightbigg2
+= 2.
+We can assume that pandqhave no common divisor, since all common divisors can
+be divided out to begin with. We have
+p2= 2q2.
+This shows that p2is even, and consequently pmust be even; that is, p= 2kfor some
+k∈Z. Then
+p2= 4k2= 2q2,
+11so
+2k2=q2.
+This shows that q2is even, and consequently that qis even. Thus both pandqare
+even, contradicting the fact that pandqhave no common divisor. We have reached
+a contradiction, which completes the proof.
+Proof Technique: Proof by contradiction. Suppose we want to prove some
+statement A by contradiction. A common template for such proofs is as follows:
+(a)State the method of proof. For example, “The proof proceeds by contradiction.”
+(b)State the assumption that should lead to the contradiction. For example, “As-
+sume statement A does not hold.”
+(c)Proceed with a chain of clear statements, each logically following from the
+previous ones combined with our shared knowledge base. The ﬁnal statement
+in the chain should be a contradiction, either of itself (as in, 0 /negationslash= 0), or of some
+previous statement in the chain, or of part of our shared knowledge base.
+(d)Conclude the proof. For example, “We have reached a contradiction, which
+completes the proof.”
+Theorem 3.1.2. log23is irrational.
+Proof. The proof proceeds by contradiction. Assume that log23 is rational. By
+deﬁnition, there exist two numbers p, q∈Z, with q/negationslash= 0, such that
+log23 =p
+q,
+which means that
+2p
+q= 3,
+and thus
+2p= 3q.
+We can assume that p, q > 0. (Indeed, if p/q > 0 then we can just work with |p|and
+|q|, and if p/q≤0 we reach a contradiction of the form 3 = 2p/q≤20= 1.) Now, any
+positive integer power of 2 is even, because it has 2 as a divisor, so 2pis even. On the
+other hand, a positive integer power of 3 is odd, as we’ve seen previously. We have
+reached a contradiction.
+3.2 Direct proofs
+We should not forget perhaps the most intuitive proof technique of all: the direct
+one. Direct proofs start out with our shared knowledge base and, by a sequence of
+logical derivations, reach the conclusion that needs to be proved. Such proofs are
+often particularly ingenious and surprising.
+12Consider the following well-known puzzle question. Take the usual 8 ×8 chessboard
+and cut out two diagonally opposite corner squares. Can the remaining 62 squares be
+tiled by domino-shaped 2 ×1 tiles, each covering two adjacent squares of the board?
+(That is, each tile can be placed either horizontally or vertically, so as to precisely
+cover two squares of the board.)
+Theorem 3.2.1. A tiling as above is impossible.
+Proof. Every tile covers one white square and one black square. Thus in any tiling as
+above, the number of white squares covered is the same as the number of black ones.
+The two removed squares have the same color, hence the number of white squares left
+on the board is not the same as the number of black ones. So the remaining squares
+cannot be tiled.
+The above proof can also be phrased as a proof by contradiction, or even in terms
+of induction. However, even though such a phrasing might appear more formal, it is
+rather unnecessary, as the above proof is already logically sound (which is critical!),
+and better conveys the power (and dare I say, the beauty) of the argument.
+Proof Technique: Direct proof. Here is a common template for direct proofs:
+(a)Provide a chain of clear statements, each logically following from our shared
+knowledge base and the previous ones. The ﬁnal statement in the chain should
+be the claim we need to prove.
+(b)(Optional.) Conclude the proof. For example, “This completes the proof.”
+1314Chapter 4
+Divisibility
+4.1 The division algorithm
+For the next few lectures we will exercise our ability to prove mathematical state-
+ments, using the fertile ground of number theory. In the process we will learn new
+proof techniques and tricks of trade. The number-theoretic concepts and results
+we will cover will be useful throughout your computer science studies, and, indeed,
+throughout your involvement with mathematics.
+The following result is commonly known as the division algorithm , even though it
+is not an algorithm at all.
+Theorem 4.1.1. Ifaandbare integers and b/negationslash= 0, then there is a unique pair of
+integers qandr, such that a=qb+rand0≤r <|b|.
+Proof. We need to prove two things: that there is some such pair q, r(existence) and
+that this pair is unique (uniqueness).
+Let’s begin with existence. First we show that there is a pair q, r∈Zthat satisﬁes
+a=qb+rfor some r≥0. This is easy after some playing around: Take q=−|ab|/b
+andr=a+|ab|. Since |b| ≥1, it holds that r≥0. Now we need to show that such
+q, r∈Zexist with rin addition being smaller than |b|. For this, consider the set
+Sof all r∈Nthat satisfy a=qb+rfor some q∈Z. We’ve just shown that Sis
+nonempty, so it must have a smallest element, call it r0. We have a=q0b+r0. If
+r0<|b|we’re done. Otherwise, we have a= (q0b+|b|) + (r0− |b|), which means that
+r0− |b|is a smaller element of Sthan r0, leading to a contradiction. This completes
+the existence proof.
+To prove uniqueness, suppose that a=qb+r=sb+t, with 0 ≤r, t < |b|. Thus
+(q−s)b+ (r−t) = 0. Since 0 ≤r, t < |b|, we have |r−t|<|b|, hence |(q−s)b|<|b|
+and|q−s|<1. Since qandsare integers, this implies q=s. From this we have
+r=tand the uniqueness proof is complete.
+Proof tip: When we need to prove that some mathematical object exists and is
+unique, it is useful to approach in two stages. First prove that at least one such object
+exists. This can be done either by directly constructing an object and demonstrating
+15that it fulﬁlls the requirements, or by assuming that no such object exists and reaching
+a contradiction. Then show that any two such objects must be the same.
+The Well-Ordering Principle. In proving the division algorithm, we considered
+a certain set S⊆Nand argued that since it is nonempty, it must have a smallest
+element. Why is this true? As with induction, we accept this proposition as an
+axiom. In general, the “well-ordering principle” states that any nonempty set of
+natural numbers must have a smallest element. As you will prove in the homework,
+the well-ordering principle is equivalent to the principles of induction and strong
+induction.
+4.2 Remainders
+A more algorithmic view of Theorem 4.1.1 is as follows: If we divide the equation
+a=qb+r
+bybwe geta
+b=q+r
+b.
+Since 0 ≤r <|b|, we get that if b >0, then 0 ≤r
+b<1 and thus q=/floorleftbiga
+b/floorrightbig
+, the greatest
+integer less than or equal toa
+b. Ifb <0, then 0 ≥r
+b>−1 and thus q=/ceilingleftbiga
+b/ceilingrightbig
+, the
+least integer greater or equal toa
+b. This can be used to calculate q, from which we
+can derive r.
+In Theorem 4.1.1, we call qthequotient andrtheremainder . We use the notation
+r=arembto denote that ris the remainder when ais divided by b. There is no
+need for a special notation for quotient, since we can just use/floorleftbiga
+b/floorrightbig
+and/ceilingleftbiga
+b/ceilingrightbig
+, depending
+on the sign of b.
+Deﬁnition: Ifaandbare such that aremb= 0 we say that ais amultiple ofb,
+or that bdivides a(or is a divisor ofa). Note that this holds when there exists some
+integer q, such that a=qb. In particular, every integer divides 0, and every integer
+is a multiple of 1. When bdivides awe write b|a, and when bdoes not divide awe
+write b/negationslash |a.
+Deﬁnition: An integer uis called a linear combination of a set of integers a1, a2, . . . , a n
+if and only if there exist integer coeﬃcients c1, c2, . . . , c nthat satisfy
+u=n/summationdisplay
+i=1ciai.
+Theorem 4.2.1. Properties of divisibility:
+(a)Ifb|aandc|bthen c|a.
+16(b)Ifb|aanda/negationslash= 0then|b| ≤ |a|.
+(c)Ifbdivides each of a1, a2, . . . , a n, then bdivides all linear combinations of
+a1, a2, . . . , a n.
+(d)a|bandb|aif and only if a=±b.
+Proof. We prove the properties in turn:
+(a)Since b|a, there exists an integer q, such that a=qb. Similarly, there exists an
+integer r, such that b=rc. Thus a=qb=qrc. Since qris an integer, it holds
+thatc|a.
+(b)Since b|a, there exists an integer q, such that a=qb. This implies |a|=|q| · |b|.
+Assume for the sake of contradiction that a/negationslash= 0 but |b|>|a|. Then |q|·|b|<|b|.
+Since |b|>|a|>0, we can divide by |b|to get |q|<1, implying q= 0. Thus
+a=qb= 0, which is a contradiction.
+(c)Consider a linear combination u=/summationtextn
+i=1ciai. Since b|ai, there exists an integer
+qi, such that ai=qib, for all 1 ≤i≤n. Thus
+u=n/summationdisplay
+i=1ciai=n/summationdisplay
+i=1ciqib=b·n/summationdisplay
+i=1ciqi.
+Since/summationtextn
+i=1ciqiis an integer, we have b|u.
+(d)For the “if” statement, note that if a=±bthen b=qaanda=qb, forq=±1,
+soa|bandb|a. To prove the “only if” statement, assume that a|bandb|a. This
+implies the existence of integers qandr, such that b=qaanda=rb. Thus
+b=qrb. Ifb= 0 then a= 0 and the claim that a=±bholds. Otherwise we
+can divide by bto get qr= 1. Note that in this case q, r/negationslash= 0. Part (b) of the
+theorem implies that |q| ≤1 and |r| ≤1. Thus q, r=±1 and the claim that
+a=±bfollows.
+Proof tip: Often we need to prove that a proposition A holds if and only if some
+other proposition B holds. Such an “if and only if” (sometimes abbreviated as “iﬀ”)
+statement is really composed of two implications, each of which needs to be proved.
+It is often useful to decouple these and prove them separately. First prove that “If A
+then B,” and then prove that “If B then A.” Another strategy is to prove that “If A
+then B” and “If not A then not B.”
+4.3 Greatest common divisors
+Ifd|aandd|bthen dis acommon divisor ofaandb. For example, 1 is a common
+divisor of any pair a,b. Ifaandbare not both 0 then, by Theorem 4.2.1(b), any
+17common divisor of aandbis not greater than max( |a|,|b|). Thus the set of common
+divisors of aandbhas a largest element, called the greatest common divisor ofaand
+b, or gcd( a, b). This is the integer dthat satisﬁes the following two criteria:
+•d|aandd|b.
+•Ifc|aandc|bthen c≤d.
+Note that when a=b= 0, there is no greatest common divisor, since any integer
+divides 0. When aandbare not both 0, we often want to compute gcd( a, b) eﬃciently.
+Note that the set of divisors of aand−ais the same, and similarly for band−b.
+Furthermore, if a= 0 then gcd( a, b) =b, and if a=bthen gcd( a, b) =a=b. Thus it
+suﬃces to concentrate on the case a > b > 0, without loss of generality.
+Since 1 ≤gcd(a, b)≤b, we can just test all integers between 1 and band choose
+the largest one that divides both aandb. However, there is a much more eﬃcient
+way to ﬁnd greatest common divisors, called Euclid’s algorithm. This algorithm, one
+of the earliest in recorded history, is based on the following lemma.
+Lemma 4.3.1. Ifa=qb+rthen gcd(a, b) = gcd( b, r).
+Proof. By Theorem 4.2.1(c), all common divisors of bandralso divide a, since ais
+a linear combination of bandr. Thus a common divisor of bandris also a common
+divisor of aandb. Similarly, since r=a−qb, a common divisor of aandbalso
+divides r, so it is a common divisor of bandr. Thus a, bandb, rhave the same set
+of common divisors, and in particular the same greatest common divisor.
+With this lemma in our toolbelt, Euclid’s algorithm is easy to describe. To ﬁnd
+gcd(a, b), use the division algorithm (Theorem 4.1.1) to represent a=qb+r, where
+0≤r < b . (Remember that we are assuming that a > b > 0.) If r= 0 then b|aand
+gcd(a, b) =b. Otherwise gcd( a, b) = gcd( b, r) and b > r > 0. We can thus repeat the
+above procedure recursively with the pair b, r. Every recursive call strictly reduces
+both numbers in the pair, so after at most bsteps the algorithm will terminate with
+a valid greatest common divisor of aandb. You will formally prove the correctness
+of the algorithm in the homework.
+4.4 Greatest common divisors and linear combi-
+nations
+We have seen that a common divisor of aandbdivides any linear combination of a
+andb. Now we will prove a surprising property known as Bezout’s identity that shows
+that the greatest common divisor of aandbis itself a linear combination of aandb.
+Theorem 4.4.1. For two integers aandbthat are not both 0,gcd(a, b)is a linear
+combination of aandb.
+18Proof. As above, we can concentrate on the case a > b > 0. The proof proceeds by
+strong induction on the value of a. In the base case, a= 2, b= 1, and gcd( a, b) =
+1 = 0 ·a+ 1·b. Assume that the theorem holds for all pairs a, bwith 0 < b < a ≤k.
+Consider a pair a/prime, b/primewith 0 < b/prime< a/prime=k+ 1. If b/prime|a/primethen gcd( a/prime, b/prime) =b/primeand the
+theorem trivially holds. Otherwise use the division algorithm to express a/prime=qb/prime+r,
+where 0 < r < b/prime. By the induction hypothesis, there exist coeﬃcients uandv, such
+that gcd( b/prime, r) =ub/prime+vr. Lemma 4.3.1 shows that gcd( a/prime, b/prime) = gcd( b/prime, r), therefore
+gcd(a/prime, b/prime) =ub/prime+vr=ub/prime+v(a/prime−qb/prime) =va/prime+ (u−vq)b/prime. This shows that gcd( a/prime, b/prime)
+is a linear combination of a/primeandb/primeand completes the proof by induction.
+Bezout’s identity implies that the set of linear combinations of aandbis the same
+as the set of multiples of their greatest common divisor (!):
+Corollary 4.4.2. An integer zis a linear combination of aandbif and only if it is
+a multiple of gcd(a, b). In particular, gcd(a, b)is the least positive linear combination
+ofaandb.
+Proof. By Theorem 4.2.1(c), since gcd( a, b) divides both aandb, it divides any linear
+combination zofaandb, and thus zis a multiple of gcd( a, b). On the other hand, we
+know by Bezout’s identity that there are coeﬃcients uandv, such that gcd( a, b) =
+ua+vb, so if z=c·gcd(a, b), then z=c(ua+vb) = (cu)a+ (cu)v.
+1920Chapter 5
+Prime Numbers
+5.1 The fundamental theorem of arithmetic
+Deﬁnition: An integer p >1 is said to be prime if its only positive divisors are 1
+andpitself. All other integers greater than 1 are called composite.
+A composite number ncan be written as a product n=abof two strictly smaller
+numbers 1 < a, b < n . Note that, by convention, 1 is neither prime nor composite.
+Here are all primes below 100:
+2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97.
+Given a prime pand another integer a, either ais a multiple of por gcd( p, a) = 1.
+Indeed, gcd( p, a) divides p, so it must be either 1 or p, and since gcd( p, a) also divides
+athen either gcd( p, a) = 1 or ais a multiple of p. This can be used to prove a very
+important property of primes:
+Theorem 5.1.1. Letpbe a prime.
+(a)Given two integers aandb, ifp|abthen either p|aorp|b.
+(b)Given kintegers a1, a2, . . . , a k, ifp|/producttextk
+i=1aithen p|aifor some 1≤i≤k.
+Proof.
+(a)Ifp|awe are done. Otherwise gcd( p, a) = 1 and by Bezout’s identity there exist
+linear coeﬃcients uandvfor which 1 = ua+vp. Multiplying both sides by b
+we get b=uab+vpb. Since pdivides ab,pdivides the whole sum uab+vpb.
+Therefore p|b.
+(b)The proof proceeds by induction. The case k= 1 is trivial and k= 2 is handled
+in part (a). So we assume that the claim holds for some k >1 and prove that it
+also holds for k+ 1. Given that p|/producttextk+1
+i=1ai, we put b=/producttextk
+i=1ai. Since p|bak+1,
+part (a) implies that either p|ak+1orp|b. In both cases the claim holds, in the
+latter case by the induction hypothesis. This completes the proof by induction.
+21Theorem 5.1.1 can be used to derive a fundamental theorem of number theory. It
+is so fundamental it has “fundamental” in its name.
+Theorem 5.1.2 (Fundamental Theorem of Arithmetic) .Every positive integer can
+be represented in a unique way as a product of primes,
+n=p1p2· · ·pk (p1≤p2≤. . .≤pk).
+Proof. We ﬁrst prove existence and then uniqueness. Actually, we already proved
+existence in one of the previous lectures as an illustration of strong induction, but
+give the prove here again for completeness. So, to prove that every integer can be
+represented as a product of primes we use strong induction. The base case n= 1
+holds because the empty product , as we previously discussed, is deﬁned to equal 1.
+The induction hypothesis assumes that for some n > 1, all positive integers k < n
+can be represented as a product of primes. If nis prime, then it is trivially a product
+of primes. Otherwise it can be written as n=ab, for 1 < a, b < n . By the induction
+hypothesis, both aandbare products of primes, so their product nis also a product
+of primes. This proves existence.
+The proof that the above representation is unique proceeds by contradiction. As-
+sume then that there exists some positive integer that can be represented as a product
+of primes in (at least) two ways. By the well-ordering principle, there is a smallest
+such integer n. It holds that n=p1p2· · ·pk=q1q2· · ·ql, where p1≤p2≤. . .≤pk,
+q1≤q2≤. . .≤ql, and pi/negationslash=qifor some i. By Theorem 5.1.1(b), since pi|q1q2· · ·ql,
+there must exist some qjfor which pi|qj. Since qjis prime and pi>1, this can
+only occur when pi=qj. Thus we can eliminate piandqjfrom the equation
+p1p2· · ·pk=q1q2· · ·qland get two distinct representations of the positive integer
+number n/p ias a product of primes. This contradicts the assumption that nis the
+smallest positive integer with this property, and concludes the proof of uniqueness.
+5.2 The inﬁnity of primes
+Here is another fundamental result with a proof from Euclid’s Elements :
+Theorem 5.2.1. There are inﬁnitely many primes.
+Proof. Assume for the sake of contradiction that there is only a ﬁnite set of primes,
+p1, p2, . . . , p n. Consider the number
+p=p1p2. . . p n+ 1.
+By Theorem 5.1.2, phas a prime divisor, which has to be pi, for some 1 ≤i≤n.
+Since pidivides both pandp1p2. . . p n, it also divides p−p1p2. . . p n= 1. However,
+this is impossible since pi>1. This contradiction proves the theorem.
+Let’s get some more mileage out of Euclid’s proof. The results below show that
+not only do the primes never stop, but the number of primes p≤xis at least a certain
+natural function of x, namely at least log log x. (Here the base of the logarithm is 2.)
+22Theorem 5.2.2. Then-th prime pnsatisﬁes pn≤22n−1for all n≥1.
+Proof. We proceed using strong induction. For the base case, the ﬁrst prime is 2 = 220.
+Assume that the claim holds for all primes p1through pk. Consider p=p1p2. . . p k+1.
+As in the above proof, phas a prime factor that is not one of the ﬁrst kprimes. This
+prime factor is thus at least as large as pk+1, which implies
+pk+1≤p=p1p2. . . p k+ 1≤220221· · ·22k−1+ 1
+= 21+2+4+ ...+2k−1+ 1
+= 22k−1+ 1
+=1
+222k+ 1
+≤22k.
+This is precisely the induction step we needed, and concludes the proof by strong
+induction.
+Denote by π(x) the number of primes p≤x.
+Corollary 5.2.3. Forx≥2,π(x)≥ ⌊log log x⌋+ 1.
+Proof. Plugging n=⌊log log x⌋+ 1 into Theorem 5.2.2 implies that the n-th prime
+is at most x. Thus there are at least nprimes below x.
+For general education, you should know that this is by far not the best possible
+estimate. A celebrated achievement in number theory is the Prime Number Theorem
+due to Hadamard and de la Vall´ ee Poussin, which states that x/lnx(here we use the
+natural logarithm) is the “right” bound, in the sense that
+lim
+x→∞π(x)
+x/lnx→1.
+2324Chapter 6
+Modular Arithmetic
+6.1 Congruences
+We usually associate arithmetic with the inﬁnite set of integer numbers. However,
+modular arithmetic on ﬁnite sets is commonly used in our daily life. As an example,
+if it is now 1 am and we let 1000 hours pass, what time will it be? We can use the
+division algorithm to see that 1000 = 41 ×24 + 16 and conclude that adding 1000
+hours is like adding 16 hours, since the clock returns to the same position every 24
+hours. So after 1000 hours it will be 5 pm (17 hours after midnight).
+There are many examples in which it is natural and useful to limit our number
+system to a ﬁnite range of integers, such as 0 through n−1, for some n. This number
+system is denoted by Zn. Days of the week, hours of the day, minutes in an hour
+are all familiar examples of ﬁnite number systems, as are numbers in microprocessor
+registers, commonly limited to 32 binary digits.
+Modular arithmetic allows us to add, subtract, multiply, and sometimes divide
+numbers while staying within the ﬁnite set Zn. The number nis called the modulus .
+A central notion in modular arithmetic is congruence . We say that two integers are
+congruent modulo nif they leave the same remainder when divided by n. Here is the
+formal deﬁnition:
+Deﬁnition: Two integers a, b∈Zare said to be congruent modulo n, written as
+a≡nbora≡b(mod n), if and only if they leave the same remainder when divided
+byn, that is, aremn=bremn.
+This deﬁnition captures our intuition that the day of the week will be the same
+whether we let 10, 17, or 80 days pass. There is an equivalent deﬁnition of congruence
+that is often useful in proofs:
+Lemma 6.1.1. a≡nbif and only if n|(a−b).
+Proof. Ifa≡nbthen aremn=bremn. Put r=aremn=bremn. Then there
+exist two integers q1andq2, such that a=q1n+randb=q2n+r. Subtracting the
+second equation from the ﬁrst, we get a−b= (q1−q2)nandn|(a−b).
+On the other hand, if n|(a−b) then there exists an integer d, such that a−b=nd.
+By the division algorithm, there exist integers q1, q2∈Z, and 0 ≤r1, r2< n, such
+25thata=q1n+r1andb=q2n+r2. Thus ( q1−q2)n+ (r1−r2) =nd, and r1−r2=
+(q2−q1+d)n. Thus n|(r1−r2). However, |r1−r2|< n, so necessarily r1−r2= 0,
+which implies that aremn=bremn, and a≡nb.
+You should use the deﬁnition to verify that for any a, b, c ∈Z,
+•a≡na. (Reﬂexivity.)
+•Ifa≡nbthen b≡na. (Symmetry.)
+•Ifa≡nbandb≡ncthen a≡nc. (Transitivity.)
+The operations of addition, subtraction, and multiplication on Znare deﬁned by
+ﬁrst doing the corresponding operation in Zand then taking the remainder modulo
+n. That is, if we denote these respective operations by + n,−n, and ·n, then
+a+nb= (a+b) rem n
+a−nb= (a−b) rem n
+a·nb= (ab) rem n
+Exponentiation is deﬁned through repeated multiplication.
+Lemma 6.1.2. Properties of congruence:
+(a)(aremn) rem n=aremn
+(b)(aremn)≡na
+(c)(ab) rem n= (aremn)(bremn) rem n
+(d)(aremn)(bremn)≡nab
+(e)/producttextk
+i=1(airemn)≡n/producttextk
+i=1ai
+(f)Ifa1≡na2andb1≡nb2then
+a1+b1≡na2+b2
+a1−b1≡na2−b2
+a1b1≡na2b2
+Proof. (b) is just a restatement of (a). To prove these we need to show that n|(a−
+(aremn)). Put r=aremn. By the division algorithm, there exists q∈Z, such that
+a=qn+r. Thus a−r=qn, which implies that n|a−rand concludes the proof.
+(d) is a restatement of (c), and (e) can be proved from (d) by induction. To prove
+(c) we need to show that n|(ab−(aremn)(bremn)). Use the division algorithm to
+represent a=q1n+r1andb=q2n+r2. Then
+ab−(aremn)(bremn) = (q1n+r1)(q2n+r2)−r1r2= (q1q2n+r1q2+q1r2)n,
+26which implies the claim.
+We now prove (f). We know that n|(a1−a2) and n|(b1−b2). That is, there exist
+integers qands, such that a1−a2=qnandb1−b2=sn. Adding these equations gives
+(a1+b1)−(a2+b2) = (q+s)n, which yields the ﬁrst part of the claim. Subtracting
+similarly gives the second part. Writing a1=a2+qnandb1=b2+snand multiplying
+the equations gives
+a1b1=a2b2+b2qn+a2sn+qsn2
+a1b1−a2b2= (b2q+a2s+qsn)n,
+which yields the third part.
+6.2 Modular division
+You might have noticed that we deﬁned addition, subtraction, and multiplication, but
+not division. This might not be surprising, since the division operation is not deﬁned
+for the integers in general: There is no integer that corresponds to 5 divided by 4, for
+instance. (In other words, there is no x∈Z, such that 4 x= 5.) This distinguishes Z
+from sets like QorRthat are closed under division .
+Division in Znappears even more unruly. For example, in Z6, the equation 2 x= 4
+is satisﬁed by both x= 2 and x= 5, while the equation 2 x= 3 has no solutions.
+So the notion of “ bdivided by a” can be undeﬁned or even ambiguous in Zn. In
+particular, we cannot generally cancel a multiplier from both sides of a congruence,
+that is, if ab≡nacwe cannot reason that b≡nc. To take the above illustration,
+2·2≡62·5, but 2 /negationslash≡65.
+Quite remarkably, however, the division operation is well-deﬁned when nis a
+prime p. Thus Zpis in a sense as well-behaved as the real numbers, despite being a
+ﬁnite set! After a small digression that explores what “well-behaved” actually means
+here, we will state an even more general result on modular division.
+Digression (notions from abstract algebra): There is a way to precisely state
+what we mean by “well-behaved” above. Jumping the gun, I’ll say that Zpis aﬁeld,
+not just a ring. Now let me tell you what this means. The notion of a ring in algebra
+is meant to abstract our intuition concerning the essential properties of the integers.
+Given a set Sequipped with two operations, + (addition) and ·(multiplication), we
+say that Sis a ring if the following all hold for any a, b, c ∈S:
+•a+b∈Sanda·b∈S.
+•a+ (b+c) = (a+b) +canda·(b·c) = (a·b)·c.
+•a+b=b+aanda·b=b·a.
+•a·(b+c) =a·b+a·c.
+•There exists an additive identity element 0 ∈Sthat satisﬁes a+ 0 = aand a
+multiplicative identity element 1 ∈Sthat satisﬁes a·1 =afor all a∈S.
+27•For every a∈Sthere exists an additive inverse −a∈Sfor which a+ (−a) = 0.
+All the number systems we have encountered so far are rings, including Z,Q,R,
+andZn. However, some of them possess additional structure that allows the division
+operation. Namely, a ring is said to be a ﬁeldif, in addition to the above, the following
+holds
+•For every a∈S, such that a/negationslash= 0, there exists a multiplicative inverse a−1∈S
+for which a·a−1= 1.
+The number systems RandQ, as well as Zpwhen pis prime, are ﬁelds. In ﬁelds
+the division operation is well-deﬁned, and b/a=b·a−1, as can be veriﬁed by plugging
+x=b·a−1into the equation ax=b. A ﬁeld with a ﬁnite number of elements is called
+aGalois ﬁeld , after the French mathematician Evariste Galois. (A feisty young man
+who died in a duel at the age of 20, after making signiﬁcant enough contributions
+to mathematics to have a whole ﬁeld (sic) named in his honor!) Anyway, now that
+we know what ﬁelds are, let’s see why Zpis one. In fact, we prove something more
+general:
+Theorem 6.2.1. Ifaandnare coprime then there exists exactly one x∈Znfor
+which ax≡nb, for any b∈Z.
+Proof. We need to prove existence and uniqueness of xas described in the theorem.
+ax≡nbif and only if there exists q∈Z, such that ax−b=nq, orax−nq=b. Now,
+since gcd( a, n) = 1, any integer, including b, is a linear combination of aandn. This
+proves existence.
+To prove uniqueness, assume that for x, y∈Znit holds that ax≡nbanday≡nb.
+Thus ax−ay≡n0, or n|a(x−y). As you proved in one of the homework assignments,
+since nandaare coprime, this implies that n|(x−y), and therefore that x−y≡n0.
+Thus x≡ny, which proves uniqueness.
+Corollary 6.2.2. For a prime pand any a, b∈Z, such that a/negationslash≡p0, there exists
+exactly one x∈Zpfor which ax≡pb.
+The fact that division is well-deﬁned in Zpwhen pis prime also means that
+cancelations become valid. Thus if a/negationslash≡p0 and ab≡pacwe can safely conclude that
+b≡pc.
+We now know that b/ais well-deﬁned in Zp, but how do we ﬁnd it? That is, how
+do we ﬁnd x∈Zp, for which ax≡pb. This question is particularly important when p
+is large and it takes too long to simply enumerate all the elements of Zp. Fortunately,
+the following result, known as Fermat’s Little Theorem , can help us:
+Theorem 6.2.3. For a prime pand any a/negationslash≡p0,
+ap−1≡p1.
+Proof. Consider the set S, deﬁned as 1 ·a,2·a, . . . , (p−1)·a. None of these p−1
+integers are congruent modulo p, since we have seen that if ia≡pjathen i≡pj.
+28However, each element of Sis congruent to some element of Zp. Since there are p−1
+elements in Sandp−1 nonzero elements in Zp, the elements of Smust be congruent
+to each of 1 ,2, . . . , (p−1) in some order. Therefore,
+1·2· · · · · (p−1)≡p1a·2a· · · · · (p−1)a,
+or
+1·2· · · · · (p−1)≡p1·2· · · · · (p−1)·ap−1.
+We can cancel each of 1 ,2, . . . , (p−1) from both sides of the congruence, obtaining
+ap−1≡p1.
+Fermat’s Little Theorem allows us to quickly perform division in Zp. The element
+x∈Zpfor which ax≡pbis simply ( ap−2bremp).
+2930Chapter 7
+Relations and Functions
+7.1 Ordered pairs
+The deﬁnition of a set explicitly disregards the order of the set elements, all that
+matters is who’s in, not who’s in ﬁrst. However, sometimes the order is important.
+This leads to the notion of an ordered pair of two elements xandy, denoted ( x, y).
+The crucial property is:
+(x, y) = (u, v) if and only if x=uandy=v.
+This notion can be extended naturally to deﬁne an ordered n-tuple as the ordered
+counterpart of a set with nelements.
+Give two sets AandB, their cartesian product A×Bis the set of all ordered pairs
+(x, y), such that x∈Aandy∈B:
+A×B={(x, y) :x∈A, y∈B}.
+Here is a useful special case:
+A2=A×A={(x, y) :x, y∈A}.
+And here is a general deﬁnition: A1=A, and for n≥2,
+An=/braceleftbig
+(x1, x2, . . . , x n) :x1, x2, . . . , x n∈A/bracerightbig
+.
+For example, R2is the familiar cartesian plane, and Rnis often referred to as the
+n-dimensional Euclidean space. If we omit the parentheses and the commas, {a, b}4
+is comprised of child babble and a 70s pop band:
+{aaaa, baba, abab, baaa, baab, aaab, aaba, abaa, abba, bbaa, bbba, bbbb, aabb, abbb, babb, bbab }.
+Proposition 7.1.1. (A∪B)×C= (A×C)∪(B×C)
+Proof. Recall that for two sets XandY,X=Yif and only if X⊆YandY⊆X.
+Consider any element ( u, v)∈(A∪B)×C. By deﬁnition, u∈A∪Bandv∈C.
+Thus, u∈Aoru∈B. Ifu∈Athen ( u, v)∈A×Cand if u∈Bthen ( u, v)∈B×C.
+31Thus ( u, v) is in A×Cor in B×C, and ( u, v)∈(A×C)∪(B×C). This proves
+that ( A∪B)×C⊆(A×C)∪(B×C).
+Now consider any element ( u, v)∈(A×C)∪(B×C). This implies that ( u, v)∈
+A×Cor (u, v)∈B×C. In the ﬁrst case u∈Aandv∈Cand in the second case
+u∈Bandv∈C. Thus u∈A∪Bandv∈C, which implies ( u, v)∈(A∪B)×C.
+7.2 Relations
+Given a set A, arelation on Ais some property that is either true or false for any
+ordered pair ( x, y)∈A2. For example, “greater than” is a relation on Z, denoted
+by>. It is true for the pair (3 ,2), but false for the pairs (2 ,2) and (2 ,3). In more
+generality,
+Deﬁnition 7.2.1. Given sets AandB, arelation between AandBis a subset of
+A×B.
+By this deﬁnition, a relation Ris simply a speciﬁcation of which pairs are related
+byR, that is, which pairs the relation Ris true for. For the relation >on the set
+{1,2,3},
+>={(2,1),(3,1),(3,2)}.
+This notation might look weird because we do not often regard the symbol “ >” as a
+meaningful entity in itself. It is, at least from the vantage point of the foundations of
+mathematics: This symbol is a particular relation.
+The common usage of the symbol “ >” (as in 3 >2) is an instance of a useful
+notational convention: For a relation R, (a, b)∈Rcan also be speciﬁed as aRb.
+Thus, in the above example, (2 ,1)∈>can be written as 2 >1. How convenient!
+Common mathematical relations that will concern us include <,>,≤,≥, =,
+/negationslash=,|,≡n,⊂,⊆, etc. For example, the relation = on the set Zis precisely the set
+{(n, n) :n∈Z}and the relation ≤onRis the set {(x, x+|y|) :x, y∈R}.
+The concept of a relation is as general as the concept of a set, and is not limited to
+strictly mathematical settings. For instance, we can deﬁne the relation likes between
+the set {Anna,Britney,Caitlyn }and the set {Austin,Brian,Carlos }, such that
+likes =/braceleftbig
+(Britney,Austin),(Caitlyn,Austin),(Britney, Carlos),(Anna,Austin),(Caitlyn,Brian)/bracerightbig
+.
+In this setting we can write Britney likes Austin .
+7.3 Kinds of relations
+A relation Ron a set Ais called
+•reﬂexive if for all a∈A,aRa.
+•symmetric if for all a, b∈A,aRbimplies bRa.
+•antisymmetric if for all a, b∈A,aRbandbRaimplies a=b.
+•transitive if for all a, b, c ∈A,aRbandbRcimplies aRc.
+32Equivalence relations. A relation that is reﬂexive, symmetric, and transitive is
+called an equivalence relation . Clearly, the common relation = on the set R, say, is an
+equivalence relation. Also, we have seen earlier that the congruence relation ≡non
+the set Zis reﬂexive, symmetric, and transitive, thus it is also an equivalence relation.
+The similarity relation on the set of triangles in the plane is another example.
+Equivalence relations are special in that they naturally partition the underlying
+set into equivalence classes . For example, the relation ≡2partitions the integers into
+even and odd ones. These are, respectively, the integers that are related (by ≡2) to
+0, and the ones related to 1. Let’s formalize these concepts.
+Deﬁnition 7.3.1. Apartition of a set Ais a set X ⊆ 2A\ {∅} , such that
+(a)Each a∈Abelongs to some S∈ X.
+(b)IfS, T∈ X, either S=TorS∩T=∅.
+Stated diﬀerently, this deﬁnition says that the set Ais the union of the members
+ofX, and these members are disjoint. Now, given an equivalence relation RonA,
+theequivalence class ofa∈Ais deﬁned as
+R[a] ={b∈A:aRb}.
+Theorem 7.3.2. LetRbe an equivalence relation on a set A. Then {R[a] :a∈A}
+is a partition of A.
+Proof. Consider an equivalence relation RonA. Due to reﬂexivity, every element
+a∈Abelongs to R[a], which implies (a). Now, consider two equivalence classes
+R[a] and R[b]. IfaRb, then for any c∈R[a], by transitivity and symmetry, bRcand
+c∈R[b]. This shows R[a]⊆R[b]. We can symmetrically argue that R[b]⊆R[a],
+which together implies R[a] =R[b].
+Otherwise, if a/Rbthen consider some c∈R[a]. If c∈R[b] then aRc andbRc,
+which imply, by transitivity and reﬂexivity, aRb, leading to a contradiction. Thus no
+element of R[a] belongs to R[b] and R[a]∩R[b] =∅. This shows (b) and concludes
+the theorem.
+Order relations. A relation that is reﬂexive, antisymmetric, and transitive is called
+apartial order . The relations ≤,≥, and |on the set Z, as well as the relation ⊆on
+the powerset 2Aof any set A, are familiar partial orders. Note that a pair of elements
+can be incomparable with respect to a partial order. For example, |is a partial order
+onZ, but 2 /|3 and 3 /|2. A set Awith a partial order on Ais called a partially ordered
+set, or, more commonly, a poset .
+A relation Ron a set Ais atotal order if it is a partial order and satisﬁes the
+following additional condition:
+•For all a, b∈A, either aRborbRa(or both).
+For example, the relations ≥and≤are total orders on R, but |is not a total order
+onZ. Finally, a strict order onAis a relation Rthat satisﬁes the following two
+conditions:
+33•For all a, b, c ∈A,aRbandbRcimplies aRc. (Transitivity.)
+•Given a, b∈A, exactly one of the following holds (and not the other two): aRb,
+bRa,a=b.
+The familiar <and>relations (on R, say) are examples of strict orders.
+7.4 Creating relations
+There are a few ways to deﬁne new relations from existing ones, and we describe two
+important such ways below.
+Restrictions of relations. Here is one notion that is sometimes useful: Given a
+relation Ron a set A, and a subset S⊆A, we can use Rto deﬁne a relation on S
+called the restriction ofRtoS. Denoted by R|S, it is deﬁned as
+R|S=/braceleftbig
+(a, b)∈R:a, b∈S/bracerightbig
+.
+Compositions of relations. For three sets A, B, C , consider a relation Rbetween
+AandB, and a relation Sbetween BandC. The composition of RandSis a
+relation Tbetween AandC, deﬁned as follows: aTcif and only if there exists some
+b∈B, such that aRbandbSc. The composition of RandSis commonly denoted by
+R◦S.
+Note that by this deﬁnition, the composition of relations on the same set Ais
+always well-deﬁned. In particular, given a relation RonAwe can recursively deﬁne
+R1=RandRn=Rn−1◦Rfor all n≥2. Now consider the inﬁnite union
+T=/uniondisplay
+i∈N+Ri.
+This relation Tis called the transitive closure ofR.
+Proposition 7.4.1. Important properties of transitive closure:
+(a)Tis transitive.
+(b)Tis the smallest transitive relation that contains R. (That is, if Uis a transitive
+relation on AandR⊆U, then T⊆U.)
+(c)If|A|=nthen
+T=n/uniondisplay
+i=1Ri.
+347.5 Functions
+The general concept of a function in mathematics is deﬁned very similarly to relations.
+In fact, as far as the deﬁnitions go, functions arerelations, of a special type:
+Deﬁnition 7.5.1. Given two sets AandB, a function f:A→Bis a subset of
+A×Bsuch that
+(a)Ifx∈A, there exists y∈Bsuch that (x, y)∈f.
+(b)If(x, y)∈fand(x, z)∈fthen y=z.
+A function is sometimes called a mapormapping . The set Ain the above deﬁnition
+is the domain andBis the codomain off.
+A function f:A→Bis eﬀectively a special kind of relation between AandB,
+which relates every x∈Atoexactly one element of B. That element is denoted by
+f(x).
+If the above deﬁnition is followed rigidly, particular functions should be deﬁned
+by specifying all the pairs ( x, f(x)). This is often cumbersome and unnecessary, and
+we will mostly continue describing a function from AtoBas we did before: as a rule
+for picking an element f(x)∈Bfor every element x∈A. As in, “Consider a function
+f:R→R, where f(x) =x2for all x∈R.”
+Kinds of Functions. For a function f:A→B, the set f(A) ={f(x) :x∈A}
+is called the range off. The range is a subset of the codomain but may be diﬀerent
+from it. If f(A) =Bthen we say that fisonto. More precisely, a function f:A→B
+is asurjection (orsurjective ), or onto if each element of Bis of the form f(x) for at
+least one x∈A.
+Today is the day of weird names, so: A function f:A→Bis an injection (or
+injective ), or one-to-one if for all x, y∈A,f(x) =f(y) implies x=y. Put diﬀerently,
+f:A→Bis one-to-one if each element of Bis of the form f(x) for at most one
+x∈A.
+As if this wasn’t enough: A function f:A→Bis abijection (orbijective ), or a
+one-to-one correspondence if it is both one-to-one and onto. Alternatively, f:A→B
+is a bijection if each element of Bis of the form f(x) for exactly one x∈A.
+Compositions and Inverse Functions. Given two functions f:A→Band
+g:B→Cwe can deﬁne a new function g◦f:A→Cby (g◦f)(x) =g(f(x)) for all
+x∈A.
+One useful function that can be deﬁned for any set Ais the identity function
+iA:A→A, deﬁned by iA(x) =xfor all x∈A. We can use identity functions to
+deﬁne inverse functions . Speciﬁcally, if f:A→Bis a bijection, then its inverse
+f−1:B→Ais deﬁned so that f−1◦f=iAandf◦f−1=iB. Of course, we haven’t
+shown that f−1even exists or that it is unique, but these properties do hold, assuming
+thatf:A→Bis a bijection. (This assumption is necessary.)
+35Another result that is sometimes used is the following: If f:A→Bandg:B→
+Care bijections then g◦f:A→Cis a bijection, and
+(g◦f)−1=f−1◦g−1.
+We omit the proof.
+Bijections and cardinality. Bijections allow us to rigorously deﬁne when two sets
+are of the same cardinality:
+Deﬁnition 7.5.2. Two sets AandBhave the same number of elements if and only
+if there exists a bijection f:A→B.
+36Chapter 8
+Mathematical Logic
+Perhaps the most distinguishing characteristic of mathematics is its reliance on logic.
+Explicit training in mathematical logic is essential to a mature understanding of
+mathematics. Familiarity with the concepts of logic is also a prerequisite to studying
+a number of central areas of computer science, including databases, compilers, and
+complexity theory.
+8.1 Propositions and predicates
+Aproposition is a statement that is either true or false. For example, “It will rain
+tomorrow” and “It will not rain tomorrow” are propositions, but “It will probably
+rain tomorrow” is not, pending a more precise deﬁnition of “probably”.
+Apredicate is a statement that contains a variable, such that for any speciﬁc
+value of the variable the statement is a proposition. Usually the allowed values for
+the variable will come from a speciﬁc set, sometimes called the universe of the variable,
+which will be either explicitly mentioned or clear from context. A simple example
+of a predicate is x≥2 for x∈R. Clearly, for any real value of x, this statement is
+either true or false. We denote predicates in a similar way to functions, as in P(x).
+In fact, the connection to functions runs deep: A predicate P(x) can be considered
+a function, P:U → { 0,1}, where Uis the universe of the variable x, 1 represents
+truth, and 0 represents falsehood.
+A predicate may have more than one variable, in which case we speak of predicates
+in two variables, three variables, and so on, denoted as Q(x, y),S(x, y, z ), etc.
+8.2 Quantiﬁers
+Given a predicate P(x) that is deﬁned for all elements in a set A, we can reason about
+whether P(x) is true for all x∈A, or if it’s at least true for some x∈A. We can
+state propositions to this eﬀect using the universal quantiﬁer ∀and the existential
+quantiﬁer ∃.
+•∀x∈A:P(x) is true if and only if P(x) is true for all x∈A. This proposition
+can be read “For all x∈A,P(x).”
+37•∃x∈A:P(x) is true if and only if P(x) is true for at least one x∈A. This
+proposition can be read “There exists x∈Asuch that P(x).”
+Given a predicate in more than one variable we can quantify each (or some) of
+the variables. For example, the statement “For every real xandy, it holds that
+x2−y2= (x−y)(x+y)” can be formalized as
+∀x, y∈R:x2−y2= (x−y)(x+y).
+Somewhat more interestingly, the statement “There is no greatest integer” might be
+formulated as
+∀n∈Z∃m∈Z:m > n.
+It is crucial to remember that the meaning of a statement may change if the existential
+and universal quantiﬁers are exchanged. For example, ∃m∈Z∀n∈Z:m > n means
+“There is an integer strictly greater than all integers.” This is not only contrary to
+the spirit of the original statement, but is patently wrong as it asserts in particular
+that there is an integer that is strictly greater than itself.
+Exchanging the order of two quantiﬁers of the same type (either universal or
+existential) does not change the truth value of a statement. We do not prove this
+here.
+8.3 Negations
+Given a proposition P, the negation ofPis the proposition “ Pis false”. It is true if
+Pis false, and false if Pis true. The negation of Pis denoted by ¬P, read as “not
+P.” If we know the meaning of P, such as when Pstands for “It will rain tomorrow,”
+the proposition ¬Pcan be stated more naturally than “not P,” as in “It will not rain
+tomorrow.” The truth-value of ¬Pcan be represented by the following truth table :
+P ¬P
+true false
+false true
+A truth table simply lists the truth values of particular statements in all possible
+cases. Something interesting can be observed in we consider the truth values of ¬¬Q,
+which can be obtained by using the above table once with P=Qand once with
+P=¬Q:
+Q ¬Q¬¬Q
+true false true
+false true false
+38We see that the statements Qand¬¬Qhave the same truth values. In this case
+we say that the two statements are equivalent , and write Q⇔ ¬¬ Q. IfA⇔Bwe
+can freely use Bin the place of A, orAinstead of Bin our logical derivations.
+Negation gets really interesting when the negated proposition is quantiﬁed. Then
+we can assert that
+¬∀x∈A:P(x)⇔ ∃ x∈A:¬P(x)
+¬∃x∈A:P(x)⇔ ∀ x∈A:¬P(x)
+These can be interpreted as the claim that if P(x) is not true for all x∈Athen it
+is false for some x∈Aand vice versa, and the claim that if P(x) is not false for any
+x∈Athen it is true for all x∈Aand vice versa. What this means, in particular,
+is that if we want to disprove a statement that asserts something for all x∈A, it is
+suﬃcient to demonstrate onesuch xfor which the statement does not hold. On the
+other hand, if we need to disprove a statement that asserts the existence of an x∈A
+with a certain property, we actually need to show that for allsuch xthis property
+does not hold.
+Looked at another way, the above equivalences imply that if we negate a quantiﬁed
+statement, the negation can be “pushed” all the way inside, so that no negated
+quantiﬁers are left. Indeed, leaving any negated quantiﬁers is often considered a
+mark of poor style. Here is how how this elimination is done in a particular example:
+¬∀n∈Z∃m∈Z:m > n ⇔
+∃n∈Z¬∃m∈Z:m > n ⇔
+∃n∈Z∀m∈Z:m≤n
+This can be read as “There exists an integer that is greater or equal to any other
+integer,” which is the proper negation of the original statement.
+8.4 Logical connectives
+The symbol ¬is an example of a connective . Other connectives combine two propo-
+sitions (or predicates) into one. The most common are ∧,∨,⊕,→and↔.P∧Qis
+read as “ PandQ”;P∨Qas “PorQ”;P⊕Qas “PxorQ”;P→Qas “Pimplies
+Q” or “if Pthen Q”; and P↔Qas “Pif and only if Q”. The truth-value of these
+compound propositions (sometimes called sentences ) depends on the truth values of
+PandQ(which are said to be the terms of these sentences), in a way that is made
+precise in the truth-table below.
+We will not concern ourselves much with the ⊕and↔connectives, as they are
+encountered somewhat less frequently.
+One interesting thing about the above table is that the proposition P→Qis false
+only when Pis true and Qis false. This is what we would expect: If Pis true but Q
+is false then, clearly, Pdoes not imply Q. The important thing to remember is that if
+39PQP∧QP∨QP⊕QP→QP↔Q
+TT T T F T T
+TF F T T F F
+FT F T T T F
+FF F F F T T
+Pis false, then P→Qis true. One way this can be justiﬁed is by remembering that
+we expect a proposition to be either false or true. Now, P→Qbeing false says that
+Pdoes not imply Q, which means precisely that Pis true but Qis still false. In all
+other cases we expect P→Qto be true. (Did I succeed in turning something obvious
+into a confusing mess? Well, we all know what is paved with good intentions...)
+Now, there is another statement involving PandQthat is false precisely when
+Pis true and Qis false. It is, of course, ¬P∨Q. As the following truth table
+demonstrates, the proposition ¬P∨Qis equivalent to P→Q:
+PQP→Q¬P∨Q
+TT T T
+TF F F
+FT T T
+FF T T
+This means something rather interesting: We can replace a proposition that in-
+volves implication by an equivalent one that instead has negation ( ¬) and disjunction
+(∨). Also, since P→Qis false only when Pis true and Qis false, the proposition
+¬(P→Q) is equivalent to P∧ ¬Q:
+¬(P→Q)⇔P∧ ¬Q.
+This means that in a negated implication, the negation can be “pushed inside”,
+somewhat like with quantiﬁers. In fact, similar equivalences exist for other negated
+compound statements, as can be veriﬁed using truth tables (do it!):
+¬(P∨Q)⇔ ¬ P∧ ¬Q
+¬(P∧Q)⇔ ¬ P∨ ¬Q
+These are the famous DeMorgan’s laws . What they mean is that we can eliminate
+negated compounds (sounds like a military operation, doesn’t it?) just as we can
+eliminate negated quantiﬁers.
+Here is another important logical equivalence: The implication P→Qis equiva-
+lent to the contrapositive implication ¬Q→ ¬P:
+(P→Q)⇔(¬Q→ ¬P).
+This is demonstrated by the following truth table:
+40PQP→Q¬Q¬P¬Q→ ¬P
+TT T F F T
+TF F T F F
+FT T F T T
+FF T T T T
+Indeed, an implication of the form “If Pthen Q” is sometimes proved by assuming
+thatQdoes not hold and showing that under this assumption Pdoes not hold. This
+is called a proof by contrapositive. (Despite the similarity, it is diﬀerent from a proof
+by contradiction.)
+8.5 Tautologies and logical inference
+A sentence that is true regardless of the values of its terms is called a tautology , while
+a statement that is always false is a contradiction . Another terminology says that
+tautologies are valid statements and contradictions are unsatisﬁable statements. All
+other statements are said to be satisﬁable , meaning they can be either true or false.
+Easy examples of a tautology and a contradiction are provided by P∨ ¬Pand
+P∧ ¬P, as demonstrated by the following truth table:
+P¬PP∨ ¬PP∧ ¬P
+T F T F
+F T T F
+Note that by our deﬁnition of logical equivalence, all tautologies are equivalent.
+It is sometimes useful to keep a “special” proposition Tthat is always true, and a
+proposition Fthat is always false. Thus any tautology is equivalent to Tand any
+contradiction is equivalent to F.
+Here is another tautology: ( P∧Q)→P:
+PQP∧Q(P∧Q)→P
+TT T T
+TF F T
+FT F T
+FF F T
+The statement ( P∧Q)→Pis read “ PandQimplies P”. The fact that this is
+a tautology means that the implication is always true. Namely, if we know the truth
+ofP∧Q, we can legitimately conclude the truth of P. In such cases the symbol
+⇒is used, and we can write ( P∧Q)⇒P. There is a crucial diﬀerence between
+(P∧Q)→Pand ( P∧Q)⇒P. The former is a single statement, while the latter
+indicates a relationship between two statements. Such a relationship is called an
+inference rule . A similar inference rule, P⇒P∨Qcan be established analogously.
+41In general, any tautology of the form A→Bcan be used to “manufacture” the
+inference rule A⇒Bthat says that if we know Awe can conclude B. Similarly,
+a tautology of the form A↔Bcan be converted into the equivalence A⇔B,
+which can be regarded as two inference rules, A⇒BandB⇒A. A particularly
+important inference rule is called modus ponens , and says that if we know that Pand
+P→Qare both true, we can conclude that Qis true. It follows from the tautology
+(P∧(P→Q))→Q:
+PQP→QP∧(P→Q)(P∧(P→Q))→Q
+TT T T T
+TF F F T
+FT T F T
+FF T F T
+We’ve already seen a number of inference rules above, like ( P→Q)⇔(¬Q→
+¬P), without calling them that. Here are three others, all corresponding to tautologies
+that you are invited to verify using truth tables:
+(¬P→ F )⇔P
+(P↔Q)⇔(P→Q)∧(Q→P)
+(P↔Q)⇔(P→Q)∧(¬P→ ¬Q)
+These three rules are of particular importance. The ﬁrst formally establishes the
+validity of proofs by contradiction, and the second and third provide two means for
+proving “if and only if” statements. We’ve been using these all along, but now we
+know why they are justiﬁed.
+42Chapter 9
+Counting
+9.1 Fundamental principles
+The subject of enumerative combinatorics is counting. Generally, there is some set A
+and we wish to calculate the size |A|ofA. Here are some sample problems:
+•How many ways are there to seat ncouples at a round table, such that each
+couple sits together?
+•How many ways are there to express a positive integer nas a sum of positive
+integers?
+There are a number of basic principles that we can use to solve such problems.
+The sum principle: Consider nsetsAi, for 1 ≤i≤n, that are pairwise disjoint ,
+namely Ai∩Aj=∅for all i/negationslash=j. Then
+/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsinglen/uniondisplay
+i=1Ai/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsingle=n/summationdisplay
+i=1|Ai|.
+For example, if there are nways to pick an object from the ﬁrst pile and mways to
+pick on object from the second pile, there are n+mways to pick an object altogether.
+The product principle: If we need to do nthings one after the other, and there
+arec1ways to do the ﬁrst, c2ways to do the second, and so on, the number of
+possible courses of action is/producttextn
+i=1ci. For example, the number of possible three-
+letter words in which a letter appears at most once that can be constructed using the
+English alphabet is 26 ·25·24: There are 26 possibilities for the ﬁrst letter, then 25
+possibilities for the second, and ﬁnally 24 possibilities for the third.
+The bijection principle: As we have seen, there exists a bijection from AtoBif
+and only if the size of Aequals the size of B. Thus, one way to count the number of
+elements in a set Ais to show that there is a bijection from Ato some other set B
+43and to count the number of elements in B. Often there is no need to explicitly specify
+the bijection and prove that it is such: At this point in the course, you can omit some
+low-level details from the written proofs in your homework solutions, as long as you
+are certain that you could reproduce these details if asked to do so. For example, you
+can simply state and use the observation that the number of ways to seat npeople
+in a row is the same as the number of ways to order the integers 1 ,2, . . . , n , which
+is the same as the number of n-element sequences that can be constructed from the
+integers 1 ,2, . . . , n (without repetition), which is the same as the number of bijections
+f:A→A, for A={1,2, . . . , n }. You should always make sure that you yourself
+fully understand why such equalities hold whenever you use them! Obviously, if you
+don’t, you’ll end up relying on equalities that are simply not true, which is not such
+a great idea. If in doubt, write down a complete proof to make sure your reasoning
+is correct.
+9.2 Basic counting problems
+Choosing an ordered sequence of distinct objects with repetition. How
+many ways are there to pick an ordered sequence of kobjects from a pool with n
+types of objects, when repetitions are allowed? (That is, we can pick an object of
+the same type more than once.) Well, by the product principle, there are noptions
+for the ﬁrst object, noptions for the second, and so on. Overall we get nkpossible
+sequences. What follows is a somewhat more formal argument by induction. Observe
+that the number of sequences as above is the same as the number of functions from
+a set of kelements to a set of nelements. (Make sure you understand this.)
+Theorem 9.2.1. Given sets AandB, such that |A|=kand|B|=n, the number of
+functions f:A→Bisnk.
+Proof. Induction on k. Ifk= 0 the set Ahas no elements and there is only one
+mapping from AtoB, the empty mapping. (Recall that a function f:A→Bis a
+subset of A×B, and if A=∅then A×B=∅.) We suppose the claim holds for
+|A|=mand treat the case |A|=m+ 1. Consider some element a∈A. To specify a
+function f:A→Bwe can specify f(a)∈Band a mapping f/prime:A\ {a} →B. There
+arenpossible values of f(a)∈B, and for each of these there are nmmappings f/primeby
+the induction hypothesis. This results in nm+1mappings fand completes the proof
+by induction.
+Choosing an ordered sequence of distinct objects without repetition. How
+many ways are there to pick an ordered sequence of kobjects from a set of nobjects
+when only one copy of each object is available, so there can be no repetitions? Again
+we can use the product principle. Observe that the ﬁrst object in the sequence can
+be chosen from ndistinct objects. Once the ﬁrst one is picked, there are only n−1
+possibilities for the second object. After that there are n−2 objects to choose from,
+44and so on. Overall we get that the desired quantity is
+n(n−1)· · ·(n−k+ 1) =k−1/productdisplay
+i=0(n−i).
+This is called a falling factorial and denoted by ( n)kornk. We again provide a more
+formal proof by induction, observing that the number of ways to pick an ordered
+sequence of kobjects from a collection of ndistinct ones without replacement is
+equal to the number of one-to-one functions f:A→B, where |A|=kand|B|=n.
+Theorem 9.2.2. Given sets AandB, such that |A|=kand|B|=n, the number of
+one-to-one functions f:A→Bis(n)k.
+Proof. Induction on k. When |A|= 0, there is one mapping fas described, the
+empty mapping, and ( n)kis the empty product, equal to 1. Suppose the claim holds
+for|A|=mand consider the case |A|=m+ 1. Fix an element a∈A. To specify
+fwe specify f(a) and a mapping f/prime:A\ {a} → B. There are npossible values for
+f(a)∈B. Consider a speciﬁc such value f(a) =b. Since fis one-to-one, no element
+ofA\{a}can be mapped to b. Thus f/primehas to be a one-to-one-mapping from A\{a}
+toB\ {b}. By the induction hypothesis, the number of such mappings is ( n−1)m.
+The number of possible mappings fis thus n·(n−1)m= (n)m+1.
+Permutations. How many ways are there to arrange npeople in a row? How many
+ordered n-tuples are there of integers from the set {1,2, . . . , n }? Haw many distinct
+rearrangements are there of the integers 1 ,2, . . . , n ? How many bijections are there
+from the set {1,2, . . . , n }to itself? The answer to these questions is the same, and
+follows from Theorem 9.2.2. A bijection from a set Ato itself is called a permutation
+ofA. The number of permutations of the set {1,2, . . . , n }is precisely the number of
+one-to-one functions from this set to itself, and this number is ( n)n=n·(n−1)· · ·2·1.
+This quantity is called “ nfactorial” and is denoted by n!. We can now observe that
+(n)k=n!
+(n−k)!.
+It is important to remember that 0! = 1, since 0! is the empty product. Here is a list
+of values of n! for 0 ≤n≤10:
+1,1,2,6,24,120,720,5040,40320 ,362880 ,3628800
+Seating at a round table. We’ve arranged npeople in a row, now it’s time to sit
+them down. So how many ways are there to seat npeople at a round table? Let’s
+be precise about what we mean: Two seating arrangements are considered identical
+if every person has the same neighbor to her right. In other words, rotations around
+the table do not matter. Here is how this problem can be tackled: Fix one person a
+and sit her down anywhere. This now ﬁxes n−1 possible positions for the others:
+“ﬁrst person to the right of a”, “second person to the right of a”, and so on until
+“(n−1)-st person to the right of a”. The number of ways to arrange the others in
+these n−1 positions is ( n−1)!, which is also the answer to the original question.
+45Choosing an unordered collection of distinct objects without repetition.
+How many ways are there to pick a setofkobjects from a set of nobjects? Since we
+are picking a set, we do not care about order, and there are no repetitions. Notice
+that every such set can be ordered in k! ways. That is, each set corresponds to k!
+distinct ordered k-tuples. Now, we know that the number of ordered k-tuples that
+can be picked from a collection of ndistinct objects is ( n)k. Thus if we denote by X
+the number of sets of cardinality kthat can be picked from a collection of ndistinct
+objects, we get
+X·k! = ( n)k
+X=(n)k
+k!
+X=n!
+k!(n−k)!.
+This quantity Xis denoted by/parenleftbign
+k/parenrightbig
+, read “ nchoose k”. This is such an important
+quantity that we emphasize it again: The number of k-element subsets of an n-element
+set is/parenleftbign
+k/parenrightbig
+, deﬁned as/parenleftbiggn
+k/parenrightbigg
+=n!
+k!(n−k)!=/producttextk−1
+i=0(n−i)
+k!.
+We can see that/parenleftbign
+0/parenrightbig
+=/parenleftbign
+n/parenrightbig
+= 1, and we deﬁne/parenleftbign
+k/parenrightbig
+= 0 when k > n ork <0.
+The number of subsets. We have seen that the number of k-element subsets of
+ann-element set is/parenleftbign
+k/parenrightbig
+. How many subsets of an n-element set are there overall, of
+any size? Yes, it is time to prove the neat formula we’ve been using all along:
+Theorem 9.2.3. For a set A,/vextendsingle/vextendsingle2A/vextendsingle/vextendsingle= 2|A|.
+Proof. By induction. When |A|= 0, A=∅. Hence, Ahas only one subset (itself)
+and the formula holds since 20= 1. Assume the formula holds when |A|=kand
+consider the case |A|=k+ 1. Fix an element a∈A. A subset of Aeither contains
+aor not. The subsets of Athat do not contain aare simply subsets of A\ {a}and
+their number is 2kby the induction hypothesis. On the other hand, each subset of
+Athat does contain ais of the form {a} ∪X, for X⊆A\ {a}. Thus there is a
+bijective mapping between subsets of Athat contain aand subsets of A\ {a}. The
+number of such subsets is again 2k. Overall we get that the number of subsets of A
+is 2k+ 2k= 2k+1, which completes the proof by induction.
+Here is another instructive way to prove Theorem 9.2.3: Consider the set of func-
+tions f:A→ {0,1}. These functions assign a value of 0 or 1 to every element of A.
+In this way, such a function funiquely speciﬁes a subset of A. Namely, the elements
+xfor which f(x) = 1 are the elements that belong to the subset of Aspeciﬁed by
+f. This deﬁnes a bijection between such functions fand subsets of A. By Theorem
+9.2.1, the number of functions ffrom Ato{0,1}is 2|A|, which proves Theorem 9.2.3.
+46We can use Theorem 9.2.3 to derive an interesting identity. We now know that
+the overall number of subsets of an n-element set is 2n. Previously we have seen that
+the number of k-element subsets of an n-element set is/parenleftbign
+k/parenrightbig
+. By the sum principle, we
+get
+n/summationdisplay
+i=0/parenleftbiggn
+i/parenrightbigg
+= 2n.
+Choosing an unordered collection of distinct objects with repetition. How
+many ways are there to pick a collection of kobjects from a pool with ntypes of
+objects, when repetitions are allowed? We can reason as follows: The number of ways
+to pick kobjects from a pool with ntypes of objects is the same as the number of ways
+to put kballs into nbins. Imagine these bins aligned in a row. A “conﬁguration”
+ofkballs in nbins can be speciﬁed as a sequence of n−1 “|” symbols and k“*”
+symbols, as in
+∗ ∗ || ∗ | ∗ ∗ ∗ |
+This sequence encodes the conﬁguration where k= 6 and n= 5, and there are two
+balls in bin number 1, one ball in bin number 3, and three balls in bin number 4.
+How many such conﬁgurations are there? A conﬁguration is uniquely speciﬁed by the
+positions of the k“*” symbols. Thus specifying a conﬁguration amounts to choosing
+which of the n+k−1 symbols are going to be “*”. This simply means we need to
+choose a k-element subset from a set of size n+k−1. The number of ways to pick
+a collection of kobjects from a pool of ntypes of objects with repetitions is thus
+/parenleftbiggn+k−1
+k/parenrightbigg
+.
+4748Chapter 10
+Binomial Coeﬃcients
+10.1 Basic properties
+Recall that/parenleftbign
+k/parenrightbig
+is the number of k-element subsets of an n-element set, and
+/parenleftbiggn
+k/parenrightbigg
+=n!
+k!(n−k)!=/producttextk−1
+i=0(n−i)
+k!.
+The quantities/parenleftbign
+k/parenrightbig
+are called binomial coeﬃcients because of their role in the Binomial
+Theorem , apparently known to the 11th century Persian scholar Omar Khayyam.
+Before we state and prove the theorem let us consider some important identities
+that involve binomial coeﬃcients. One that follows immediately from the algebraic
+deﬁnition is
+/parenleftbiggn
+k/parenrightbigg
+=/parenleftbiggn
+n−k/parenrightbigg
+.
+This also has a nice combinatorial interpretation: Choosing a k-element subset B
+from an n-element set uniquely identiﬁes the complement A\BofBinA, which is
+an (n−k)-subset of A. This deﬁnes a bijection between k-element and ( n−k)-element
+subsets of A, which implies the identity.
+Another relation between binomial coeﬃcients is called Pascal’s rule , although it
+was known centuries before Pascal’s time in the Middle East and India:
+/parenleftbiggn
+k−1/parenrightbigg
++/parenleftbiggn
+k/parenrightbigg
+=/parenleftbiggn+ 1
+k/parenrightbigg
+.
+49This can be easily proved algebraically:
+/parenleftbiggn
+k−1/parenrightbigg
++/parenleftbiggn
+k/parenrightbigg
+=n!
+(k−1)!(n+ 1−k)!+n!
+k!(n−k)!
+=n!k
+k!(n+ 1−k)!+n!(n+ 1−k)
+k!(n+ 1−k)!
+=n!k+n!(n+ 1−k)
+k!(n+ 1−k)!
+=(n+ 1)!
+k!(n+ 1−k)!
+=/parenleftbiggn+ 1
+k/parenrightbigg
+.
+Pascal’s rule also has a combinatorial interpretation:/parenleftbign+1
+k/parenrightbig
+is the number of k-element
+subsets of an n-element set A. Fix an element a∈A. A subset of Aeither contains
+aor it doesn’t. k-element subsets of Athat do not contain aare in fact k-element
+subsets of A\ {a}and their number is/parenleftbign
+k/parenrightbig
+.k-element subsets of Athat do contain a
+bijectively correspond to ( k−1)-element subsets of A\ {a}, the number of which is/parenleftbign
+k−1/parenrightbig
+. The identity follows.
+Another illuminating identity is the Vandermonde convolution :
+/parenleftbiggm+n
+l/parenrightbigg
+=l/summationdisplay
+k=0/parenleftbiggm
+k/parenrightbigg/parenleftbiggn
+l−k/parenrightbigg
+.
+We only give a combinatorial argument for this one. We are counting the number of
+ways to choose an l-element subset of an ( m+n)-element set A. Fix an m-element
+subset B⊆A. Any l-element subset SofAhaskelements from Bandl−kelements
+from A\B, for some 0 ≤k≤l. For a particular value of k, the number of k-element
+subsets of Bthat can be part of Sis/parenleftbigm
+k/parenrightbig
+and the number of ( l−k)-element subsets
+ofA\Bis/parenleftbign
+l−k/parenrightbig
+. We can now use the sum principle to sum over the possible values
+ofkand obtain the identity. An interesting special case is
+n/summationdisplay
+k=0/parenleftbiggn
+k/parenrightbigg2
+=/parenleftbigg2n
+n/parenrightbigg
+.
+It follows from the Vandermonde convolution by taking l=m=nand remembering
+that/parenleftbign
+k/parenrightbig
+=/parenleftbign
+n−k/parenrightbig
+.
+10.2 Binomial theorem
+Theorem 10.2.1. Forn∈Nandx, y∈R,
+(x+y)n=n/summationdisplay
+k=0/parenleftbiggn
+k/parenrightbigg
+xkyn−k.
+50Proof. By induction on n. When n= 0 both sides evaluate to 1. Assume the claim
+holds for n=mand consider the case n=m+ 1.
+(x+y)m+1= (x+y)·(x+y)m(10.1)
+= (x+y)·m/summationdisplay
+k=0/parenleftbiggm
+k/parenrightbigg
+xkym−k(10.2)
+=x·m/summationdisplay
+k=0/parenleftbiggm
+k/parenrightbigg
+xkym−k+y·m/summationdisplay
+k=0/parenleftbiggm
+k/parenrightbigg
+xkym−k(10.3)
+=m/summationdisplay
+k=0/parenleftbiggm
+k/parenrightbigg
+xk+1ym−k+m/summationdisplay
+k=0/parenleftbiggm
+k/parenrightbigg
+xkym+1−k(10.4)
+=m+1/summationdisplay
+k=1/parenleftbiggm
+k−1/parenrightbigg
+xkym+1−k+m/summationdisplay
+k=0/parenleftbiggm
+k/parenrightbigg
+xkym+1−k(10.5)
+=/parenleftBigg
+xm+1+m/summationdisplay
+k=1/parenleftbiggm
+k−1/parenrightbigg
+xkym+1−k/parenrightBigg
++/parenleftBigg
+ym+1+m/summationdisplay
+k=1/parenleftbiggm
+k/parenrightbigg
+xkym+1−k/parenrightBigg
+(10.6)
+=xm+1+ym+1+m/summationdisplay
+k=1/parenleftbigg/parenleftbiggm
+k−1/parenrightbigg
++/parenleftbiggm
+k/parenrightbigg/parenrightbigg
+xkym+1−k(10.7)
+=xm+1+ym+1+m/summationdisplay
+k=1/parenleftbiggm+ 1
+k/parenrightbigg
+xkym+1−k(10.8)
+=m+1/summationdisplay
+k=0/parenleftbiggm+ 1
+k/parenrightbigg
+xkym+1−k. (10.9)
+Here (5) follows from (4) by noting that
+m/summationdisplay
+k=0f(k) =m+1/summationdisplay
+k=1f(k−1)
+and (8) follows from (7) by Pascal’s rule. The other steps are simple algebraic ma-
+nipulation. This completes the proof by induction.
+The binomial theorem can be used to immediately derive an identity we have seen
+before: By substituting x=y= 1 into the theorem we get
+n/summationdisplay
+k=0/parenleftbiggn
+k/parenrightbigg
+= 2n.
+Here is another interesting calculation: Putting x=−1 and y= 1 yields
+n/summationdisplay
+k=0(−1)k/parenleftbiggn
+k/parenrightbigg
+= 0.
+51This implies/summationdisplay
+kodd/parenleftbiggn
+k/parenrightbigg
+=/summationdisplay
+keven/parenleftbiggn
+k/parenrightbigg
+= 2n−1.
+This means that the number of odd-size subsets of an n-element set Ais the same
+as the number of even-size subsets, and equals 2n−1. This can be proved by a com-
+binatorial argument as follows: Fix an element a∈Aand note that the number of
+subsets of A\ {a}is 2n−1. There is a bijective map between subsets of A\ {a}and
+odd-size subsets of A, as follows: Map an odd-sized subset of A\ {a}to itself, and
+map an even-sized subset B⊆A\ {a}toB∪ {a}. Observe that this is a bijection
+and conclude that the number of odd-sized subsets of Ais 2n−1. Even-size subsets
+can be treated similarly, or by noting that their number is 2nminus the number of
+odd-size ones.
+52Chapter 11
+The Inclusion-Exclusion Principle
+11.1 Statement and proof of the principle
+We have seen the sum principle that states that for npairwise disjoint sets A1, A2, . . . , A n,
+/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsinglen/uniondisplay
+i=1Ai/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsingle=n/summationdisplay
+i=1|Ai|.
+What happens when the sets are not pairwise disjoint? We can still say something.
+Namely, the sum/summationtextn
+i=1|Ai|counts every element of/uniontextn
+i=1Aiat least once, and thus
+even with no information about the sets we can still assert that
+/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsinglen/uniondisplay
+i=1Ai/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsingle≤n/summationdisplay
+i=1|Ai|.
+However, with more information we can do better. For a concrete example, con-
+sider a group of people, 10 of whom speak English, 8 speak French, and 6 speak both
+languages. How many people are in the group? We can sum the number of English-
+and French-speakers, getting 10 + 8 = 18. Clearly, the bilinguals were counted twice,
+so we need to subtract their number, getting the ﬁnal answer 18 −6 = 12. This argu-
+ment can be carried out essentially verbatim in a completely general setting, yielding
+the following formula:
+|A∪B|=|A|+|B| − |A∩B|.
+What if there are three sets? Suppose in addition to the above English and French
+speakers, we have 14 German-language enthusiasts, among which 8 also speak English,
+5 speak French, and 2 speak all three languages. How many people are there now?
+We can reason as follows: The sum 10 + 8 + 14 = 32 counts the people speaking two
+languages twice, so we should subtract their number, getting 32 −6−8−5 = 13.
+But now the trilinguals have not been counted: They were counted three times in
+the ﬁrst sum, and then subtracted three times as part of the bilinguals. So the ﬁnal
+answer is obtained by adding their number: 13 + 2 = 15. In general,
+|A∪B∪C|=|A|+|B|+|C| − |A∩B| − |A∩C| − |B∩C|+|A∩B∩C|.
+53In the case of arbitrarily many sets we obtain the inclusion-exclusion principle:
+/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsinglen/uniondisplay
+i=1Ai/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsingle=n/summationdisplay
+k=1(−1)k−1/summationdisplay
+1≤i1<i2<···<ik≤n|Ai1∩Ai2∩. . . A ik|.
+Proof. Each element in/uniontextn
+i=1Aiis counted exactly once on the left side of the formula.
+Consider such an element aand let the number of sets Aithat contain abej. Then
+ais counted/parenleftbiggj
+1/parenrightbigg
+−/parenleftbiggj
+2/parenrightbigg
++. . .+ (−1)j−1/parenleftbiggj
+j/parenrightbigg
+times on the right side. But recall from our exploration of binomial coeﬃcients that
+j/summationdisplay
+i=0(−1)i/parenleftbiggj
+i/parenrightbigg
+=j/summationdisplay
+i=0(−1)i−1/parenleftbiggj
+i/parenrightbigg
+=−1 +j/summationdisplay
+i=1(−1)i−1/parenleftbiggj
+i/parenrightbigg
+= 0,
+which implies/parenleftbiggj
+1/parenrightbigg
+−/parenleftbiggj
+2/parenrightbigg
++. . .+ (−1)j−1/parenleftbiggj
+j/parenrightbigg
+= 1,
+meaning that ais counted exactly once on the right side as well. This establishes the
+inclusion-exclusion principle.
+11.2 Derangements
+Given a set A={a1, a2. . . , a n}, we know that the number of bijections from Ato
+itself is n!. How many such bijections are there that map no element a∈Ato itself?
+That is, how many bijections are there of the form f:A→A, such that f(a)/negationslash=a
+for all a∈A. These are called derangements , or bijections with no ﬁxed points .
+We can reason as follows: Let Sibe the set of bijections that map the i-th element
+ofAto itself. We are the looking for the quantity
+n!−/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsinglen/uniondisplay
+i=1Si/vextendsingle/vextendsingle/vextendsingle/vextendsingle/vextendsingle.
+By the inclusion-exclusion principle, this is
+n!−n/summationdisplay
+k=1(−1)k−1/summationdisplay
+1≤i1<i2<···<ik≤n|Si1∩Si2∩. . .∩Sik|.
+Consider an intersection Si1∩Si2∩. . .∩Sik. Its elements are the permutations that
+mapai1, ai2, . . . , a ikto themselves. The number of such permutations is ( n−k)!, hence
+|Si1∩Si2∩. . .∩Sik|= (n−k)!. This allows expressing the number of derangements
+54as
+n!−n/summationdisplay
+k=1(−1)k−1/summationdisplay
+1≤i1<i2<···<ik≤n(n−k)! = n!−n/summationdisplay
+k=1(−1)k−1/parenleftbiggn
+k/parenrightbigg
+(n−k)!
+=n/summationdisplay
+k=0(−1)k/parenleftbiggn
+k/parenrightbigg
+(n−k)!
+=n/summationdisplay
+k=0(−1)kn!
+k!
+=n!n/summationdisplay
+k=0(−1)k
+k!.
+Now,/summationtextn
+k=0(−1)k
+k!is the beginning of the Maclaurin series of e−1. (No, you are not
+required to know this for the exam.) This means that as ngets larger, the number
+of derangements rapidly approaches n!/e. In particular, if we just pick a random
+permutation of a large set, the chance that it will have no ﬁxed points is about 1 /e.
+Quite remarkable, isn’t it!?
+5556Chapter 12
+The Pigeonhole Principle
+12.1 Statements of the principle
+In we put more than npigeons into npigeonholes, at least one pigeonhole will house
+two or more pigeons. This trivial observation is the basis of ingenious combinatorial
+arguments, and is the subject of this chapter. Let’s begin with the various guises of
+the pigeonhole principle that are encountered in combinatorics.
+Basic form. Ifmobjects are put in nboxes and n < m , then at least one box
+contains at least two objects. The one-line proof is by contradiction: If every box
+contains at most one object, there are at most n·1 =nobjects. A more rigorous
+formulation of the principle is as follows: Given two sets AandB, with |A|=m >
+n=|B|, for any function f:A→Bthere exists b∈Bsuch that
+/vextendsingle/vextendsingle{x∈A:f(x) =b}/vextendsingle/vextendsingle>1.
+General form. Ifmobjects are put in nboxes, then at least one box contains at
+least⌈m/n⌉objects. The proof is again by contradiction: If every box contains at
+most⌈m/n⌉ −1< m/n objects, there are less than n(m/n) =mobjects. The more
+rigorous formulation is: Given two sets AandB, for any function f:A→Bthere
+exists b∈Bsuch that/vextendsingle/vextendsingle{x∈A:f(x) =b}/vextendsingle/vextendsingle≥/ceilingleftBigm
+n/ceilingrightBig
+.
+Dijkstra’s form. For a nonempty ﬁnite collection of integers (not necessarily dis-
+tinct), the maximum value is at least the average value. It is a good exercise to verify
+that this is equivalent to the general form above.
+12.2 Simple applications
+Let’s begin with some easy applications of the pigeonhole principle.
+57First application. There are two San Franciscans with the exact same number
+of hairs on their heads. Indeed, according to P&G Hair Facts, the average person’s
+head has about 100,000 hairs, while “some people have as many as 150,000.” So it
+seems safe to bet that every San Franciscan has at most 700,000 hairs on his or her
+head. On the other hand, the year 2000 US Census counted 776,733 San Francisco
+residents. The pigeonhole principle implies that at least two of them have the exact
+same number of hairs.
+Second application. At a cocktail party with six or more people, there are three
+mutual acquaintances or three mutual strangers. Indeed, pick an arbitrary person a.
+By the pigeonhole principle, among the other ﬁve or more people, either there are
+three of a’s acquaintances, or three people who are strangers to a. Let’s say there
+are three that are a’s acquaintances, the other case is analogous. If those three are
+mutual strangers we are done. Otherwise there are two among them, call them band
+c, who know each other. Then a,bandcare mutual acquaintances and we are done.
+Third application. Consider an inﬁnite two-dimensional plane, every point of
+which is colored either red or blue; then there are two points one yard apart that
+are the same color. Indeed, take an arbitrary equilateral triangle with a side length
+of one yard. By the pigeonhole principle, two of its vertices have the same color.
+Fourth application. Consider the numbers 1 ,2, . . . , 2n, and take any n+ 1 of
+them; then there are two numbers in this sample that are coprime. Indeed, consider
+the pairs {1,2},{3,4}, . . . ,{2n−1,2n}. By the pigeonhole principle, both numbers
+from one of these pairs are in the sample. These numbers diﬀer by 1 and are thus
+coprime. (This follows from the same argument as in Euclid’s proof of the inﬁnity of
+primes.)
+12.3 Advanced applications
+The following lemma comes from a classical 1935 paper by Paul Erd¨ os and George
+Szekeres titled “A combinatorial problem in geometry”:
+Lemma 12.3.1. In any ordered sequence of n2+1distinct real numbers a1, a2, . . . , a n2+1,
+there is either a monotone increasing subsequence of length n+ 1or a monotone de-
+creasing subsequence of length n+ 1. Namely, there is a set of indices 1≤i1< i 2<
+· · ·< in+1≤n2+1, such that either ai1> a i2>· · ·> a in+1orai1< a i2<· · ·< a in+1.
+Proof. For 1 ≤i≤n2+ 1, let ηibe the length of the longest monotone increasing
+subsequence that starts at ai. If some ηi> n, we are done. Otherwise, by the
+pigeonhole principle, there exists 1 ≤j≤n, and some set i1< i 2<· · ·< imof size
+m≥ ⌈(n2+ 1)/n⌉=n+ 1, such that ηi1=ηi2=· · ·=ηim=j. Now, consider two
+numbers aikandaik+1. Ifaik< a ik+1, we get an increasing subsequence starting at
+aikof length j+ 1, which is a contradiction. Hence aik> a ik+1in particular, and
+58ai1> a i2>· · ·> a imin general, giving us a decreasing subsequence of length at least
+n+ 1.
+Here is another pigeonhole gem, the last one for today:
+Proposition 12.3.2. Given a sequence of nnot necessarily distinct integers a1, a2, . . . , a n,
+there is a nonempty consecutive subsequence ai, ai+1, . . . , a jwhose sum/summationtextj
+m=iamis a
+multiple of n. (The subsequence might consist of a single element.)
+Proof. Consider the collection
+/parenleftBigg0/summationdisplay
+i=1ai,1/summationdisplay
+i=1ai,2/summationdisplay
+i=1ai, . . . ,n/summationdisplay
+i=1ai/parenrightBigg
+.
+This collection has size n+1 and its ﬁrst element is the empty sum/summationtext0
+i=1ai= 0. There
+are only npossible remainders modulo n, thus by the pigeonhole principle, there are
+two numbers in the above collection of size n+ 1 that leave the same remainder. Let
+these be/summationtextl
+i=1aiand/summationtextk
+i=1ai, with l < k . By a lemma we once proved, it follows that
+n/vextendsingle/vextendsingle/parenleftBiggk/summationdisplay
+i=1ai−l/summationdisplay
+i=1ai/parenrightBigg
+,
+which implies
+n/vextendsingle/vextendsinglek/summationdisplay
+i=l+1ai.
+5960Chapter 13
+Asymptotic Notation
+13.1 Deﬁnitions
+Analysis of algorithms is concerned with estimating how many steps various algo-
+rithms make while solving problems of various sizes. In particular, given an algorithm,
+we want to make statements like “For input of size n, the algorithm will terminate in
+at most f(n) steps.” If we try to accurately estimate the number of steps, a cumber-
+some bound like
+f(n) =1
+11n3+ 12n2+ 151
+2n+ log3n+ 17
+might arise. Such precision only complicates matters and does not add to our under-
+standing of the algorithm’s eﬃciency. The following notational convention allows to
+simplify bounds by concentrating on their “main terms.”
+Deﬁnition 13.1.1. For two functions f, g:N+→R,
+•f(n) =O(g(n))if and only if there exists a positive constant c∈Rand a
+constant n0∈N, such that |f(n)| ≤c|g(n)|for all n≥n0.
+•f(n) = Ω( g(n))if and only if g(n) =O(f(n)).
+•f(n) = Θ( g(n))if and only if f(n) =O(g(n))andf(n) = Ω( g(n)).
+Asymptotic notation does wonders to the above ugly bound: We can now say that
+f(n) = Θ( n3), which makes it easier to see how the number of steps performed by
+the algorithm grows as ngets larger and larger. Notice how the asymptotic notation
+swallowed all the constants and lower-order terms! To prove that f(n) = Θ( n3) we
+need to show that there exist positive constants c1, c2∈Rand a constant n0∈N,
+such that c1n3≤f(n)≤c2n3for all n≥n0. (We dropped the absolute values that
+come from Deﬁnition 13.1.1 since f(n) and n3are nonnegative for n∈N+.) We can
+taken0= 1, c1=1
+11, and c2= 45.6. For the lower bound, clearly f(n)≥1
+11n3when
+n∈N+. For the upper bound, note that in this range n3≥n2≥n≥log3n, and
+n3≥1. All these inequalities can be proved by elementary algebraic manipulation.
+Thus we get
+f(n)≤1
+11n3+ 12n3+ 151
+2n3+n3+ 17n3≤45.6n3.
+61We can also perfectly well say that f(n) =O(n4) or that f(n) =O(n25); these
+bounds are considerably less informative but correct. On the other hand, the bound
+f(n) =O(n2) (or even f(n) =O(n2.99)) is notcorrect. Indeed, we have seen that
+f(n)≥1
+11n3. On the other hand, for any positive constant c∈R,1
+11n3≥cn2for all
+n≥11c. Thus there is no positive constant c∈Rand a constant n0∈Nso that
+f(n)≤cn2for all n≥n0.
+Asymptotic notation is asymmetric, so we never write a statement like O(g(n)) =
+f(n); the O, Ω, and Θ are always present on the right side of the equality sign.
+(However, we can write n2+O(n) = Θ( n2), for example.) The right way to think
+of statements like f(n) = O(g(n)) and f(n) = Ω( g(n)) is as inequalities; always
+remember what the notation means according to Deﬁnition 13.1.1.
+13.2 Examples and properties
+The following asymptotic inequalities can all be easily proved and are very useful. Do
+the proofs as an exercise. You might ﬁnd induction or tools from elementary calculus
+helpful for some of these. You’ll also need simple properties of logarithms, like the
+identity
+logan=logbn
+logba.
+•For two constants u, v∈R, ifu < v then nu=O(nv). (“A bigger power
+swallows a smaller one.”)
+•Iff(n) is a degree- dpolynomial in nthen f(n) =O(nd). If the coeﬃcient of nd
+inf(n) is nonzero then f(n) = Θ( nd).
+•For any real constants b >1 and p,np=O(bn). (“An exponential swallows a
+power.”)
+•For any real constants q > 0 and p, (lnn)p=O(nq). (“A power swallows a
+logarithm.”)
+•For any real constants a, b > 1, logan= Θ(logbn). This implies that we can
+write bounds like O(logn),O(nlogn), etc., without specifying the base of the
+logarithm. (“Asymptotic notation swallows bases of logarithms.”)
+We conclude this lecture by demonstrating how new asymptotic inequalities can
+be derived from existing ones. These are often used in the analysis of algorithms,
+although they are so much a part of the folklore that they are rarely referred to
+explicitly.
+Proposition 13.2.1. The following hold:
+(a)Iff(n) =O(g(n))andp∈Nis a constant then p·f(n) =O(g(n)).
+(b)Iff(n) =O(h(n))andg(n) =O(w(n))thenf(n)+g(n) =O(max( |h(n)|,|w(n)|)).
+62(c)Iff(n) =O(h(n))andg(n) =O(w(n))then f(n)·g(n) =O(h(n)·w(n)).
+Proof. We prove each claim individually.
+(a)Iff(n) =O(g(n)) then there exists a positive constant c∈Rand a constant
+n0∈N, such that |f(n)| ≤c|g(n)|for all n≥n0. Thus for p∈N,|p·f(n)|=
+p|f(n)| ≤(pc)|g(n)|for all n≥n0, and by Deﬁnition 13.1.1, p·f(n) =O(g(n)).
+(b)Iff(n) =O(h(n)) and g(n) =O(w(n)) then there exist two positive constants
+c1, c2∈Rand constants n1, n2∈N, such that |f(n)| ≤c1|h(n)|for all n≥n1
+and|g(n)| ≤c2|w(n)|for all n≥n2. Then
+|f(n)+g(n)| ≤ |f(n)|+|g(n)| ≤c1|h(n)|+c2|w(n)|= (c1+c2) max( |h(n)|,|w(n)|)
+for all n≥max( n1, n2), and by Deﬁnition 13.1.1, f(n)+g(n) =O(max( |h(n)|,|w(n)|)).
+(c)Iff(n) =O(h(n)) and g(n) =O(w(n)) then there exist two positive constants
+c1, c2∈Rand constants n1, n2∈N, such that |f(n)| ≤c1|h(n)|for all n≥n1
+and|g(n)| ≤c2|w(n)|for all n≥n2. Then
+|f(n)·g(n)|=|f(n)| · |g(n)| ≤(c1|h(n)|)·(c2|w(n)|) = (c1c2)|h(n)·w(n)|
+for all n≥max( n1, n2), and by Deﬁnition 13.1.1, f(n)·g(n) =O(h(n)·w(n)).
+6364Chapter 14
+Graphs
+14.1 Introduction
+Agraph Gis an ordered pair ( V, E), where Vis a set and Eis a set of two-element
+subsets of V. That is,
+E⊆/braceleftbig
+{x, y}:x, y∈V, x/negationslash=y/bracerightbig
+.
+Elements of Vare the vertices (sometimes called nodes ) of the graph and elements of
+Eare the edges . Ife={x, y} ∈Ewe say that xandyareadjacent in the graph G,
+thatyis aneighbor ofxinGand vice versa, and that the edge eisincident toxand
+y.
+What are graphs good for? Graphs are perhaps the most pervasive abstraction in
+computer science. It is hard to appreciate their tremendous usefulness at ﬁrst, because
+the concept itself is so elementary. This appreciation comes through uncovering the
+deep and fascinating theory of graphs and its applications.
+Graphs are used to model and study transportation networks, such as the net-
+work of highways, the London Underground, the worldwide airline network, or the
+European railway network; the ‘connectivity’ properties of such networks are of great
+interest. Graphs can also be used to model the World Wide Web, with edges corre-
+sponding to hyperlinks; Google uses sophisticated ideas from graph theory to assign a
+PageRank to every vertex of this graph as a function of the graph’s global properties.
+In this course we will introduce the basic concepts and results in graph theory, which
+will allow you to study and understand more advanced techniques and applications
+in the future.
+14.2 Common graphs
+A number of families of graphs are so common that they have special names that are
+worth remembering:
+Cliques. A graph on nvertices where every pair of vertices is connected is called
+aclique (orn-clique) and is denoted by Kn. Formally, Kn= (V, E), where V=
+{1,2, . . . , n }andE={{i, j}: 1≤i < j≤n}. The number of edges in Knis/parenleftbign
+2/parenrightbig
+.
+65Paths. Apath onnvertices, denoted by Pn, is the graph Pn= (V, E), where
+V={1,2, . . . , n }andE={{i, i+ 1}: 1≤i≤n−1}. The number of edges in Pnis
+n−1. The vertices 1 and nare called the endpoints ofPn.
+Cycles. Acycle onn≥3 vertices is the graph Cn= (V, E), where V={1,2, . . . , n }
+andE={{i, i+ 1}: 1≤i≤n−1} ∪ {{ 1, n}}. The number of edges in Cnisn.
+14.3 Some important concepts
+Graph isomorphism. If the above deﬁnition of a cycle is followed to the letter, a
+graph is a cycle only if its vertices are natural numbers. So, for example, the graph
+G= (V, E) with V={A, B, C }andE={{A, B},{B, C},{C, A}}would not be a
+cycle. This seems wrong, because G“looks like” a cycle, and for all practical purposes
+it is exactly like C3. The concept of graph isomorphism provides a way to formally
+say that C3andGare “the same.”
+Deﬁnition 14.3.1. Two graphs G= (V, E)andG/prime= (V/prime, E/prime)are said to be isomor-
+phic if there exists a bijection f:V→V/primesuch that
+{x, y} ∈Eif and only if {f(x), f(y)} ∈E/prime.
+In this case we write G≡G/primeand the function fis called an isomorphism ofGand
+G/prime.
+We generally regard isomorphic graphs to be essentially the same, and sometimes
+do not even draw the distinction. Hence graphs that are isomorphic to cliques, cycles
+and paths are themselves said to be cliques, cycles and paths, respectively.
+Size. The number of edges of a graph is called it size. The size of an n-vertex graph
+is at most/parenleftbign
+2/parenrightbig
+, achieved by the n-clique.
+Degree. The degree (orvalency ) of a vertex vin a graph G= (V, E), denoted by
+dG(v), is the number of neighbors of vinG. More formally, this degree is
+dG(v) =/vextendsingle/vextendsingle{u∈V:{v, u} ∈E}/vextendsingle/vextendsingle.
+A graph in which every vertex has degree kis called k-regular and a graph is said to
+beregular if it is k-regular for some k.
+The following is sometimes called the Handshake lemma. It can be interpreted as
+saying that the number of people at a cocktail party who shake hands with an odd
+number of others is even.
+Proposition 14.3.2. The number of odd-degree vertices in a graph is even.
+66Proof. For a graph G= (V, E), consider the sum of the degrees of its vertices:
+s=/summationdisplay
+v∈VdG(v).
+Observe that this sum counts every edge etwice, once for each of the vertices incident
+toe. Thus s= 2|E|, and, in particular, sis even. Subtracting from sthe degrees of
+even-degree vertices of G, we see that the resulting quantity is the sum of the degrees
+of odd-degree vertices and is still even. This implies the proposition.
+Subgraphs and Connectivity.
+Deﬁnition 14.3.3. Given a graph G= (V, E),
+•A graph G/prime= (V/prime, E/prime)is said to be a subgraph ofGif and only if V/prime⊆Vand
+E/prime⊆E.
+•A graph G/prime= (V/prime, E/prime)is said to be an induced subgraph ofGif and only if
+V/prime⊆VandE/prime={{u, v} ∈E:u, v∈V/prime}.
+Given a graph G, a path, cycle, or clique in Gis a subgraph of Gthat is a path,
+cycle, or clique, respectively. Two vertices vanduofGare said to be connected if
+and only if there is a path in Gwith endpoints uandv. A graph Gas a whole is said
+to be connected if and only if every pair of vertices in Gis connected.
+A subgraph G/primeofGis called a connected component ofGif it is connected and no
+other graph G/prime/prime, such that G/prime⊂G/prime/prime⊆G, is connected. Clearly, a graph is connected
+if and only if it has a single connected component.
+Finally, there is a related notion to a path that is also useful: Given a graph
+G= (V, E), a walk WinGis a sequence W= (v1, e1, v2, e2, . . . , v n−1, en−1, vn) of
+vertices and edges in Gthat are not necessarily distinct, such that {v1, v2, . . . , v n} ⊆
+V,{e1, e2, . . . , e n−1} ⊆E, and ei={vi, vi+1}for all 1 ≤i≤n−1. A walk diﬀers from
+a path in that vertices and edges can be repeated. The set of edges {e1, e2, . . . , e n−1}
+covered by Wis denoted by E(W). Similarly, the set of vertices covered by Wis
+V(W) ={v1, v2, . . . , v n}.
+14.4 Kinds of graphs
+What we have been calling graph is actually only one of many kinds of graphs, namely
+an undirected, unweighted, simple graph. Let’s see how each of these qualities can
+diﬀer and what other kinds of graphs there are.
+Adirected (simple, unweighted) graph Gis an ordered pair ( V, E), where Vis a
+set and Eis a set of ordered pairs from V. That is,
+E⊆/braceleftbig
+(x, y) :x, y∈V, x/negationslash=y/bracerightbig
+.
+Directed graphs are suitable for modeling one-way streets, non-reﬂexive relations,
+hyperlinks in the World Wide Web, and so on. The notion of degree as deﬁned above
+67is no longer applicable to a directed graph. Instead, we speak of the indegree and the
+outdegree of a vertex vinG, deﬁned as |{u∈V: (u, v)∈E}|and|{u∈V: (v, u)∈
+E}|, respectively.
+A graph that is not simple can have multi-edges and self-loops . Multi-edges are
+multiple edges between the same pair of vertices. (Their presence means that the
+collection of edges is no longer a set, but a so-called multiset .) A self-loop is an edge
+to and from a single vertex v.
+Finally, a graph can also be weighted , in the sense that numerical weights are
+associated with edges. Such weights are extremely useful for modeling distances in
+transportation networks, congestion in computer networks, etc. We will not dwell on
+weighted graphs in this course. In fact, unless speciﬁed otherwise, the word “graph”
+will continue to refer to undirected, unweighted, simple graphs.
+68Chapter 15
+More Graphs—Eulerian, Bipartite,
+and Colored
+15.1 Eulerian graphs
+Ever seen those puzzles that ask you to trace some shape without lifting the pencil oﬀ
+the paper? For graph theory initiates such questions present no diﬃculty, separating
+this select elite from the rest of the human race who are doomed to spend their Sunday
+afternoons hunched over, putting page after page out of commission, searching in vain
+for the ever-elusive drawing.
+Given a graph G= (V, E), deﬁne a tourofGas a walk T= (v1, e1, v2, e2, . . . , v n, en, vn+1)
+inG, such that Tdoes not trace any edge more than once. (That is, ei/negationslash=ejfor all
+1≤i < j≤n.) The tour is said to be Eulerian if, in addition, vn+1=v1,V(T) =V,
+andE(T) =E. Thus an Eulerian tour traverses all the edges of G, “walking along”
+each exactly once, eventually coming back to where it started. (Particular vertices
+may and generally will be visited more than once.) A graph is said to be Eulerian if
+and only if it has an Eulerian tour.
+Eulerian graphs were discussed by the great Leonhard Euler, the most proliﬁc
+mathematician of all time. Euler’s analysis of these graphs, presented in 1736, marks
+the birth of graph theory.
+Theorem 15.1.1. A graph is Eulerian if and only if it is connected and each of its
+vertices has even degree.
+Proof. We ﬁrst prove that if Gis Eulerian its vertices all have even degree. Indeed,
+trace an Eulerian tour of Gstarting and ending at a vertex v. Every time the tour
+enters an intermediate vertex it also leaves it along a diﬀerent edge. In the very ﬁrst
+step the tour leaves vand in the last step it enters v. Thus we can label the edges
+incident to any vertex as “entering” and “leaving”, such that there is a bijection
+between these two sets. This shows that the degree of every vertex is even.
+To prove that a graph G= (V, E) with all vertex degrees being even is Eulerian,
+consider the longest tour T= (v1, e1, v2, e2, . . . , v n, en, vn+1) inG. (The length of a
+tour is measured by its number of edges.) We prove below that Tis Eulerian. Namely,
+we prove that:
+69(a)v1=vn+1
+(b)n=|E|
+Proof of (a). Assume for the sake of contradiction that v1/negationslash=vn+1. Then the number
+of edges of Tincident to v1is odd. (After Tﬁrst leaves v1, it enters and leaves
+it an even number of times.) Since the degree of v1inGis even, there is an
+edge eofGthat is incident to v1but not part of T. We can extend Tby this
+edge, obtaining a contradiction.
+Proof of (b). We can assume that v1=vn+1. Suppose V(T)/negationslash=V. Consider a
+vertex v∈V\V(T) and a vertex u∈V(T). Since Gis connected, there
+is a path Pbetween vanduinG. Consider the ﬁrst time a vertex of Tis
+encountered along P; this vertex is vifor some 1 ≤i≤n. Let e/prime={v/prime, vi}be
+the edge along which Parrives at viand note that v/prime/negationslash∈V(T). This implies that
+we can augment Tbyv/primeande/prime, and obtain a longer tour T/prime, namely
+T/prime= (v/prime, e/prime, vi, ei, . . . , v n, en, v1, e1, . . . , v i−1, ei−1, vi).
+We have reached a contradiction and can therefore assume that V(T) =V.
+That is, Tvisits all the vertices of G. Assume for the sake of contradiction that
+E(T)/negationslash=E, so there exists an edge e/prime={vi, vj}ofG, for some 1 ≤i < j ≤n,
+that is not part of T. Then we can augment Tby the edge e/prime, and obtain a
+longer tour T/prime, namely
+T/prime= (vi, e/prime, vj, ej, vj+1, ej+1, . . . , v n, en, v1, e1, . . . , v i, ei, . . . , v j−1, ej−1, vj).
+T/primeis longer than Tby one edge, which is a contradiction that proves the theo-
+rem.
+Proof technique: Considering an extremal conﬁguration. In the above proof
+the crucial idea was to consider the longest tour in the graph. This is an instance of a
+common proof technique: If we need to prove that some conﬁguration with particular
+properties exists (like an Eulerian tour), consider the extremal (longest, shortest, etc.)
+conﬁguration of a related type (usually one that has some but not all of the required
+properties), and prove that this extremal conﬁguration has to satisfy allof the required
+properties. Some steps in the proof usually proceed by contradiction: If the extremal
+conﬁguration wasn’t of the required type we could ﬁnd a “more extremal” one, which
+is a contradiction.
+15.2 Graph coloring
+Consider a wireless company that needs to allocate a transmitter wavelength to each
+of its users. Two users who are suﬃciently close need to be assigned diﬀerent wave-
+lengths to prevent interference. How many diﬀerent wavelengths do we need? Of
+70course, we can just assign a new wavelength to every user, but that would be waste-
+ful if some users are far apart. So what’s the least number of wavelengths we can get
+away with?
+We can model the users as vertices in a graph and connect two vertices by an edge
+if the corresponding users are suﬃciently close. A coloring of this graph G= (V, E)
+is an assignment of colors to vertices, such that no two adjacent vertices get the same
+color. The above question can now be restated as asking for the minimum number of
+colors that are needed for a coloring of G.
+Let us be a bit more precise in deﬁning colorings: A k-coloring ofGis said to
+be a function c:V→ {1,2, . . . , k }, such that if {v, u} ∈Ethen c(v)/negationslash=c(u). The
+smallest k∈Nfor which a k-coloring of Gexists is called the chromatic number of
+G. If a k-coloring of Gexists, the graph is said to be k-colorable. There are many
+deep results concerning colorings and the chromatic number. At this point we only
+give the simplest one:
+Proposition 15.2.1. If the degree of every vertex in a graph Gis at most k, then
+the chromatic number of Gis at most k+ 1.
+Proof. By induction on the number of vertices in G. (The degree bound kis ﬁxed
+throughout the proof.) If Ghas a single vertex, then the maximal degree is 0 and
+the graph is 1-colorable. Since 1 ≤k+ 1, the proposition holds. Suppose every graph
+with at most nvertices and all vertex degrees at most kis (k+1)-colorable. Consider
+a particular graph G= (V, E) with n+ 1 vertices, and all degrees at most k. Let
+G/primebe the graph obtained from Gby deleting a particular vertex vand all the edges
+incident to v. That is, G/primeis the incident subgraph of Gon the vertices V\ {v}.G/prime
+hasnvertices, all of degree at most k, and is thus ( k+ 1)-colorable. Let c/primebe such a
+coloring of G/prime. We extend it to a coloring cofGas follows. For every vertex u∈G
+such that u/negationslash=vwe deﬁne c(u) =c/prime(u). The vertex vhas at most kneighbors in G
+and there is at least one color iamong {1,2, . . . , k + 1}that has not been assigned
+to any of them. We deﬁne c(u) =i. This is a ( k+ 1)-coloring, and the proposition
+follows.
+15.3 Bipartite graphs and matchings
+A bipartite graph is a graph that can be partitioned into two parts, such that edges
+of the graph only go between the parts, but not inside them. Formally, a graph
+G= (V, E) is said to be bipartite if and only if there exist U⊆V, such that
+E⊆ {{u, u/prime}:u∈Uandu/prime∈V\U}.
+The sets UandV\Uare called the classes ofG. Acomplete bipartite graph Km,nis
+a graph in which all the edges between the two classes are present. Namely, Km,n=
+(V, E), where V={1,2, . . . , m +n}andE={{i, j}: 1≤i≤m, m +1≤j≤m+n}.
+The number of edges in Knismn. From the deﬁnition of coloring, it follows that
+a graph is bipartite if and only if it is 2-colorable. (Check!) Here is another useful
+characterization of bipartite graphs:
+71Proposition 15.3.1. A graph is bipartite if and only if it contains no cycle of odd
+length.
+Proof. For one direction of the claim, let Gbe a bipartite graph and let C=
+(v1, v2, . . . , v n, v1) be a cycle in G. Suppose without loss of generality that v1∈U,
+where Uis as in the deﬁnition of bipartiteness. Then by simple induction that we
+omit, vi∈Ufor every odd 1 ≤i≤n. Since {vn, v1} ∈E,vn∈V\Uand thus nis
+even. It follows that the number of edges in Cis even.
+Before proving the other direction, we need a simple lemma.
+Lemma 15.3.2. Given a graph G= (V, E), letP= (v1, v2, . . . , v n)be a shortest path
+between two vertices v1andvninG. Then for all 1≤i < j≤n,Pi= (vi, vi+1, . . . , v j)
+is a shortest path between viandvj.
+Proof. Proof by contradiction. Let Qi= (vi, u1, u2, . . . , u l, vj) be a shortest path
+between viandvj. Assume for the sake of contradiction that Qiis shorter than Pi.
+Consider the walk
+Q= (v1, v2, . . . , v i, u1, u2, . . . , u l, vj, vj+1, . . . , v n).
+Since Qiis shorter than Pi,Qis shorter than P. Now consider the graph G/prime=
+(V(Q), E(Q)). This graph is connected, and thus there is a shortest path P/primebetween
+v1andvninG/prime. The number of edges in this shortest path cannot exceed the total
+number of edges in G/prime, and thus P/primeis shorter than P. Since P/primeis also a path between
+v1andvninG, we have reached a contradiction.
+We now turn to the other direction of the proposition. Assume that G= (V, E)
+has no odd cycle. If Ghas more than one connected component we look at every
+component separately. Clearly, if every component is bipartite, Gas a whole is
+bipartite. Thus assume that Gis connected. Pick an arbitrary vertex v∈Vand
+deﬁne a set U⊆Vas
+U={x∈V: the shortest paths from vtoxhave even length }.
+Clearly, V\Uis the set
+V\U={x∈V: the shortest paths from vtoxhave odd length }.
+We prove that no two vertices in Uare adjacent; the proof for V\Uis similar.
+Consider for the sake of contradiction an edge e={u, u/prime} ∈E, such that u, u/prime∈U.
+Denote a shortest path from vtoubyP1and a shortest path from vtou/primebyP2.
+Given two vertices sandton a path P, letPs,tbe the part of Pthat connects sand
+t. Consider a vertex wthat lies on both P1andP2. The above lemma implies that
+Pv,w
+1andPv,w
+2are shortest paths between vandwand thus have the same length,
+which we denote by l(w). Consider the vertex w∗shared by P1andP2that maximizes
+l(w) among all such w. The paths Pw∗,u
+1andPw∗,u/prime
+2 share no vertex in common other
+than w∗. Furthermore, the length of Pw∗,u
+1is the length of P1minus l(w∗) and the
+length of Pw∗,u/prime
+2 is the length of P2minus l(w∗). Since the lengths of P1andP2are
+72both even, the lengths of Pw∗,u
+1 andPw∗,u/prime
+2 have the same parity (that is, they are
+either both even or both odd). Now consider the cycle Ccomposed of Pw∗,u
+1, the edge
+{u, u/prime}, and Pw∗,u/prime
+2. Since Pw∗,u
+1 andPw∗,u/prime
+2 share no vertex in common other than
+w∗,Creally is a cycle in G. Moreover, since the lengths of Pw∗,u
+1andPw∗,u/prime
+2 have the
+same parity, the number of edges in Cis odd! We have reached a contradiction that
+completes the proof.
+Bipartite graphs are particularly useful to model symmetric relations from one
+set to another. For example, given a collection of boys and girls, we could model the
+relation “wants to go to the prom with” by a bipartite graph. Given such preferences,
+an interesting question is whether we can pair the boys up with the girls, so that they
+all end up going to the prom with someone they actually want to go with. It turns
+out that this question has a very precise answer. To state the theorem we need to
+deﬁne the notion of matching:
+Deﬁnition 15.3.3. Given a bipartite graph G= (V, E), amatching BinGis a set
+of disjoint edges. Namely, B⊆Eande1∩e2=∅for any e1, e2∈B. A matching is
+said to be perfect if/uniontext
+e∈Be=V.
+Consider now a set Bof boys, a set Gof girls, and a symmetric relation Pfrom B
+toG. Deﬁne a graph W= (B∪G,{{b, g}: (b, g)∈P}). The above question simply
+asks to characterize when there exists a perfect matching in W. The below result,
+known as Hall’s theorem, provides such a characterization. To state the theorem, we
+use another piece of notation: Given a subset Sof the vertices of W, we let Γ( S) be
+the set of vertices of Wadjacent to at least one of the vertices of S.
+Theorem 15.3.4. A bipartite graph W= (V, E)with classes BandGhas a perfect
+matching if and only if |B|=|G|and|Γ(S)| ≥ |S|for all S⊆B.
+Proof. One direction is easy: Assume Whas a perfect matching and consider a
+setS⊆B. Every element of Sis matched to a distinct element of Gand hence
+|Γ(S)| ≥ | S|. In particular, |G| ≥ | B|. By a symmetric argument we get that
+|B| ≥ |G|and thus |B|=|G|.
+For the other direction, assume that |B|=|G|and that |Γ(S)| ≥ | S|for all
+S⊆B. We prove that there exists a perfect matching in Wby strong induction on
+|B|. For the base case, if |B|=|G|= 1, the matching consists of the single edge of
+W. Assuming that the claim holds for all graphs with |B| ≤k, consider a graph W
+as above with |B|=k+ 1. We distinguish between two possibilities:
+(a)If for every S⊂B,|Γ(S)|>|S|, we take an arbitrary x∈Band match it with
+an adjacent y∈G. Then for every subset S/primeofB\ {x}, it still holds that the
+number of vertices of G\ {y}adjacent to at least one of the vertices of S/primeis at
+least|S/prime|. We can thus match the vertices of B\{x}with the vertices of G\{y}
+by the induction hypothesis.
+(b)If for some S⊂B,|Γ(S)|=|S|, we note that for every S/prime⊆S, the number
+of vertices in Γ( S) adjacent to at least one of the vertices of S/primeis at least |S/prime|.
+73Thus we can match Swith Γ( S) by the induction hypothesis. Now we need to
+show that we can match B\Swith G\Γ(S). Consider a set S/prime⊆B\Sand
+the set T/primeof its neighbors in G\Γ(S). Note that the set of neighbors of S∪S/prime
+inGis Γ(S)∪T/prime. Thus |S∪S/prime| ≤ |Γ(S)∪T/prime|. Since |S|=|Γ(S)|, we get that
+|S/prime| ≤ |T/prime|. Thus by the induction hypothesis we can also match B\Swith
+G\Γ(S).
+This shows that in both cases all the vertices of Bcan be matched with vertices of
+Gas required, and concludes the proof.
+74Chapter 16
+Trees
+16.1 Basic properties of trees
+Trees in mathematics are graphs of a certain kind. In a sense, trees are the simplest
+interesting graphs, in that they have a very simple structure, but possess a rich variety
+of nontrivial properties. Trees have innumerable applications throughout computer
+science.
+Deﬁnition 16.1.1. Atree is a connected graph with no cycles. A vertex of degree
+one in a tree is called a leaf.
+An extensive theory of trees has been developed, and we give the tip of the iceberg
+below: Four additional characterizations that each could have been used to deﬁne
+trees.
+Theorem 16.1.2. Given a graph G= (V, E), the following conditions are equivalent:
+(a)Gis a connected graph with no cycles. (Thus Gis a tree by the above deﬁnition.)
+(b)For every two vertices u, v∈V, there exists exactly one path from utov.
+(c)Gis connected, and removing any edge from Gdisconnects it. (Thus Gis a
+minimal connected graph .)
+(d)Ghas no cycles, and adding any edge to Ggives rise to a cycle. (Thus Gis a
+maximal acyclic graph .)
+(e)Gis connected and |E|=|V| −1.
+Proof. We will prove for each of the conditions (b)–(e) in turn that it is equivalent to
+condition (a). This implies the equivalence of all the conditions. The proof proceeds
+by induction on the number of vertices |V|inG, and we relate a tree with n+ 1
+vertices to a tree with nvertices in the inductive step by “tearing oﬀ” a leaf. We
+begin by proving two lemmas that will be useful in this process.
+Lemma 16.1.3. Each tree with at least 2 vertices contains at least 2 leaves.
+75Proof. Given a tree T= (V, E), consider a path Pof maximum length in T. We
+claim that the two end-points of Pare leaves of T. Indeed, assume for the sake of
+contradiction that an end-vertex uofPhas degree greater than 1 in T. Thus there
+exists an edge {u, u/prime} ∈Ethat is not part of P. Ifu/primebelongs to Pthen Tcontains
+a cycle. Otherwise we can extend Pby the edge {u, u/prime}andPis not a longest path
+inT. This contradiction proves the lemma.
+Lemma 16.1.4. Given a graph G= (V, E)and a leaf v∈Vthat is incident to an
+edge e={v, v/prime} ∈E, the graph Gis a tree if and only if G/prime= (V\ {v}, E\ {e})is a
+tree.
+Proof. Assume that Gis a tree and consider two vertices u, w∈V\ {v}.uandw
+are connected by a path PinG. Every vertex of Pother than uandwhas degree
+at least 2, and thus vcannot be a vertex of P. Therefore Pis a path in G/prime, which
+proves that G/primeis connected. Since Gdoes not contain a cycle, G/primecannot contain a
+cycle and is thus a tree.
+For the other direction, assume that G/primeis a tree. Since a cycle only contains
+vertices with degree at least 2, a cycle in Gmust also be a cycle in G/prime. Therefore
+there are no cycles in G. Also, any two vertices of Gother than vcan be connected
+by the same path as in G/prime, and vcan be connected to any vertex uinGby a path
+that consists of the edge eand a path in G/primebetween v/primeandu. Thus Gis a tree.
+We are now ready to employ induction to prove that condition (a) implies each of
+(b)–(e). For the induction basis, all ﬁve conditions hold for the graph with a single
+vertex. Consider a graph G= (V, E) with |V|=n≥2 and assume that (a) holds for
+G. By Lemma 16.1.3, Ghas a leaf v∈Vthat is incident to an edge e={v, v/prime} ∈E.
+By Lemma 16.1.4, condition (a) holds for G/prime. The inductive hypothesis states that
+condition (a) implies conditions (b)–(e) for the graph G/prime= (V\ {v}, E\ {e}). We
+now need to prove that conditions (b)–(e) also hold for G.
+Condition (b) holds for Gby a similar argument to the one employed in the proof
+of Lemma 16.1.4. Condition (c) holds for Gsince removing any edge other than e
+disconnects Gby the induction hypothesis, and removing edisconnects the vertex v
+from the rest of the graph. Condition (d) holds since Gcannot have cycles by an
+argument similar to the proof of Lemma 16.1.4; adding an edge that is not incident
+tovcreates a cycle by the inductive hypothesis, and adding an edge {v, u}, for some
+u∈V\ {v}creates a cycle that consists of the edge {v, u}, the path from utov/prime,
+and the edge e. Finally, condition (e) holds since Gis obtained from G/primeby adding
+one vertex and one edge.
+We now prove that each of (b)–(d) imply (a). Conditions (b) and (c) on Geach
+imply connectedness of G. By contrapositive, assume that Gcontains a cycle. Then
+taking two distinct vertices u, won the cycle, there are two paths from utowalong
+the cycle, which implies ( b)⇒(a). Furthermore, removing one edge of the cycle does
+not disconnect G, which implies ( c)⇒(a). Condition (d) implies that Gdoes not
+contain a cycle. By contrapositive, assume that Gis disconnected. Then there are
+two vertices uandwthat have no path connecting them and we can add the edge
+{u, w}toGwithout creating a cycle. This implies ( d)⇒(a).
+76To prove ( e)⇒(a) we use induction on the number of vertices of G. The induction
+basis is the graph with one vertex and the claim trivially holds. For the induction
+hypothesis, assume that the claim holds for all graphs with |V| −1 vertices. For
+the inductive step, assume that condition (e) holds for Gand hence |E|=|V| −1.
+Therefore the sum of the degrees of the vertices of Gis 2|V| −2, and thus there is
+some vertex v∈Vof degree 1. The graph G/prime= (V\ {v}, E\ {e}) is connected and
+satisﬁes |E\ {e}|=|V\ {v}| −1. By the induction hypothesis, G/primeis a tree. Lemma
+16.1.4 now implies that Gis a tree, which completes the proof.
+16.2 Spanning trees
+One of the reasons that trees are so pervasive is that every connected graph Gcontains
+a subgraph that is a tree on all of the vertices of G. Such a subgraph is called a
+spanning tree ofG.
+Deﬁnition 16.2.1. Consider a graph G= (V, E). A tree of the form (V, E/prime), where
+E/prime⊆Eis called a spanning tree of G.
+Proposition 16.2.2. Every connected graph G= (V, E)contains a spanning tree.
+Proof. Consider a tree subgraph T= (V/prime, E/prime) ofGwith the largest number of vertices.
+Suppose for the sake of contradiction that V/prime/negationslash=V, and thus there exists v∈V\V/prime.
+Take an arbitrary vertex u∈V/primeand consider a path Pbetween vandu. Let u/primebe
+the ﬁrst vertex along Pthat belongs to V/prime, and let v/primebe the vertex that immediately
+precedes u/primeinP. Consider the graph T/prime= (V/prime∪ {v/prime}, E/prime∪ {v/prime, u/prime}). Lemma 16.1.4
+implies that T/primeis a tree in Gwith a greater number of vertices than T, which is a
+contradiction.
+7778Chapter 17
+Planar Graphs
+17.1 Drawing graphs in the plane
+As we have seen in class, graphs are often visualized by drawing them in the plane—
+vertices are drawn as points, and edges as curved segments (called arcs) that connect
+the corresponding points. A graph together with a drawing of it in the plane is called
+atopological graph .
+A graph is called planar if there exists a drawing of it in which the interior of any
+arc does not touch or intersect any other arc. That is, two distinct arcs are either
+disjoint or touch at endpoints that they share. A planar graph together with a planar
+drawing of it is called a plane graph .
+It is easy to verify that paths, cycles and trees of any size are planar. Transporta-
+tion networks often provide examples of planar graphs, and graph planarity became
+important in computer science due to a connection with VLSI circuit design. Planar
+drawings are often considered superior when visualizing graphs, as they have no edge
+crossings that can be mistaken for vertices. In fact, a whole subﬁeld of computer
+science called graph drawing is devoted to the study of various kinds of drawings of
+graphs.
+It might not be obvious at ﬁrst that there are any nonplanar graphs at all. There
+are, but we’ll have to do some work to prove this, and we’ll need two preliminary
+steps just to approach this issue. The ﬁrst is to deﬁne the faces of a plane graph and
+the second is to mention the (in)famous Jordan curve theorem.
+Let us begin with faces. Deﬁne an equivalence relation on the plane as follows:
+Two points a, b∈R2are equivalent if they can be connected by an arc that does not
+intersect the edges of a given plane graph G. Then the set of all points that belong
+to a particular equivalence class of this relation are said to be a faceofG. Intuitively,
+if we draw Gon a white sheet of paper with a black pencil, the faces are the white
+regions; alternatively, if we cut the paper along the edges of the drawing, the faces
+are the resulting pieces. Note that faces are deﬁned for plane graphs, but not for
+planar graphs without a drawing: Diﬀerent drawings of the same graph can produce
+diﬀerent sets of faces!
+The second piece of mathematical equipment we’ll need to study planar graphs
+79is the Jordan curve theorem.1It is a classical example of a mathematical statement
+that is intuitively obvious, but exceedingly diﬃcult to prove. (Related specimens
+that arguably fall into this category are Kepler’s conjecture and the Kneser-Poulsen
+conjecture.)
+Theorem 17.1.1 (Jordan curve theorem) .Every closed non-self-intersecting curve
+γin the plane separates the plane into exactly two regions, one bounded and one
+unbounded, such that γis the boundary of both. Alternatively, a plane drawing of any
+cycle Ci, for i≥3, has exactly two faces.
+To see why the Jordan curve theorem is not so easy to prove recall that there are
+some crazy curves out there—just think about fractals like the Koch snowﬂake . How
+would you go about proving that such monsters have “interior” and “exterior”?
+The following corollary follows from the Jordan curve theorem by routine argu-
+ments.
+Corollary 17.1.2. Consider a plane graph Gand an edge ethat is part of a cycle in
+G. Then elies on the boundary of exactly two faces of G.
+17.2 Euler’s formula
+The fundamental tool in the study of planar graphs is Euler’s formula, presented by
+Euler in 1752.2
+Theorem 17.2.1 (Euler’s formula) .LetGbe a connected plane graph with nvertices,
+eedges, and ffaces. Then
+n−e+f= 2.
+Note that the theorem need not hold if the graph is not connected—Just think of
+a collection of isolated vertices. On the other hand, the formula remains true even
+for (non-simple) graphs with multiple edges and self-loops.
+Proof. The proof proceeds by induction on the number of edges. If there are none,
+the graph consists of a single vertex, the drawing has one face, and the formula holds
+as 1−0 + 1 = 2. Assume that the formula holds for all plane graphs having kedges.
+Consider a plane graph G= (V, E) with nvertices, ffaces, and k+ 1 edges. We
+distinguish between two cases:
+Gis a tree. In this case n=k+ 2, due to a tree characterization we have seen
+previously, and f= 1 since any planar drawing of a tree has exactly one face.
+Then the formula holds as ( k+ 2)−(k+ 1) + 1 = 2.
+1Jordan gets all the press even though his proof of the theorem was wrong, and it took almost
+20 years until Veblen found a correct one in 1905.
+2Caution: Due to Euler’s prodigious output, there are multiple “Euler’s formulae”, “Euler’s
+theorems”, etc.
+80Ghas a cycle C.Take an edge ethat lies on Cand consider a plane graph G/prime=
+(V, E\ {e}), whose vertices and edges are drawn as in G. By Corollary 17.1.2,
+the edge eis adjacent to two faces of G, and these faces “merge” into one in G/prime.
+Thus G/primehasnvertices, f−1 faces, and kedges. By the induction hypothesis,
+n−k+ (f−1) = 2, hence n−(k+ 1) + f= 2.
+This completes the proof by induction.
+Euler’s formula implies that the number of faces of a plane graph does not depend
+on the drawing, so even though the faces themselves are only deﬁned for a particular
+drawing, their number is ﬁxed a priori for any planar graph! The formula has a
+number of other consequences that are frequently used in theoretical computer science.
+These consequences say that planar graphs have few edges, and always have at least
+one low-degree vertex. As they make abundantly clear, not only are not all graphs
+planar, but most graphs aren’t. (Do you understand the sense in which the theorem
+below implies this?)
+Theorem 17.2.2. For any simple planar graph Gwithnvertices and eedges:
+(a)Ifn≥3then e≤3n−6. Ife= 3n−6then every face of Gis a 3-cycle (a
+“triangle”) and Gis called a triangulation .
+(b)There is a vertex of Gthat has degree at most 5.
+Proof. The proofs of the two parts are similar in their clever use of Euler’s formula:
+(a)IfGis not connected, we can add edges to connect Gwhile maintaining its
+planarity. Assume therefore that Gis connected. Let fbe the number of faces
+ofG. For such a face t, let α(t) be the number of edges adjacent to tand
+consider the sum/summationtext
+tα(t) that ranges over all faces tofG. As each edge is
+adjacent to at most two faces, a particular edge is counted at most twice in the
+above sum. Hence /summationdisplay
+tα(t)≤2e.
+On the other hand, each face has at least three edges on its boundary, so
+/summationdisplay
+tα(t)≥3f.
+We get 3 f≤2e, and, using Euler’s formula, 3(2 −n+e)≤2eand
+e≤3n−6.
+Finally, if e= 3n−6 then 3 f= 2eand it must be that every face has exactly
+three edges on its boundary.
+(b)If the graph is disconnected we consider one particular connected component
+of it, so assume that Gis connected. If Ghas two vertices or less the result
+is immediate, so assume that n≥3. Recall that dG(x) denotes the degree of
+81a vertex xinG. The sum/summationtext
+xdG(x), ranging over the vertices xofG, counts
+every edge twice, so/summationdisplay
+xdG(x) = 2 e.
+As we have seen, e≤3n−6, so
+/summationdisplay
+xdG(x)≤6n−12.
+If the degree of every vertex is at least 6, we get
+6n≤6n−12,
+which is a contradiction. Therefore, there must be a vertex with degree at most
+5.
+An intuitive way to think about Theorem 17.2.2(a) is that once a graph has too
+many edges, there is no more room for them in the plane and they start intersecting.
+This gives a way to prove that a particular graph is not planar. Take K5, for example.
+It has 5 vertices and 10 edges, and 10 >3·5−6. Thus K5is not planar! In fact, no
+Knis planar for n≥5, since they all contain K5as a subgraph. On the other hand,
+Knis planar for n≤4, as can be demonstrated by their simple planar drawings. This
+illustrates a point that might be obvious by now: proving a graph to be planar is
+often easier than proving the opposite. (Just draw it!tm)
+How about complete bipartite graphs? It is easy to verify that Ki,jis planar when
+i≤2 orj≤2. The smallest remaining suspect is K3,3. Playing around with drawings
+doesn’t help: There seems to be no way to draw K3,3without intersections. Let’s try
+the trick that worked for K5: The number of vertices of K3,3is 6, its number of edges
+is 9, and 9 ≤3·6−6. No luck. We need a stronger tool, and here it is:
+Proposition 17.2.3. For any simple planar graph Gwithnvertices and eedges, if
+Gdoes not contain a cycle of length 3 then e≤2n−4.
+Proof. We can assume that Gis connected as in Theorem 17.2.2. Let fbe the number
+of faces of Gand let α(t) be the number of edges adjacent to a face t. These edges
+make up a cycle in G, and thus their number is at least 4, implying α(t)≥4. Consider
+the sum/summationtext
+tα(t), over all faces tofG. Each edge is adjacent to at most two faces,
+thus
+4f≤/summationdisplay
+tα(t)≤2e.
+Using Euler’s formula, we get 4(2 −n+e)≤2eande≤2n−4.
+With this result we’re ﬁnally in business: K3,3does not contain an odd cycle since
+it is bipartite, thus every cycle in the graph has length at least 4. Since 9 >2·6−4,
+K3,3is not planar. Let’s summarize what we’ve learned.
+82Theorem 17.2.4. Knis planar if and only if n≤4andKi,jis planar if and only if
+i≤2orj≤2.
+At this point we have laid the groundwork for one of the most striking results
+concerning planar graphs, known as Kuratowski’s theorem. To state it we need the
+following deﬁnition:
+Deﬁnition 17.2.5. Given a graph G= (V, E), an edge subdivision operation on an
+edge{u, v}ofGresults in the graph (V∪{x},(E\{{u, v}})∪{{u, x},{x, v}}), where
+x/negationslash∈Vis a new vertex. A graph G/primeis said to be a subdivision ofGif it can be obtained
+from Gby successive applications of edge subdivision.
+Kuratowski’s theorem says that not only are K5andK3,3non-planar, but every
+non-planar graph contains either a subdivision of K5or a subdivision of K3,3. That
+is, the graphs K5andK3,3characterize the whole family of non-planar graphs!
+Theorem 17.2.6 (Kuratowski’s theorem) .A graph is planar if and only if it does
+not contain a subdivision of K5or a subdivision of K3,3as a subgraph.
+17.3 Coloring planar graphs
+You might have heard of the four-color problem. It was posed in the mid-19th century
+and occupied some of the best discrete mathematicians since that time. The original
+formulation is in terms of political maps. In such maps, neighboring countries are
+drawn with diﬀerent colors. The question is how many colors are needed. It is easy
+to construct simple examples of maps that need at least four colors. The four color
+problem asks whether four colors always suﬃce, for any political map. (We require
+that every country is connected , unlike, say, the US.)
+This problem is equivalent to whether every planar graph can be colored with
+four colors. (To see this, construct a graph whose vertices correspond to countries
+and whose edges connect neighbors through border segments.) It took over a century
+until Appel and Haken found a proof that four colors always suﬃce, and even that
+was possible only by using computers to conduct extensive case enumeration and
+analysis. To this date no proof of the four color theorem is known that does not rely
+on computers. On the other hand, in 1890 Heawood discovered a beautiful proof that
+ﬁvecolors always suﬃce. To prepare for his proof, let us warm up by showing that
+every planar graph can be colored with 6 colors. The proof is surprisingly simple.
+Theorem 17.3.1. The chromatic number of a planar graph Gis at most six.
+Proof. By induction on the number nof vertices of G. Ifn≤6 the claim is trivial.
+Assume every planar graph with at most kvertices can be colored with 6 colors or
+less, and consider a graph G= (V, E) with k+ 1 vertices. By Theorem 17.2.2(b),
+there is a vertex vofGwith degree at most 5. Let G/primebe the induced subgraph of
+Gon the vertices V\ {v}. By the induction hypothesis, G/primecan be colored with ﬁve
+colors or less. Color the vertices V\ {v}ofGwith the colors that they are assigned
+83in the coloring of G/prime. Assign to vthe color that is not used by its neighbors. Since
+the degree of vis at most ﬁve, such a color exists. This speciﬁes a valid coloring of
+G.
+We are now ready for Heawood’s ﬁve color theorem.
+Theorem 17.3.2. The chromatic number of a planar graph G= (V, E)is at most
+ﬁve.
+Proof. The proof proceeds by induction on the number nof vertices of G. The base
+case is trivial. Assume every planar graph with at most kvertices can be colored with
+5 colors or less, and consider a graph G= (V, E) with k+1 vertices. Let vbe a vertex
+ofGwith degree at most 5. If dG(v)<5 we can produce a 5-coloring of Gas in the
+proof of Theorem 17.3.1. Assume dG(v) = 5 and let c: (V\ {v})→ {1,2,3,4,5}be
+a 5-coloring of the induced subgraph G/primeofGon the vertices V\ {v}. This coloring
+exists by the induction hypothesis.
+We consider a particular drawing of Gin the plane and henceforth regard Gas a
+plane graph. Let v1, v2, v3, v4, v5be the neighbors of vin the order they appear around
+vinG. (That is, according to one of the circular orders in which the corresponding
+edges emanate from vinG.) Without loss of generality, assume that c(vi) =ifor
+1≤i≤5. (Note that if some color is unused by v1, v2, v3, v4, v5, we can simply assign
+that color to v.) We distinguish between two cases: Either there does not exist a
+path between v1andv3inGthat uses only vertices of colors 1 and 3, or there does.
+There is no such path. In this case consider the subgraph G/prime/primeofGthat is the
+union of all paths that begin at v1and use only vertices with colors 1 and 3.
+Note that neither v3nor its neighbors belong to G/prime/prime. We produce a 5-coloring
+ofGas follows: All the vertices of G/prime/primeof color 1 are assigned the color 3, all the
+vertices of G/prime/primeof color 3 are assigned the color 1, the vertex vis assigned the color
+1, and all other vertices of Gkeep the color assigned by c. No monochromatic
+edges are created by this assignment and the coloring is valid.
+There is such a path. Consider a path Pfrom v1tov3that uses only vertices with
+colors 1 and 3. Together with the edges {v, v 1}and{v, v 3}this forms a cycle.
+The vertices v2andv4lie on diﬀerent sides of this cycle. (Here we use the
+Jordan curve theorem.) Therefore there is no path between v2andv4that uses
+only vertices with colors 2 and 4, and we can apply the reasoning of the previous
+case.
+17.4 Concluding remarks
+There are many more amazing results associated with planar graphs. Two of the most
+striking are F´ ary’s theorem and Koebe’s theorem. F´ ary’s theorem states that every
+planar graph can be drawn in the plane without edge crossings, such that all the arcs
+84arestraight line segments . Koebe’s theorem says that every planar graph is in fact
+isomorphic to an “incidence graph” of a collection of nonoverlapping discs in the plane.
+(The vertices of this graph correspond to the discs, and two vertices are adjacent if
+and only if the corresponding disks are tangent.) F´ ary’s theorem is an immediate
+consequence of Koebe’s theorem, although they were discovered independently. Both
+are remarkable.
+85

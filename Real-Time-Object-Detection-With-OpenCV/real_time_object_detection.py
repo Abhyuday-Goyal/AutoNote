@@ -28,7 +28,7 @@ ap.add_argument("-c", "--confidence", type=float, default=0.5,
 args = vars(ap.parse_args())
 
 api_key_abhy = "insert key here"
-api_key = GEMINI_API_KEY
+api_key = os.getenv('GEMINI_API')
 
 video_path = "whiteboard_Test.mp4"
 

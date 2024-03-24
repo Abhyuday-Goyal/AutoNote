@@ -11,15 +11,16 @@ const PdfUploadPage = () => {
     try {
       // Send the POST request to your custom API
       const response = await fetch('http://127.0.0.1:5000/pdf_parse', {
+          mode : 'no-cors',
           method: 'POST',
           body:formData
       });
       console.log(response)
       if (!response.ok) {
-          throw new Error('Failed to upload video');
+          throw new Error('Failed to upload file');
       }
     } catch (error) {
-      console.error('Error uploading video:', error);
+      console.error('Error uploading file:', error);
       // Handle error state here (if needed)
   }
     // if (file) {

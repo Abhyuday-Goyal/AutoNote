@@ -95,10 +95,11 @@ def convert_pdf_to_text(pdf_path):
         for page_num in range(num_pages):
             page = pdf_reader.pages[page_num]
             page_text = page.extract_text()
+            text = text.encode('ascii','ignore').decode('ascii')
             text += page_text
 
-    base_filename = pdf_path.split(".")[0]  # Extract filename without extension
-    text_filename = f"{base_filename}.txt"
+    base_filename = pdf_path.split(".")[1]  # Extract filename without extension
+    text_filename = f".{base_filename}.txt"
 
     with open(text_filename, "w", encoding="utf-8") as text_file:
         text_file.write(text)

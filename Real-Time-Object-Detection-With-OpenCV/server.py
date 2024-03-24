@@ -126,10 +126,10 @@ def pdf_parse_chat():
         return 'No file uploaded', 400
 
     file = request.files['file']
-    upload_path = 'Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.pdf'
+    upload_path = './pdfs/uploaded.pdf'
     file.save(upload_path)
-    convert_pdf_to_text('Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.pdf')
-    data = read_pdf(path='Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.txt')
+    convert_pdf_to_text('./pdfs/uploaded.pdf')
+    data = read_pdf(path='./pdfs/uploaded.txt')
     sentence_chunks = split_into_sentence_chunks(data, max_chunk_length)
     add_embeds(sentence_chunks, embed_model, index)
     return 'Embeds Added', 200

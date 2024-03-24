@@ -22,10 +22,12 @@ const SearchNotesPage = () => {
         throw new Error('Failed to fetch data');
       }
       console.log(response)
-      // const data = await response.json();
+
+
+      const data = await response.json();
       // setBackendOutput(data); // Assuming the response is a string or can be converted to one
+      setBackendOutput(data.output); // Set the backend output to the response from Flask
     } catch (error) {
-      console.log("it doesn't work ")
       console.error('Error:', error);
     }
   };

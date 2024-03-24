@@ -53,7 +53,7 @@ const WhiteboardUploadPage = () => {
 
   return (
     <div className="file-upload-container">
-      <h2>Whiteboard Video Upload</h2>
+      <h1>Whiteboard Video Upload</h1>
       <label htmlFor="whiteboard-upload" className="file-upload-button">
         Select Video
       </label>
@@ -68,7 +68,7 @@ const WhiteboardUploadPage = () => {
       {isProcessing && <div className="loader"></div>}
       {pdfLink && !isProcessing && (
         <div className="pdf-download-link">
-          <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="App-button">
+          <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="generic-download-link">
             Download Processed PDF
           </a>
         </div>

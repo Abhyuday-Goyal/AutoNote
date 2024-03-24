@@ -8,10 +8,13 @@ import os
 
 load_dotenv()
 
-# api_key_abhy = "insert key"
-api_key = os.getenv('GEMINI_API')
+api_key_abhy = "insert key"
+api_key = os.getenv('OPENAI_KEY')
 
-def gpt(api_key, image_path):
+def gpt(latex):
+    load_dotenv()
+    api_key = os.getenv('OPENAI_KEY')
+
     client = OpenAI(api_key=api_key)
 
     # Function to encode the image
@@ -20,7 +23,6 @@ def gpt(api_key, image_path):
             return base64.b64encode(image_file.read()).decode('utf-8')
 
     # Getting the base64 string
-    base64_image = encode_image(image_path)
 
     headers = {
     "Content-Type": "application/json",
@@ -28,32 +30,15 @@ def gpt(api_key, image_path):
     }
 
     payload = {
-    "model": "gpt-4-vision-preview",
-    "messages": [
-        {"role": "system", 
-        "content": "you are an image to latex bot, which only and only converts image to latex"},
-        {
-        "role": "user",
-        "content": [
-            {
-            "type": "text",
-            "text": "convert this image into latex"
-            },
-            {
-            "type": "image_url",
-            "image_url": {
-                "url": f"data:image/jpeg;base64,{base64_image}"
-            }
-            }
-        ]
-        }
-    ],
+    "model": "gpt-3.5-turbo",
+    "messages": [{"role": "system", "content": "you only return latex without the header and footer of the code and only return all the code after begin and before end document. DO NOT INCLUDE THOSE TWO."},
+        {"role": "user", "content": latex}],
     "max_tokens": 300
     }
 
     response = requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload)
     content = response.json()['choices'][0]['message']['content']
-    print(content)
+    print("GPT CONTENT: " + content)
     return content
 
 def post(latex_content = r''''''):
@@ -66,3 +51,14 @@ def post(latex_content = r''''''):
         pdf_path = 'tmp/created.pdf'
         print('output',output)
 
+
+if __name__ == "__main__":
+    # gpt(api_key)
+    gpt(r'''\documentclass[12pt]{article}
+\usepackage{amsmath}
+\begin{document}
+\section{Lecture 2}
+\subsection{Integration}
+$$\int e^x dx = e^x + C$$
+\end{document}''')
+    # convert(latex_content = r'''''')

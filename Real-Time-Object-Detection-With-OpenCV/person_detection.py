@@ -40,6 +40,7 @@ def PersonDetection(video_path):
 	\usepackage[utf8]{inputenc} % UTF-8 encoding
 	\usepackage[T1]{fontenc} % Font encoding
 	\usepackage{lipsum} % For generating dummy text, can be removed
+	\usepackage{amsmath}
 
 	\begin{document}
 
@@ -177,7 +178,7 @@ def PersonDetection(video_path):
 					consecutive_frames_with_detection += 1
 					consecutive_frames_without_detection = 0
 					person_detected = True
-					print("Person detected") 
+					#print("Person detected") 
 				else :
 					person_detected = False
 
@@ -205,19 +206,19 @@ def PersonDetection(video_path):
 
 		# Set a threshold for consecutive frames without detection to reset the flag
 		if consecutive_frames_without_detection > 5:
-			print("flagged")
+			#print("flagged")
 			if not photo_taken:
 				# convert the current frame to a jpg and send to openai api
 				cv2.imwrite("frame.jpg", frame)
 				print("ocring")
 				latex_content = OCR(api_key, "frame.jpg")
 				final_latex += latex_content
-				print(latex_content)
+				#print(latex_content)
 				photo_taken = True
 				consecutive_frames_without_detection = 0
 				
 		# show the output frame
-		cv2.imshow("Frame", frame)
+		#cv2.imshow("Frame", frame)
 
 		# HOW TO STOP THE VIDEOSTREAM?
 		# Using cv2.waitKey(1) & 0xFF
@@ -264,6 +265,10 @@ def PersonDetection(video_path):
 	cv2.destroyAllWindows()
 	# Stop the video stream
 	vs.stop()
+
+	final_latex += r'''
+
+	\end{document}'''
 
 	return final_latex
 

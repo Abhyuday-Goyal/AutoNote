@@ -1,8 +1,6 @@
-[12pt]article amsmath
-1 Lecture 1
-1.1 Dieren tiation
-ddx(sinx)=cos x
-1.2 In tegration
-R
-(sinx+ cos x)dx=−cosx+ sin x+C
+article amsmath
+1 Lecture 2
+1.1 In tegration
+Z
+exdx=ex+C
 1

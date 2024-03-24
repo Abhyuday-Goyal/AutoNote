@@ -32,6 +32,7 @@ def HandDetection(video_path):
     \usepackage[utf8]{inputenc} % UTF-8 encoding
     \usepackage[T1]{fontenc} % Font encoding
     \usepackage{lipsum} % For generating dummy text, can be removed
+    \usepackage{amsmath} % For mathematical equations
 
     \begin{document}
 

@@ -1,17 +1,31 @@
 // PdfUploadPage.js
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
 const PdfUploadPage = () => {
-  const navigate = useNavigate();
+  const [uploadedFiles, setUploadedFiles] = useState([]); // Store uploaded files
 
   const handleUpload = (event) => {
     const file = event.target.files[0];
-    console.log('Uploading PDF file', file);
-    // Handle the file upload
+    if (file) {
+      console.log('Uploading PDF file', file);
+      // TODO: Send the file to the backend and store it
+      uploadFileToBackend(file).then(() => {
+        setUploadedFiles(prevFiles => [...prevFiles, file]);
+      });
+      event.target.value = null; // Reset the file input after handling upload
+    }
+  };
 
-    // Redirect to the processing page after upload
-    navigate('/processing-page-url');
+  const removeFile = (fileName) => {
+    setUploadedFiles(uploadedFiles.filter(file => file.name !== fileName));
+    // TODO: Also remove the file from the backend if needed
+  };
+
+  // Simulate file upload to backend
+  const uploadFileToBackend = async (file) => {
+    // Replace this with actual file upload logic
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulating upload delay
+    console.log('File uploaded to backend:', file.name);
   };
 
   return (
@@ -27,6 +41,16 @@ const PdfUploadPage = () => {
         accept=".pdf"
         onChange={handleUpload}
       />
+      <ul>
+        {uploadedFiles.map((file, index) => (
+          <li key={index}>
+            {file.name}
+            <button onClick={() => removeFile(file.name)} className="remove-file-button">
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -5,10 +5,11 @@ body {
 :root {
   --background-color: #121212;
   --text-color: #ffffff;
-  --accent-color: #cc1616;
-  --button-hover-color: #ee2222;
+  --accent-color: #c00f0f;
+  --button-hover-color: #e85a5a;
   --header-bg-color: #333333;
   --modal-bg-color: #444444;
+  --taskbar-color: #c00f0f;
 }
 
 .App {
@@ -27,7 +28,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--header-bg-color);
+  background-color: var(--taskbar-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,7 +58,7 @@ body {
 }
 
 .task-bar-link:hover, .task-bar-button:hover {
-  color: var(--button-hover-color);
+  color: var(--background-color);
 }
 
 /* Ensure the taskbar contents fit within the viewport */
@@ -133,7 +134,7 @@ body {
   border-radius: 8px;
   width: auto; /* Adjust width as needed, could be a percentage or fixed width */
   height: 50px; /* Match the height of your drop-down */
-  background-color: var(--button-hover-color); /* Header color, dark shade */
+  background-color: var(--accent-color); /* Header color, dark shade */
   color: #fff; /* Text color, white */
   font-size: 1rem; /* Adjust as needed */
   font-weight: bold; /* Match the font weight from your example */
@@ -153,4 +154,124 @@ body {
 /* Hidden file input */
 .file-upload-input {
   display: none; /* Hide the file input */
+}
+
+.loader {
+  border: 6px solid #f3f3f3; /* Light grey */
+  border-top: 6px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 1.0s ease-out forwards;
+}
+.slide-in-right {
+  animation: slideInFromRight 1.0s ease-out backwards;
+}
+
+.animated-header {
+  transition: transform 0.5s ease, padding 0.5s ease;
+}
+
+.move-left {
+  transform: translateX(-20px); /* Move to the left */
+  padding-left: 20px; /* Add padding on the left */
+}
+.form-field {
+  position: relative;
+  display: inline-block;
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+}
+.search-notes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5%; /* Pushes content up */
+  height: calc(100vh - 70px); /* Subtracting taskbar height */
+  box-sizing: border-box;
+}
+
+.search-notes-content {
+  flex-grow: 0;
+  margin-bottom: 20px; /* Space before the output box */
+}
+
+.search-notes-title {
+  color: var(--text-color);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.search-notes-input-container {
+  margin-bottom: 2rem; /* Space before the output box */
+}
+
+.search-notes-input {
+  width: 90%; /* Making search bar a bit longer */
+  max-width: 900px; /* Larger max width */
+  padding: 1rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--modal-bg-color);
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.backend-output-box {
+  width: 300%; /* Match width to search bar */
+  height: 400px; /* Decent size for output */
+  background-color: var(--modal-bg-color); /* Matching contrast */
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px; /* Space after the output box */
+}
+/* App.css */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.search-notes-title,
+.search-notes-input {
+  animation: fade-in 1.0s ease-in-out; /* Adjust the animation duration and timing function as needed */
+}
+.fade-in {
+  animation: fadeInAnimation 1s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -1,5 +1,6 @@
 // App.js
 import React from 'react';
+import SearchNotesPage from './SearchNotesPage';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<OptionSelector />} />
           <Route path="/whiteboard" element={<WhiteboardUploadPage />} />
           <Route path="/notes" element={<NotesUploadPage />} />
+          <Route path="/search-notes" element={<SearchNotesPage />} />
           <Route path="/pdf-upload" element={<PdfUploadPage />} />
           <Route path="/about" element={<AboutUsPage />} />
         </Routes>

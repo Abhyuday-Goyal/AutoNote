@@ -8,30 +8,15 @@ const WhiteboardUploadPage = () => {
   const handleUpload = (event) => {
     const file = event.target.files[0];
     console.log('Uploading file for Whiteboard OCR', file);
-    
+
     setIsProcessing(true);
     
     // TODO: Upload file to backend and handle response
-    // Use the response from the backend to set the PDF link
-    // Example:
-    // fetch('YOUR_BACKEND_ENDPOINT', {
-    //   method: 'POST',
-    //   body: formData,
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   setPdfLink(data.pdfLink); // Set the PDF link from backend response
-    //   setIsProcessing(false);
-    // })
-    // .catch(error => {
-    //   console.error('Error:', error);
-    //   setIsProcessing(false);
-    // });
   };
 
   return (
-    <div className="file-upload-container">
-      <h2 style={{ marginTop: '30px' }}>Whiteboard Video Upload</h2>
+    <div className="file-upload-container" style={{ paddingLeft: '20px' }}>
+      <h2 className="slide-in-left" style={{ marginTop: '30px' }}>Whiteboard Video Upload</h2>
       <label htmlFor="whiteboard-upload" className="file-upload-button">
         Select Video
       </label>
@@ -42,7 +27,7 @@ const WhiteboardUploadPage = () => {
         accept="video/*"
         onChange={handleUpload}
       />
-      {isProcessing && <p style={{ marginTop: '20px' }}>Processing...</p>}
+      {isProcessing && <div className="loader" style={{ margin: '20px auto' }}></div>}
       {pdfLink && !isProcessing && <a href={pdfLink} style={{ display: 'block', marginTop: '20px' }}>Download Processed PDF</a>}
     </div>
   );

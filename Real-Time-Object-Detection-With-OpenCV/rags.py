@@ -99,7 +99,7 @@ def convert_pdf_to_text(pdf_path):
             text += page_text
 
     base_filename = pdf_path.split(".")[1]  # Extract filename without extension
-    text_filename = f".{base_filename}.txt"
+    text_filename = r"C:\Nishkal\HooHacks 2024\AutoNote\Real-Time-Object-Detection-With-OpenCV\pdfs\uploaded.txt"
 
     with open(text_filename, "w", encoding="utf-8") as text_file:
         text_file.write(text)

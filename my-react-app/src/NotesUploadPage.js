@@ -55,15 +55,9 @@ const NotesUploadPage = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="file-upload-container">
-      <h1>Handwritten Notes Video Upload</h1>
-      <label htmlFor="notes-upload" className="file-upload-button">
-=======
     <div className="file-upload-container flex-col items-center">
       <p className='px-10 text-center text-2xl mt-5 max-w-[100%]'>Handwritten Notes Video Upload</p>
       <label htmlFor="notes-upload" className="mt-5 rounded-sm w-[80px] text-sm h-[50px] md:w-[50%] md:h-[60px] md:text-xl bg-headerColor text-textColor font-semibold hover:bg-sidebar flex items-center justify-center cursor-pointer shadow-md">
->>>>>>> tailwind
         Select Video
       </label>
       <input

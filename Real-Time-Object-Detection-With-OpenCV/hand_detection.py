@@ -48,7 +48,7 @@ def HandDetection(video_path):
 
         # Update hand_detected flag based on results
         if results.multi_hand_landmarks:
-            #print('hand detected')
+            print('hand detected')
             photo_taken = False
             consecutive_frames_without_detection = 0
             consecutive_frames_with_detection += 1
@@ -59,7 +59,7 @@ def HandDetection(video_path):
                 hand_detected = False
             consecutive_frames_without_detection += 1
 
-            if consecutive_frames_without_detection > 20:
+            if consecutive_frames_without_detection > 8:
                 if not photo_taken:
                     # Take a photo
                     cv2.imwrite("frame.jpg", img)

@@ -67,7 +67,7 @@ def convert(latex_content = r''''''):
         output = subprocess.run(['pdflatex', '-interaction=nonstopmode','-output-directory','tmp', temp_latex_file])
         
         pdf_path = 'tmp/created.pdf'
-        print('output',output)
+        return pdf_path
 
 # latex= r'\documentclass{article} \usepackage[utf8]{inputenc} \usepackage{amsmath} \begin{document}'+ '\n\\text{Rank-Nullity Theorem:} \\\\\n\\text{Let } V \\text{ be a finite dimensional vector space over } \\mathbb{F}. \\text{ Let } T: V \\rightarrow W \\text{ be a } \\\\\n\\text{linear transformation. Then:} \\\\\n\\text{rank}(T) + \\text{nullity}(T) = \\text{dim}(V) \\\\\n\n\\text{Proof: Exercise for the reader.} \\\\\n\n\\sum_{n=0}^{\\infty} n = -\\frac{1}{12}\n' + r'\end{document}'
 # convert(latex_content=latex)

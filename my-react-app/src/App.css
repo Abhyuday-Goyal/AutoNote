@@ -242,6 +242,9 @@ body {
 }
 
 .backend-output-box {
+  display: block;
+  margin-left: 10vw;
+  margin-right: 10vw;
   width: 300%; /* Match width to search bar */
   height: 400px; /* Decent size for output */
   background-color: var(--modal-bg-color); /* Matching contrast */

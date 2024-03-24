@@ -65,7 +65,7 @@ def convert(latex_content = r''''''):
         with open(temp_latex_file,'w') as file:
             file.write(latex_content)
 
-        output = subprocess.run(['C:/Users/nishk/AppData/Local/Programs/MiKTeX/miktex/bin/x64/pdflatex.exe', '-interaction=nonstopmode','-output-directory','tmp', temp_latex_file])
+        output = subprocess.run(['pdflatex', '-interaction=nonstopmode','-output-directory','/tmp', temp_latex_file])
         
         pdf_path = os.path.join('tmp/created.pdf')
         return pdf_path

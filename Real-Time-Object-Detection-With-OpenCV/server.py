@@ -1,11 +1,12 @@
 from flask import Flask
-from flask import Flask, request, send_file
-
+from flask import Flask, request, send_file, make_response
+from flask_cors import CORS
 from hand_detection import HandDetection
 from conversion import convert
 from person_detection import PersonDetection
 
 app = Flask(__name__)
+CORS(app, origins='*')
 
 @app.route('/hand_upload', methods=['POST'])
 def hand_upload():
@@ -33,7 +34,11 @@ def whiteboard_upload():
         file.save('video.mp4')
         final_latex = PersonDetection('video.mp4')
         pdf_path = convert(final_latex)
-        return send_file(pdf_path, mimetype='application/pdf')
+        response = make_response(send_file(path_or_file=pdf_path,mimetype='application/pdf', as_attachment=True))
+        response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE'
+        response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+        return response
     else:
         return 'Invalid file format. Only mp4 files are allowed', 400
     
@@ -46,4 +51,4 @@ def pdf_chat():
     return 'Not implemented', 501
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

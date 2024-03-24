@@ -7,7 +7,7 @@ from imutils.video import VideoStream
 # from gpt_calls import gpt
 
 def HandDetection(video_path):
-
+    load_dotenv()
     GEMINI_API_KEY = os.getenv("GEMINI_KEY")
 
     #cap = cv2.VideoCapture(video_path)
@@ -82,7 +82,7 @@ def HandDetection(video_path):
 
                 mpDraw.draw_landmarks(img, handlandmark, mpHands.HAND_CONNECTIONS)
 
-        cv2.imshow('Image', img)
+        # cv2.imshow('Image', img)
         if cv2.waitKey(1) & 0xff == ord('q'):
             break
 

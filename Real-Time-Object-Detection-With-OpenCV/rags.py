@@ -132,7 +132,7 @@ def main():
         # HumanMessage(content="I'd like to understand string theory.")
     ]
 
-    max_chunk_length = 150  # Choose the maximum length for each chunk
+    max_chunk_length = 500  # Choose the maximum length for each chunk
     index_name = 'pdfsearch'
 
     # pc.delete_index(index_name)

@@ -3,7 +3,7 @@ import subprocess
 import base64
 import requests
 import os
-
+ 
 # api_key_abhy = "insert key here"
 # api_key = "insert key here"
 def gpt(api_key):

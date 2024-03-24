@@ -52,6 +52,7 @@ const NotesUploadPage = () => {
 
   return (
     <div className="file-upload-container">
+<<<<<<< HEAD
     <h2>Handwritten Notes Video Upload</h2>
     <label htmlFor="notes-upload" className="file-upload-button">
       Select Video
@@ -73,6 +74,29 @@ const NotesUploadPage = () => {
     )}
   </div>
 );
+=======
+      <h2>Handwritten Notes Video Upload</h2>
+      <label htmlFor="notes-upload" className="file-upload-button">
+        Select Video
+      </label>
+      <input
+        type="file"
+        id="notes-upload"
+        className="file-upload-input"
+        accept="video/*"
+        onChange={handleUpload}
+      />
+      {isProcessing && <div className="loader"></div>}
+      {pdfLink && !isProcessing && (
+        <div className="pdf-download-link">
+          <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="pdf-download-link">
+            Download Processed PDF
+          </a>
+        </div>
+      )}
+    </div>
+  );
+>>>>>>> rag-int
 };
 
 export default NotesUploadPage;

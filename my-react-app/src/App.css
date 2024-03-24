@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
 body {
   font-family: 'Nunito Sans';
 }
@@ -277,4 +281,16 @@ body {
   to {
     opacity: 1;
   }
+}
+
+.pdf-download-link{
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 30px;
 }

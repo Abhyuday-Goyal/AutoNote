@@ -52,8 +52,8 @@ const WhiteboardUploadPage = () => {
   };
 
   return (
-    <div className="file-upload-container" style={{ paddingLeft: '20px' }}>
-      <h2 className="slide-in-left" style={{ marginTop: '30px' }}>Whiteboard Video Upload</h2>
+    <div className="file-upload-container">
+      <h2>Whiteboard Video Upload</h2>
       <label htmlFor="whiteboard-upload" className="file-upload-button">
         Select Video
       </label>
@@ -64,8 +64,15 @@ const WhiteboardUploadPage = () => {
         accept="video/*"
         onChange={handleUpload}
       />
-      {isProcessing && <div className="loader" style={{ margin: '20px auto' }}></div>}
-      {pdfLink && !isProcessing && <a href={pdfLink} style={{ display: 'block', marginTop: '20px' }}>Download Processed PDF</a>}
+      <br></br>
+      {isProcessing && <div className="loader"></div>}
+      {pdfLink && !isProcessing && (
+        <div className="pdf-download-link">
+          <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="App-button">
+            Download Processed PDF
+          </a>
+        </div>
+      )}
     </div>
   );
 };

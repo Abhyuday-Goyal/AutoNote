@@ -4,17 +4,35 @@ import React, { useState } from 'react';
 const PdfUploadPage = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]); // Store uploaded files
 
-  const handleUpload = (event) => {
+  const handleUpload = async (event) => {
     const file = event.target.files[0];
-    if (file) {
-      console.log('Uploading PDF file', file);
-      // TODO: Send the file to the backend and store it
-      uploadFileToBackend(file).then(() => {
-        setUploadedFiles(prevFiles => [...prevFiles, file]);
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      // Send the POST request to your custom API
+      const response = await fetch('http://127.0.0.1:5000/pdf_parse', {
+          method: 'POST',
+          body:formData
       });
-      event.target.value = null; // Reset the file input after handling upload
-    }
+      console.log(response)
+      if (!response.ok) {
+          throw new Error('Failed to upload video');
+      }
+    } catch (error) {
+      console.error('Error uploading video:', error);
+      // Handle error state here (if needed)
+  }
+    // if (file) {
+    //   console.log('Uploading PDF file', file);
+    //   // TODO: Send the file to the backend and store it
+    //   uploadFileToBackend(file).then(() => {
+    //     setUploadedFiles(prevFiles => [...prevFiles, file]);
+    //   });
+    //   event.target.value = null; // Reset the file input after handling upload
+    // }
   };
+
+  
 
   const removeFile = (fileName) => {
     setUploadedFiles(uploadedFiles.filter(file => file.name !== fileName));

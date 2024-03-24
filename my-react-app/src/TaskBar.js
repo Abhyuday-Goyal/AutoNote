@@ -6,7 +6,7 @@ const TaskBar = () => {
 
   return (
     <header className="task-bar">
-      <div className="logo">AUTO</div>
+      <div className="logo">AUTONOTE</div>
       <nav>
         <button onClick={() => navigate('/search-notes') } className="task-bar-button" style={{ fontSize: '1.1rem' }}>Search</button>
         <Link to="/" className="task-bar-link" style={{ fontSize: '1.1rem' }}>Home</Link>

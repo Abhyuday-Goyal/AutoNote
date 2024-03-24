@@ -84,9 +84,14 @@ def hand_upload():
     if file.filename.endswith('.mp4'):
         # Do something with the uploaded mp4 file
         upload_path = "C:/Nishkal/HooHacks 2024/AutoNote/videos/video.mp4"
+        # upload_path = 'videos/video.mp4'
         file.save(upload_path)
         final_latex = HandDetection(upload_path)
         pdf_path = convert(final_latex)
+        convert_pdf_to_text('Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.pdf')
+        data = read_pdf(path='Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.txt')
+        sentence_chunks = split_into_sentence_chunks(data, max_chunk_length)
+        add_embeds(sentence_chunks, embed_model, index)
         return send_file(pdf_path, mimetype='application/pdf')
     else:
         return 'Invalid file format. Only mp4 files are allowed', 400
@@ -103,6 +108,10 @@ def whiteboard_upload():
         file.save(upload_path)
         final_latex = PersonDetection(upload_path)
         pdf_path = convert(final_latex)
+        convert_pdf_to_text('Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.pdf')
+        data = read_pdf(path='Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.txt')
+        sentence_chunks = split_into_sentence_chunks(data, max_chunk_length)
+        add_embeds(sentence_chunks, embed_model, index)
         response = make_response(send_file(path_or_file=pdf_path,mimetype='application/pdf', as_attachment=True))
         response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
         response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE'

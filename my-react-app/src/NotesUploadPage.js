@@ -52,7 +52,11 @@ const NotesUploadPage = () => {
 
   return (
     <div className="file-upload-container">
+<<<<<<< HEAD
       <h2>Handwritten Notes Video Upload</h2>
+=======
+      <h1>Handwritten Notes Video Upload</h1>
+>>>>>>> rag-with-latex
       <label htmlFor="notes-upload" className="file-upload-button">
         Select Video
       </label>
@@ -66,7 +70,7 @@ const NotesUploadPage = () => {
       {isProcessing && <div className="loader"></div>}
       {pdfLink && !isProcessing && (
         <div className="pdf-download-link">
-          <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="pdf-download-link">
+          <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="generic-download-link">
             Download Processed PDF
           </a>
         </div>

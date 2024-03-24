@@ -19,15 +19,17 @@ load_dotenv()
 
 
 def PersonDetection(video_path):
+	GEMINI_API_KEY = "AIzaSyCqyu7A4gkDhoIbQ-gXiU1kuUCSc1B0WWI"
+
 	# construct the argument parse and parse the arguments
-	ap = argparse.ArgumentParser()
-	ap.add_argument("-p", "--prototxt", default = "MobileNetSSD_deploy.prototxt.txt",
-		help="path to Caffe 'deploy' prototxt file")
-	ap.add_argument("-m", "--model", default = "MobileNetSSD_deploy.caffemodel",
-		help="path to Caffe pre-trained model")
-	ap.add_argument("-c", "--confidence", type=float, default=0.5,
-		help="minimum probability to filter weak predictions")
-	args = vars(ap.parse_args())
+	# ap = argparse.ArgumentParser()
+	# ap.add_argument("-p", "--prototxt", default = "MobileNetSSD_deploy.prototxt.txt",
+	# 	help="path to Caffe 'deploy' prototxt file")
+	# ap.add_argument("-m", "--model", default = "MobileNetSSD_deploy.caffemodel",
+	# 	help="path to Caffe pre-trained model")
+	# ap.add_argument("-c", "--confidence", type=float, default=0.5,
+	# 	help="minimum probability to filter weak predictions")
+	# args = vars(ap.parse_args())
 
 	api_key_abhy = "insert key here"
 	api_key = GEMINI_API_KEY
@@ -73,7 +75,8 @@ def PersonDetection(video_path):
 	# load our serialized model
 	# The model from Caffe: MobileNetSSD_deploy.prototxt.txt; MobileNetSSD_deploy.caffemodel;
 	print("[INFO] loading model...")
-	net = cv2.dnn.readNetFromCaffe(args["prototxt"], args["model"])
+	net = cv2.dnn.readNetFromCaffe("MobileNetSSD_deploy.prototxt.txt", 
+								"MobileNetSSD_deploy.caffemodel")
 	# print(net)
 	# <dnn_Net 0x128ce1310>
 
@@ -158,7 +161,7 @@ def PersonDetection(video_path):
 			confidence = predictions[0, 0, i, 2]
 			# Filter out predictions lesser than the minimum confidence level
 			# Here, we set the default confidence as 0.2. Anything lesser than 0.2 will be filtered
-			if confidence > args["confidence"]:
+			if confidence > 0.5:
 				# extract the index of the class label from the 'predictions'
 				# idx is the index of the class label
 				# E.g. for person, idx = 15, for chair, idx = 9, etc.

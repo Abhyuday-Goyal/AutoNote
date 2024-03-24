@@ -8,6 +8,8 @@ from imutils.video import VideoStream
 
 def HandDetection(video_path):
 
+    GEMINI_API_KEY = "AIzaSyCqyu7A4gkDhoIbQ-gXiU1kuUCSc1B0WWI"
+
     #cap = cv2.VideoCapture(video_path)
     vs = VideoStream(src=video_path).start()
 

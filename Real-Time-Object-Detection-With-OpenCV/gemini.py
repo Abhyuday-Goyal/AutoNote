@@ -6,6 +6,8 @@ from conversion import convert
 import time
 
 def OCR(api_key = "", img_path = 'frame.jpg'):
+    GEMINI_API_KEY = api_key
+
     image_path = img_path
     img = Image.open(image_path)
 

@@ -1,9 +1,17 @@
- \documentclass{article}
+\documentclass{article}
+
+	% Packages
+	\usepackage[utf8]{inputenc} % UTF-8 encoding
+	\usepackage[T1]{fontenc} % Font encoding
+	\usepackage{lipsum} % For generating dummy text, can be removed
+
+	\begin{document}
+
+	 \documentclass[12pt]{article}
 \usepackage{amsmath}
 \begin{document}
 Today we will study integrals
+$$\int \sin^2 x dx = \frac{1}{2} x - \frac{1}{4} \sin 2x + C$$
 
-$$\int \sin^2 x dx = 1 + \tan^2 x + sec x$$
-
-$$\frac{d}{dx}(4x^2 + 3x) = 94x + 3$$
+$$\frac{d}{dx}(4x^3+3x^2) = 12x^2 + 6x$$
 \end{document}

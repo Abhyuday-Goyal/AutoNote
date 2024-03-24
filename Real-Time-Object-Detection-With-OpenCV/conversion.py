@@ -61,13 +61,13 @@ def gpt(api_key):
     return content
 
 def convert(latex_content = r''''''):
-        temp_latex_file = os.path.join("tmp/created.tex")
+        temp_latex_file = os.path.join("./tmp/created.tex")
         with open(temp_latex_file,'w') as file:
             file.write(latex_content)
 
-        output = subprocess.run(['pdflatex', '-interaction=nonstopmode','-output-directory','/tmp', temp_latex_file])
+        output = subprocess.run(['pdflatex', '-interaction=nonstopmode','-output-directory','./tmp', temp_latex_file])
         
-        pdf_path = os.path.join('tmp/created.pdf')
+        pdf_path = os.path.join('./tmp/created.pdf')
         return pdf_path
 
 # latex= r'\documentclass{article} \usepackage[utf8]{inputenc} \usepackage{amsmath} \begin{document}'+ '\n\\text{Rank-Nullity Theorem:} \\\\\n\\text{Let } V \\text{ be a finite dimensional vector space over } \\mathbb{F}. \\text{ Let } T: V \\rightarrow W \\text{ be a } \\\\\n\\text{linear transformation. Then:} \\\\\n\\text{rank}(T) + \\text{nullity}(T) = \\text{dim}(V) \\\\\n\n\\text{Proof: Exercise for the reader.} \\\\\n\n\\sum_{n=0}^{\\infty} n = -\\frac{1}{12}\n' + r'\end{document}'

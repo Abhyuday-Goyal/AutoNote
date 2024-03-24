@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 
 const PdfUploadPage = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]); // Store uploaded files
+  const [fileName, setFileName] = useState('');
 
   const handleUpload = async (event) => {
     const file = event.target.files[0];
+    setFileName(event.target.files[0].name);
     const formData = new FormData();
     formData.append('file', file);
     try {
@@ -48,9 +50,9 @@ const PdfUploadPage = () => {
   };
 
   return (
-    <div className="file-upload-container">
-      <h2 style={{ marginTop: '30px' }}>PDF File Upload</h2>
-      <label htmlFor="pdf-upload" className="file-upload-button">
+    <div className="file-upload-container flex-col items-center">
+      <div className='w-[30%]'><p className='text-center text-2xl'>PDF File Upload</p></div>
+      <label htmlFor="pdf-upload" className="mt-5 rounded-sm w-[80px] text-sm h-[50px] md:w-[50%] md:h-[60px] md:text-xl bg-[#c00f0f] text-textColor font-semibold hover:bg-[#e85a5a] flex items-center justify-center cursor-pointer shadow-md">
         Select File
       </label>
       <input
@@ -70,6 +72,7 @@ const PdfUploadPage = () => {
           </li>
         ))}
       </ul>
+      {fileName && <p>Chosen file: {fileName}</p>}
     </div>
   );
 };

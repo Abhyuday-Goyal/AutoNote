@@ -39,19 +39,17 @@ const SearchNotesPage = () => {
         <div className="search-notes-input-container fade-in">
           <input
             type="text"
-            className="search-notes-input"
+            className="search-notes-input mb-5 mt-2"
             placeholder="Type your question here"
             value={query}
             onChange={handleChange}
           />
-          <button className="App-button" onClick={handleSubmit}>
+          <button className="App-button mb-0" onClick={handleSubmit}>
             Submit
           </button>
         </div>
       </div>
-      <div className="backend-output-box fade-in">
-        {backendOutput && <p>{backendOutput}</p>}
-      </div>
+        {backendOutput && <div className="fade-in max-w-[50vw] overflow-auto p-10 bg-[#444444] rounded-lg"><p className='text-xl text-center'>{backendOutput}</p></div>}
     </div>
   );
 };

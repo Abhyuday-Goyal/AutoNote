@@ -1,5 +1,7 @@
 // WhiteboardUploadPage.js
 import React, { useState } from 'react';
+import { ArrowDownFromLine } from 'lucide-react';
+
 
 const WhiteboardUploadPage = () => {
   const [pdfLink, setPdfLink] = useState('');
@@ -52,24 +54,24 @@ const WhiteboardUploadPage = () => {
   };
 
   return (
-    <div className="file-upload-container">
-      <h1>Whiteboard Video Upload</h1>
-      <label htmlFor="whiteboard-upload" className="file-upload-button">
+    <div className="file-upload-container flex-col items-center">
+      <p className='px-10 text-center text-2xl mt-5 max-w-[100%]'>WhiteBoard Video Upload</p>
+      <label htmlFor="notes-upload" className="mt-5 rounded-sm w-[80px] text-sm h-[50px] md:w-[50%] md:h-[60px] md:text-xl bg-headerColor text-textColor font-semibold hover:bg-sidebar flex items-center justify-center cursor-pointer shadow-md">
         Select Video
       </label>
       <input
         type="file"
-        id="whiteboard-upload"
+        id="notes-upload"
         className="file-upload-input"
         accept="video/*"
         onChange={handleUpload}
       />
       <br></br>
       {isProcessing && <div className="loader"></div>}
-      {pdfLink && !isProcessing && (
-        <div className="pdf-download-link">
+      {pdfLink && !isProcessing &&(
+        <div className="mt-[-20px] pdf-download-link bg-gray-300 border-dashed border-2 border-gray-300 rounded-lg p-1 w-[4vw] flex justify-center">
           <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="generic-download-link">
-            Download Processed PDF
+          <ArrowDownFromLine color='#c00f0f' size={'38px'} />
           </a>
         </div>
       )}

@@ -8,7 +8,7 @@ from imutils.video import VideoStream
 
 def HandDetection(video_path):
 
-    GEMINI_API_KEY = "AIzaSyCqyu7A4gkDhoIbQ-gXiU1kuUCSc1B0WWI"
+    GEMINI_API_KEY = os.getenv("GEMINI_KEY")
 
     #cap = cv2.VideoCapture(video_path)
     vs = VideoStream(src=video_path).start()
@@ -23,7 +23,7 @@ def HandDetection(video_path):
     consecutive_frames_with_detection = 0
     photo_taken = True
 
-    api_key_abhy = "insert key here"
+    # api_key_abhy = "insert key here"
     api_key = GEMINI_API_KEY
 
     final_latex = r'''\documentclass{article}

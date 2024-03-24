@@ -4,6 +4,11 @@ from pathlib import Path
 from PIL import Image
 from conversion import convert
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
+
+GEMINI_API_KEY = os.getenv("GEMINI_KEY")
 
 def OCR(api_key = "", img_path = 'frame.jpg'):
     GEMINI_API_KEY = api_key

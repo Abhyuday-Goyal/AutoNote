@@ -16,8 +16,9 @@ def hand_upload():
     file = request.files['file']
     if file.filename.endswith('.mp4'):
         # Do something with the uploaded mp4 file
-        file.save('video.mp4')
-        final_latex = HandDetection('video.mp4')
+        upload_path = "C:/Nishkal/HooHacks 2024/AutoNote/videos/video.mp4"
+        file.save(upload_path)
+        final_latex = HandDetection(upload_path)
         pdf_path = convert(final_latex)
         return send_file(pdf_path, mimetype='application/pdf')
     else:
@@ -31,8 +32,9 @@ def whiteboard_upload():
     file = request.files['file']
     if file.filename.endswith('.mp4'):
         # Do something with the uploaded mp4 file
-        file.save('video.mp4')
-        final_latex = PersonDetection('video.mp4')
+        upload_path = "C:/Nishkal/HooHacks 2024/AutoNote/videos/video.mp4"
+        file.save(upload_path)
+        final_latex = PersonDetection(upload_path)
         pdf_path = convert(final_latex)
         response = make_response(send_file(path_or_file=pdf_path,mimetype='application/pdf', as_attachment=True))
         response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'

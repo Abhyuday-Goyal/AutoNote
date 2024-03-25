@@ -22,7 +22,7 @@ const SearchNotesPage = () => {
         throw new Error('Failed to fetch data');
       }
       console.log(response)
-
+      setQuery(''); // Clear the input field
 
       const data = await response.json();
       // setBackendOutput(data); // Assuming the response is a string or can be converted to one

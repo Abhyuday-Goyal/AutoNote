@@ -37,7 +37,7 @@ function OptionSelector() {
 
   return (
     <header className="App-header  bg-gray-200 h-[50vh] max-h-[25vh] w-[60vw] overflow-y-auto border-dashed border-2 border-gray-300 p-4 m-auto">
-       <p style={{ fontSize: '1.7rem' }}>Choose an option to process OCR:</p>
+       <p style={{ fontSize: '1.7rem' }}>Choose an option to process OCR</p>
        <button className="App-button whiteboard-btn" style={{ fontSize: '1.1rem' }} onClick={() => handleOptionClick('/whiteboard')}>Whiteboard</button>
        <button className="App-button notes-btn" style={{ fontSize: '1.1rem' }} onClick={() => handleOptionClick('/notes')}>Handwritten Notes</button>
     </header>

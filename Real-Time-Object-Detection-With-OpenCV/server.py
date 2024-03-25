@@ -19,6 +19,8 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 import os 
 from langchain.chat_models import ChatOpenAI
 
+import time
+
 from rags import create_index, read_pdf, add_embeds, convert_pdf_to_text, split_into_sentence_chunks, execute_query
 
 app = Flask(__name__)
@@ -88,8 +90,8 @@ def hand_upload():
         file.save(upload_path)
         final_latex = HandDetection(upload_path)
         pdf_path = convert(final_latex)
-        convert_pdf_to_text('Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.pdf')
-        data = read_pdf(path='Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.txt')
+        convert_pdf_to_text(pdf_path)
+        data = read_pdf( r"C:\Nishkal\HooHacks 2024\AutoNote\Real-Time-Object-Detection-With-OpenCV\pdfs\uploaded.txt")
         sentence_chunks = split_into_sentence_chunks(data, max_chunk_length)
         add_embeds(sentence_chunks, embed_model, index)
         return send_file(pdf_path, mimetype='application/pdf')
@@ -106,10 +108,11 @@ def whiteboard_upload():
         # Do something with the uploaded mp4 file
         upload_path = "C:/Nishkal/HooHacks 2024/AutoNote/videos/video.mp4"
         file.save(upload_path)
+        time.sleep(1)
         final_latex = PersonDetection(upload_path)
         pdf_path = convert(final_latex)
-        convert_pdf_to_text('Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.pdf')
-        data = read_pdf(path='Real-Time-Object-Detection-With-OpenCV/pdfs/uploaded.txt')
+        convert_pdf_to_text(pdf_path)
+        data = read_pdf( r"C:\Nishkal\HooHacks 2024\AutoNote\Real-Time-Object-Detection-With-OpenCV\pdfs\uploaded.txt")
         sentence_chunks = split_into_sentence_chunks(data, max_chunk_length)
         add_embeds(sentence_chunks, embed_model, index)
         response = make_response(send_file(path_or_file=pdf_path,mimetype='application/pdf', as_attachment=True))
@@ -126,10 +129,10 @@ def pdf_parse_chat():
         return 'No file uploaded', 400
 
     file = request.files['file']
-    upload_path = './pdfs/uploaded.pdf'
+    upload_path = r"C:\Nishkal\HooHacks 2024\AutoNote\Real-Time-Object-Detection-With-OpenCV\pdfs\uploaded.pdf"
     file.save(upload_path)
-    convert_pdf_to_text('./pdfs/uploaded.pdf')
-    data = read_pdf(path='./pdfs/uploaded.txt')
+    convert_pdf_to_text(upload_path)
+    data = read_pdf(path=r"C:\Nishkal\HooHacks 2024\AutoNote\Real-Time-Object-Detection-With-OpenCV\pdfs\uploaded.txt")
     sentence_chunks = split_into_sentence_chunks(data, max_chunk_length)
     add_embeds(sentence_chunks, embed_model, index)
     return 'Embeds Added', 200

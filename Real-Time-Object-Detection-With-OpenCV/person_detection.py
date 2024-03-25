@@ -40,6 +40,7 @@ def PersonDetection(video_path):
 	\usepackage[utf8]{inputenc} % UTF-8 encoding
 	\usepackage[T1]{fontenc} % Font encoding
 	\usepackage{lipsum} % For generating dummy text, can be removed
+	\usepackage{amsmath}
 
 	\begin{document}
 
@@ -83,6 +84,7 @@ def PersonDetection(video_path):
 	# initialize the video stream,
 	# and initialize the FPS counter
 	print("[INFO] starting video stream...")
+	#cap = cv2.VideoCapture(video_path)
 	vs = VideoStream(src=video_path).start()
 	# warm up the camera for a couple of seconds
 
@@ -94,7 +96,8 @@ def PersonDetection(video_path):
 	person_detected = False
 	consecutive_frames_without_detection = 0
 	consecutive_frames_with_detection = 0
-	photo_taken = True
+	photo_taken = False
+	
 
 	# OpenCV provides two functions to facilitate image preprocessing for deep learning classification: cv2.dnn.blobFromImage and cv2.dnn.blobFromImages. Here we will use cv2.dnn.blobFromImage
 	# These two functions perform: Mean subtraction, Scaling, and optionally channel swapping
@@ -125,6 +128,7 @@ def PersonDetection(video_path):
 		# grab the frame from the threaded video stream and resize it to have a maximum width of 400 pixels
 		# vs is the VideoStream
 		frame = vs.read()
+		#print("this happens")
 
 		if frame is None:
 			break
@@ -156,12 +160,13 @@ def PersonDetection(video_path):
 
 		# loop over the predictions
 		for i in np.arange(0, predictions.shape[2]):
+			#print("this happens too")
 			# extract the confidence (i.e., probability) associated with the prediction
 			# predictions.shape[2] = 100 here
 			confidence = predictions[0, 0, i, 2]
 			# Filter out predictions lesser than the minimum confidence level
 			# Here, we set the default confidence as 0.2. Anything lesser than 0.2 will be filtered
-			if confidence > 0.5:
+			if confidence > 0.7:
 				# extract the index of the class label from the 'predictions'
 				# idx is the index of the class label
 				# E.g. for person, idx = 15, for chair, idx = 9, etc.
@@ -172,8 +177,7 @@ def PersonDetection(video_path):
 					photo_taken = False
 					consecutive_frames_with_detection += 1
 					consecutive_frames_without_detection = 0
-					if consecutive_frames_with_detection > 30:
-						person_detected = True
+					person_detected = True
 					#print("Person detected") 
 				else :
 					person_detected = False
@@ -201,19 +205,20 @@ def PersonDetection(video_path):
 			#print("Person not detected")
 
 		# Set a threshold for consecutive frames without detection to reset the flag
-		if consecutive_frames_without_detection > 15:
+		if consecutive_frames_without_detection > 5:
+			#print("flagged")
 			if not photo_taken:
 				# convert the current frame to a jpg and send to openai api
 				cv2.imwrite("frame.jpg", frame)
 				print("ocring")
 				latex_content = OCR(api_key, "frame.jpg")
 				final_latex += latex_content
-				print(latex_content)
+				#print(latex_content)
 				photo_taken = True
 				consecutive_frames_without_detection = 0
 				
 		# show the output frame
-		cv2.imshow("Frame", frame)
+		#cv2.imshow("Frame", frame)
 
 		# HOW TO STOP THE VIDEOSTREAM?
 		# Using cv2.waitKey(1) & 0xFF
@@ -260,6 +265,10 @@ def PersonDetection(video_path):
 	cv2.destroyAllWindows()
 	# Stop the video stream
 	vs.stop()
+
+	final_latex += r'''
+
+	\end{document}'''
 
 	return final_latex
 

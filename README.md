@@ -23,5 +23,3 @@ To enhance model accuracies and efficiency for a smoother experience, our immedi
 
 # Member Info:
 Name: Abhyuday Goyal | School: The University of Maryland, College Park | Email: abhyuday2106@gmail.com Name: Pranav Chandar Sridar | School: The University of Maryland, College Park | Email: pranav.umd22@gmail.com Name: Swastik Agarwal | School: The University of Maryland, College Park | Email: swastikagrawal3@gmail.com Name: Nishkal Hundia | School: The University of Maryland, College Park | Email: nishkalnhundia@gmail.com
-
-Thank you
